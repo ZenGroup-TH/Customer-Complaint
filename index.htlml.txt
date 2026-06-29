@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Data Complaint 2026</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    body { font-family: 'Prompt', sans-serif; background-color: #f8fafc; }
+    .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: #f1f5f9; }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+    /* เพิ่มลูกศรเวลาชี้หัวตารางให้รู้ว่ากดเรียงได้ */
+    th.sortable:hover { background-color: #f1f5f9; color: #334155; }
+    th.sortable::after { content: ' \21C5'; opacity: 0.3; font-size: 0.8em; }
+    th.sort-asc::after { content: ' \2191'; opacity: 1; color: #4f46e5; }
+    th.sort-desc::after { content: ' \2193'; opacity: 1; color: #4f46e5; }
+  </style>
+</head>
+<body class="text-slate-800 antialiased">
+
+  <div id="loading" class="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-slate-900 text-white transition-opacity duration-500">
+    <img src="https://lh3.googleusercontent.com/d/1UP_YU2MVEKfSMK1Dnaxqp9yGNpwr41J6" alt="Company Logo" class="h-28 w-auto mb-8 animate-pulse drop-shadow-2xl">
+    <div class="flex flex-col items-center">
+      <div class="animate-spin rounded-full h-10 w-10 border-4 border-indigo-500 border-t-transparent mb-4"></div>
+      <p class="text-sm font-medium text-slate-300 tracking-wide">กำลังเตรียมข้อมูลและจัดทำแดชบอร์ดทางการ...</p>
+    </div>
+  </div>
+
+  <div class="min-h-screen flex flex-col">
+    <header class="bg-slate-900 text-white shadow-md">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row justify-between items-center gap-4">
+        <div class="flex items-center gap-3">
+          <img src="https://lh3.googleusercontent.com/d/1UP_YU2MVEKfSMK1Dnaxqp9yGNpwr41J6" alt="Company Logo" class="h-10 w-auto object-contain">
+          <div>
+            <h1 class="text-xl font-bold tracking-tight">Data Customer Complaint Dashboard</h1>
+            <p class="text-xs text-slate-400 font-light">ระบบวิเคราะห์ข้อมูลลูกค้าร้องเรียนประจำปี 2026</p>
+          </div>
+        </div>
+        <div class="text-right sm:text-right text-xs text-slate-300">
+          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 animate-pulse">● เชื่อมต่อข้อมูลสำเร็จ</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
+      
+      <section class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm">
+        <div class="flex items-center justify-between gap-6 overflow-x-auto custom-scrollbar pb-2">
+          <img src="https://lh3.googleusercontent.com/d/1Omj8k8ufA8ZPUEcZTuvxOezdn22AJK63" alt="Brand 1" class="h-10 sm:h-12 w-auto flex-shrink-0">
+          <img src="https://lh3.googleusercontent.com/d/16v7FI8EoQtCUetnrzgHiFhr2VzF_ounf" alt="Brand 2" class="h-10 sm:h-12 w-auto flex-shrink-0">
+          <img src="https://lh3.googleusercontent.com/d/1n5PjBdjmR7bsdWKywloLm3wjgIIPrRaR" alt="Brand 3" class="h-10 sm:h-12 w-auto flex-shrink-0">
+          <img src="https://lh3.googleusercontent.com/d/1GQsNkytw1zmMIzqdJ4imUL5gu2CAEjSf" alt="Brand 4" class="h-10 sm:h-12 w-auto flex-shrink-0">
+          <img src="https://lh3.googleusercontent.com/d/1vrAOZugdNWavSYnvrN0bYh06Z3Suo35O" alt="Brand 5" class="h-10 sm:h-12 w-auto flex-shrink-0">
+          <img src="https://lh3.googleusercontent.com/d/1e5aoSE14LQOUq9ouKv2kpvk6r-agmv0b" alt="Brand 6" class="h-10 sm:h-12 w-auto flex-shrink-0">
+          <img src="https://lh3.googleusercontent.com/d/1wBHbVYUcVOYwPdux6u8wg_LDMTY27ntK" alt="Brand 7" class="h-10 sm:h-12 w-auto flex-shrink-0">
+          <img src="https://lh3.googleusercontent.com/d/1LPClnkLsm-bSov-FFifJ-8hOZKNj5mnu" alt="Brand 8" class="h-10 sm:h-12 w-auto flex-shrink-0">
+          <img src="https://lh3.googleusercontent.com/d/1U0eBYqJXvaq4_Uj2Fu2QBiQte_xZ28s2" alt="Brand 9" class="h-10 sm:h-12 w-auto flex-shrink-0">
+          <img src="https://lh3.googleusercontent.com/d/1UgqKExgsENkpelT5uc81hKhujIbVdT7t" alt="Brand 10" class="h-10 sm:h-12 w-auto flex-shrink-0">
+        </div>
+      </section>
+
+      <section class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm relative z-40">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-3">
+          <h2 class="text-sm font-semibold text-slate-500 uppercase tracking-wider flex items-center gap-2">
+            <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"></path></svg>
+            ตัวกรองข้อมูล (FILTERS) <span class="text-xs text-indigo-500 normal-case ml-2 font-normal">*เลือกได้หลายข้อ</span>
+          </h2>
+          <button onclick="resetFilters()" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-200 text-xs font-medium rounded-lg transition-colors shadow-sm">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+            ล้างตัวกรองทั้งหมด
+          </button>
+        </div>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <div class="relative dropdown-container">
+            <label class="block text-xs font-medium text-slate-600 mb-1.5">เลือกแบรนด์</label>
+            <button type="button" onclick="toggleDropdown('brandMenu')" class="w-full text-left text-sm bg-slate-50 border border-slate-300 rounded-lg p-2.5 flex justify-between items-center"><span id="brandBtnText" class="truncate">ทั้งหมด ทุกแบรนด์</span><svg class="w-4 h-4 text-slate-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+            <div id="brandMenu" class="dropdown-menu hidden absolute z-50 w-full mt-1 bg-white border border-slate-200 rounded-lg shadow-xl max-h-60 overflow-y-auto custom-scrollbar"><div class="p-2 space-y-1" id="brandOptions"></div></div>
+          </div>
+          <div class="relative dropdown-container">
+            <label class="block text-xs font-medium text-slate-600 mb-1.5">ประเภทที่ร้องเรียน</label>
+            <button type="button" onclick="toggleDropdown('categoryMenu')" class="w-full text-left text-sm bg-slate-50 border border-slate-300 rounded-lg p-2.5 flex justify-between items-center"><span id="categoryBtnText" class="truncate">ทั้งหมด ทุกด้าน</span><svg class="w-4 h-4 text-slate-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+            <div id="categoryMenu" class="dropdown-menu hidden absolute z-50 w-full mt-1 bg-white border border-slate-200 rounded-lg shadow-xl max-h-60 overflow-y-auto custom-scrollbar"><div class="p-2 space-y-1" id="categoryOptions"></div></div>
+          </div>
+          <div class="relative dropdown-container">
+            <label class="block text-xs font-medium text-slate-600 mb-1.5">หัวข้อที่ร้องเรียน</label>
+            <button type="button" onclick="toggleDropdown('topicMenu')" class="w-full text-left text-sm bg-slate-50 border border-slate-300 rounded-lg p-2.5 flex justify-between items-center"><span id="topicBtnText" class="truncate">ทั้งหมด ทุกหัวข้อ</span><svg class="w-4 h-4 text-slate-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+            <div id="topicMenu" class="dropdown-menu hidden absolute z-50 w-full mt-1 bg-white border border-slate-200 rounded-lg shadow-xl max-h-60 overflow-y-auto custom-scrollbar"><div class="p-2 space-y-1" id="topicOptions"></div></div>
+          </div>
+          <div class="relative dropdown-container">
+            <label class="block text-xs font-medium text-slate-600 mb-1.5">สาขา</label>
+            <button type="button" onclick="toggleDropdown('branchMenu')" class="w-full text-left text-sm bg-slate-50 border border-slate-300 rounded-lg p-2.5 flex justify-between items-center"><span id="branchBtnText" class="truncate">ทั้งหมด ทุกสาขา</span><svg class="w-4 h-4 text-slate-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+            <div id="branchMenu" class="dropdown-menu hidden absolute z-50 w-full mt-1 bg-white border border-slate-200 rounded-lg shadow-xl max-h-60 overflow-y-auto custom-scrollbar"><div class="p-2 space-y-1" id="branchOptions"></div></div>
+          </div>
+          <div class="relative dropdown-container">
+            <label class="block text-xs font-medium text-slate-600 mb-1.5">ช่องทาง</label>
+            <button type="button" onclick="toggleDropdown('channelMenu')" class="w-full text-left text-sm bg-slate-50 border border-slate-300 rounded-lg p-2.5 flex justify-between items-center"><span id="channelBtnText" class="truncate">ทั้งหมด ทุกช่องทาง</span><svg class="w-4 h-4 text-slate-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+            <div id="channelMenu" class="dropdown-menu hidden absolute z-50 w-full mt-1 bg-white border border-slate-200 rounded-lg shadow-xl max-h-60 overflow-y-auto custom-scrollbar"><div class="p-2 space-y-1" id="channelOptions"></div></div>
+          </div>
+          <div class="relative dropdown-container">
+            <label class="block text-xs font-medium text-slate-600 mb-1.5">ผู้รับผิดชอบ</label>
+            <button type="button" onclick="toggleDropdown('responsibleMenu')" class="w-full text-left text-sm bg-slate-50 border border-slate-300 rounded-lg p-2.5 flex justify-between items-center"><span id="responsibleBtnText" class="truncate">ทั้งหมด ทุกคน</span><svg class="w-4 h-4 text-slate-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+            <div id="responsibleMenu" class="dropdown-menu hidden absolute z-50 w-full mt-1 bg-white border border-slate-200 rounded-lg shadow-xl max-h-60 overflow-y-auto custom-scrollbar"><div class="p-2 space-y-1" id="responsibleOptions"></div></div>
+          </div>
+          <div class="relative dropdown-container">
+            <label class="block text-xs font-medium text-slate-600 mb-1.5">เดือน</label>
+            <button type="button" onclick="toggleDropdown('monthMenu')" class="w-full text-left text-sm bg-slate-50 border border-slate-300 rounded-lg p-2.5 flex justify-between items-center"><span id="monthBtnText" class="truncate">ทั้งหมด ทุกเดือน</span><svg class="w-4 h-4 text-slate-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+            <div id="monthMenu" class="dropdown-menu hidden absolute z-50 w-full mt-1 bg-white border border-slate-200 rounded-lg shadow-xl max-h-60 overflow-y-auto custom-scrollbar"><div class="p-2 space-y-1" id="monthOptions"></div></div>
+          </div>
+          <div class="relative dropdown-container">
+            <label class="block text-xs font-medium text-slate-600 mb-1.5">สถานะเคส/คนปิดเคส</label>
+            <button type="button" onclick="toggleDropdown('statusMenu')" class="w-full text-left text-sm bg-slate-50 border border-slate-300 rounded-lg p-2.5 flex justify-between items-center"><span id="statusBtnText" class="truncate">ทั้งหมด ทุกสถานะ/ทุกคน</span><svg class="w-4 h-4 text-slate-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+            <div id="statusMenu" class="dropdown-menu hidden absolute z-50 w-full mt-1 bg-white border border-slate-200 rounded-lg shadow-xl max-h-60 overflow-y-auto custom-scrollbar"><div class="p-2 space-y-1" id="statusOptions"></div></div>
+          </div>
+        </div>
+      </section>
+
+<section class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4">
+        <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-center">
+          <p class="text-xs text-slate-500 font-medium mb-1">เรื่องร้องเรียนทั้งหมด</p>
+          <h4 id="kpiTotal" class="text-2xl font-bold text-blue-600">-</h4>
+        </div>
+        <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-center">
+          <p class="text-xs text-slate-500 font-medium mb-1">ปิดเคสแล้ว</p>
+          <div class="flex items-baseline gap-2">
+            <h4 id="kpiClosed" class="text-2xl font-bold text-emerald-600">-</h4>
+            <span id="kpiRate" class="text-xs font-semibold text-emerald-500 bg-emerald-50 px-2 py-0.5 rounded-full">-</span>
+          </div>
+        </div>
+        <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-center">
+          <p class="text-xs text-slate-500 font-medium mb-1">กำลังดำเนินการ</p>
+          <h4 id="kpiPending" class="text-2xl font-bold text-amber-500">-</h4>
+        </div>
+        
+        <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-center lg:col-span-2">
+          <p class="text-[11px] text-slate-500 font-medium mb-1">ระยะเวลาเฉลี่ยที่ปิดเคส</p>
+          <div class="flex items-baseline gap-1">
+            <h4 id="kpiSLA" class="text-base lg:text-lg font-bold text-sky-500 tracking-tight whitespace-nowrap">-</h4>
+            </div>
+        </div>
+
+        <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-center lg:col-span-2">
+          <p class="text-xs text-slate-500 font-medium mb-1">แบรนด์ที่ถูกร้องเรียนสูงสุด</p>
+          <h4 id="kpiTopBrand" class="text-xl font-bold text-rose-600 truncate">-</h4>
+        </div>
+      </section>
+
+      <div class="space-y-6">
+        
+        <section class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm">
+          <h3 class="text-sm font-semibold text-slate-700 mb-4 flex items-center gap-1.5">แนวโน้มการร้องเรียนแยกตามเดือน (Trend Analysis)</h3>
+          <div class="w-full h-[300px]">
+             <div id="trendChart" class="w-full h-full"></div>
+          </div>
+        </section>
+
+        <section class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm">
+          <h3 class="text-sm font-semibold text-slate-700 mb-4 flex items-center gap-1.5">จำนวนเรื่องร้องเรียนแยกตามแบรนด์</h3>
+          <div class="w-full overflow-x-auto custom-scrollbar pb-2">
+             <div class="min-w-[600px] h-[350px]">
+               <div id="brandBarChart" class="w-full h-full"></div>
+             </div>
+          </div>
+        </section>
+
+        <section class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm">
+          <h3 class="text-sm font-semibold text-slate-700 mb-4 flex items-center gap-1.5">เทียบสัดส่วน Top 3 ด้านที่ถูกร้องเรียน และหัวข้อย่อย</h3>
+          <div class="w-full h-[220px]">
+             <div id="top3CategoryChart" class="w-full h-full"></div>
+          </div>
+          <div id="top3TopicsContainer" class="mt-2 grid grid-cols-1 md:grid-cols-3 border border-slate-200 rounded-lg overflow-hidden bg-slate-50/50 shadow-inner"></div>
+        </section>
+
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col">
+            <h3 class="text-sm font-semibold text-slate-700 mb-4 flex items-center gap-1.5">สัดส่วนจำนวนคอมเพลนแยกตามแบรนด์</h3>
+            <div class="flex-1 w-full min-h-[300px]">
+              <div id="brandChart" class="w-full h-full"></div>
+            </div>
+          </div>
+          <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col">
+            <h3 class="text-sm font-semibold text-slate-700 mb-4 flex items-center gap-1.5">สัดส่วนจำนวนคอมเพลนแยกตามช่องทาง</h3>
+            <div class="flex-1 w-full min-h-[300px]">
+              <div id="channelPieChart" class="w-full h-full"></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col">
+            <h3 class="text-sm font-semibold text-slate-700 mb-4 flex items-center gap-1.5">Top 10 ประเภทร้องเรียน</h3>
+            <div class="flex-1 w-full"><div id="categoryChart" class="w-full h-[300px]"></div></div>
+          </div>
+          <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col">
+            <h3 class="text-sm font-semibold text-slate-700 mb-4 flex items-center gap-1.5">Top 10 หัวข้อร้องเรียน</h3>
+            <div class="flex-1 w-full"><div id="topicChart" class="w-full h-[300px]"></div></div>
+          </div>
+          <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col">
+            <h3 class="text-sm font-semibold text-slate-700 mb-4 flex items-center gap-1.5">Top 10 สาขา ที่ถูกร้องเรียน</h3>
+            <div class="flex-1 w-full"><div id="branchChart" class="w-full h-[300px]"></div></div>
+          </div>
+        </section>
+
+      </div>
+
+      <section class="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden flex flex-col">
+        <div class="p-5 border-b border-slate-100 flex justify-between items-center">
+          <h3 class="text-sm font-semibold text-slate-700 flex items-center gap-1.5">ตารางข้อมูลสรุปรายละเอียด</h3>
+          <a href="https://docs.google.com/spreadsheets/d/1PivhE4CZ74X1rPSifghGKavYyOXgtdAlG0UG_G0nY6k/export?format=xlsx" 
+             class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-medium rounded-lg transition-colors shadow-sm cursor-pointer">
+            Export Excel
+          </a>
+        </div>
+        <div class="overflow-x-auto custom-scrollbar max-h-[450px]">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="bg-slate-50 border-b border-slate-200 sticky top-0 z-10 text-xs font-semibold text-slate-600 uppercase tracking-wider">
+                <th id="th-no" class="px-4 py-3.5 w-16 text-center cursor-pointer sortable" onclick="sortTable('no')">No.</th>
+                <th id="th-date" class="px-4 py-3.5 w-28 cursor-pointer sortable" onclick="sortTable('date')">วันที่แจ้ง</th>
+                <th id="th-brand" class="px-4 py-3.5 w-24 cursor-pointer sortable" onclick="sortTable('brand')">แบรนด์</th>
+                <th id="th-branch" class="px-4 py-3.5 w-36 cursor-pointer sortable" onclick="sortTable('branch')">สาขาที่เกิดเรื่อง</th>
+                <th class="px-4 py-3.5 w-44">ประเภท</th>
+                <th class="px-4 py-3.5">เนื้อหาข้อร้องเรียน</th>
+                <th class="px-4 py-3.5 w-36 text-center">สถานะเคส</th>
+              </tr>
+            </thead>
+            <tbody id="tableBody" class="divide-y divide-slate-100 text-sm text-slate-600"></tbody>
+          </table>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script>
+    Chart.register(ChartDataLabels);
+
+    let allData = [];
+    let filteredData = [];
+    
+    // Charts variables
+    let trendChartInst = null;
+    let brandChartInstance = null;
+    let channelPieChartInstance = null; 
+    let categoryChartInstance = null;
+    let topicChartInstance = null;      
+    let branchChartInstance = null;
+    let brandBarChartInst = null; 
+    let top3CategoryChartInst = null;
+
+    // Table Sorting Variables
+    let currentSortCol = 'no';
+    let sortAsc = false; // ค่าเริ่มต้นเรียงจากใหม่สุดไปเก่าสุด (มากไปน้อย)
+
+    const thaiMonths = ['', 'ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.', 'พ.ค.', 'มิ.ย.', 'ก.ค.', 'ส.ค.', 'ก.ย.', 'ต.ค.', 'พ.ย.', 'ธ.ค.'];
+
+    // Close dropdowns
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.dropdown-container')) {
+        document.querySelectorAll('.dropdown-menu').forEach(menu => menu.classList.add('hidden'));
+      }
+    });
+
+    function toggleDropdown(menuId) {
+      document.querySelectorAll('.dropdown-menu').forEach(menu => {
+        if(menu.id !== menuId) menu.classList.add('hidden');
+      });
+      document.getElementById(menuId).classList.toggle('hidden');
+    }
+
+    // NEW: ล้างตัวกรองทั้งหมด (Reset)
+    function resetFilters() {
+      // เอาติ๊กถูกออกทั้งหมด
+      document.querySelectorAll('.item-cb, .select-all-cb').forEach(cb => cb.checked = false);
+      
+      // คืนค่าข้อความปุ่ม
+      document.getElementById('brandBtnText').textContent = 'ทั้งหมด ทุกแบรนด์';
+      document.getElementById('categoryBtnText').textContent = 'ทั้งหมด ทุกด้าน';
+      document.getElementById('topicBtnText').textContent = 'ทั้งหมด ทุกหัวข้อ';
+      document.getElementById('branchBtnText').textContent = 'ทั้งหมด ทุกสาขา';
+      document.getElementById('channelBtnText').textContent = 'ทั้งหมด ทุกช่องทาง';
+      document.getElementById('responsibleBtnText').textContent = 'ทั้งหมด ทุกคน';
+      document.getElementById('monthBtnText').textContent = 'ทั้งหมด ทุกเดือน';
+      document.getElementById('statusBtnText').textContent = 'ทั้งหมด ทุกสถานะ';
+      
+      applyFilters();
+    }
+
+    // NEW: ระบบเรียงหัวตาราง (Sorting)
+    function sortTable(column) {
+      if (currentSortCol === column) {
+        sortAsc = !sortAsc; // สลับทิศทาง
+      } else {
+        currentSortCol = column;
+        sortAsc = true;
+      }
+      
+      // อัปเดตลูกศรบนหัวตาราง UI
+      ['no', 'date', 'brand', 'branch'].forEach(col => {
+        const th = document.getElementById(`th-${col}`);
+        if(th) {
+          th.classList.remove('sort-asc', 'sort-desc');
+          if (col === currentSortCol) {
+            th.classList.add(sortAsc ? 'sort-asc' : 'sort-desc');
+          }
+        }
+      });
+
+      renderTable();
+    }
+
+    function parseDateForSort(dateStr) {
+      if (!dateStr || dateStr === '-') return 0;
+      const parts = dateStr.split('/');
+      if (parts.length === 3) {
+        // เปลี่ยน 31/12/2026 เป็น 20261231 เพื่อเรียงตัวเลข
+        return parseInt(parts[2] + parts[1].padStart(2, '0') + parts[0].padStart(2, '0'));
+      }
+      return 0;
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      google.script.run
+        .withSuccessHandler(initializeDashboard)
+        .withFailureHandler(handleError)
+        .getDashboardData();
+    });
+
+    function handleError(err) {
+      console.error(err);
+      alert("เกิดข้อผิดพลาดในการโหลดข้อมูล: " + err.message);
+    }
+
+function initializeDashboard(jsonStr) {
+      allData = JSON.parse(jsonStr);
+      if (allData.error) { alert(allData.error); return; }
+
+      allData.forEach(item => {
+        // อัปเดตสถานะการปิดเคส
+        item.statusFilter = (item.closedBy && item.closedBy.trim() !== '') ? item.closedBy : 'กำลังดำเนินเรื่อง';
+        // (ลบลอจิก .split('/') อันเก่าออก เพราะรับค่า monthNum สำเร็จรูปจากหลังบ้านแล้ว)
+      });
+
+      filteredData = [...allData];
+
+      populateCheckbox('brandOptions', 'brandBtnText', 'ทุกแบรนด์', 'brand');
+      populateCheckbox('categoryOptions', 'categoryBtnText', 'ทุกด้าน', 'categories'); 
+      populateCheckbox('topicOptions', 'topicBtnText', 'ทุกหัวข้อ', 'topics');
+      populateCheckbox('branchOptions', 'branchBtnText', 'ทุกสาขา', 'branch');
+      populateCheckbox('channelOptions', 'channelBtnText', 'ทุกช่องทาง', 'channel');
+      populateCheckbox('responsibleOptions', 'responsibleBtnText', 'ทุกคน', 'responsible');
+      populateCheckbox('statusOptions', 'statusBtnText', 'ทุกสถานะ', 'statusFilter');
+      populateMonthCheckbox();
+
+      renderDashboard();
+      document.getElementById('loading').classList.add('hidden');
+    }
+
+    function populateCheckbox(containerId, btnId, defaultText, key) {
+      const container = document.getElementById(containerId);
+      container.innerHTML = '';
+      
+      let allValues = [];
+      allData.forEach(item => {
+        let val = item[key];
+        if (Array.isArray(val)) allValues.push(...val);
+        else allValues.push(val);
+      });
+
+      const uniqueValues = [...new Set(allValues)].filter(val => val && val !== '-').sort();
+      
+      if (uniqueValues.length > 0) {
+        const selectAllLabel = document.createElement('label');
+        selectAllLabel.className = 'flex items-center space-x-2 px-2 py-2 hover:bg-slate-100 cursor-pointer text-sm font-semibold text-slate-800 rounded transition-colors border-b border-slate-200 mb-1';
+        selectAllLabel.innerHTML = `<input type="checkbox" class="rounded border-slate-300 text-indigo-600 focus:ring-indigo-500 w-4 h-4 select-all-cb" onchange="toggleSelectAll('${containerId}', this, '${btnId}', '${defaultText}')"><span class="truncate">เลือกทั้งหมด</span>`;
+        container.appendChild(selectAllLabel);
+      }
+
+      uniqueValues.forEach(val => {
+        const label = document.createElement('label');
+        label.className = 'flex items-center space-x-2 px-2 py-1.5 hover:bg-indigo-50 cursor-pointer text-sm text-slate-700 rounded transition-colors';
+        label.innerHTML = `<input type="checkbox" value="${val}" class="rounded border-slate-300 text-indigo-600 focus:ring-indigo-500 w-4 h-4 item-cb" onchange="handleFilterChange('${containerId}', '${btnId}', '${defaultText}')"><span class="truncate">${val}</span>`;
+        container.appendChild(label);
+      });
+    }
+
+    function populateMonthCheckbox() {
+      const containerId = 'monthOptions';
+      const btnId = 'monthBtnText';
+      const defaultText = 'ทุกเดือน';
+      const container = document.getElementById(containerId);
+      container.innerHTML = '';
+
+      const uniqueMonths = [...new Set(allData.map(item => item.monthNum))].filter(val => val > 0).sort((a, b) => a - b);
+      
+      if (uniqueMonths.length > 0) {
+        const selectAllLabel = document.createElement('label');
+        selectAllLabel.className = 'flex items-center space-x-2 px-2 py-2 hover:bg-slate-100 cursor-pointer text-sm font-semibold text-slate-800 rounded transition-colors border-b border-slate-200 mb-1';
+        selectAllLabel.innerHTML = `<input type="checkbox" class="rounded border-slate-300 text-indigo-600 focus:ring-indigo-500 w-4 h-4 select-all-cb" onchange="toggleSelectAll('${containerId}', this, '${btnId}', '${defaultText}')"><span class="truncate">เลือกทั้งหมด</span>`;
+        container.appendChild(selectAllLabel);
+      }
+
+      uniqueMonths.forEach(m => {
+        const label = document.createElement('label');
+        label.className = 'flex items-center space-x-2 px-2 py-1.5 hover:bg-indigo-50 cursor-pointer text-sm text-slate-700 rounded transition-colors';
+        label.innerHTML = `<input type="checkbox" value="${m}" class="rounded border-slate-300 text-indigo-600 focus:ring-indigo-500 w-4 h-4 item-cb" onchange="handleFilterChange('${containerId}', '${btnId}', '${defaultText}')"><span class="truncate">${thaiMonths[m]}</span>`;
+        container.appendChild(label);
+      });
+    }
+
+    function toggleSelectAll(containerId, selectAllElement, btnId, defaultText) {
+      const isChecked = selectAllElement.checked;
+      const checkboxes = document.querySelectorAll(`#${containerId} .item-cb`);
+      checkboxes.forEach(cb => { cb.checked = isChecked; });
+      handleFilterChange(containerId, btnId, defaultText);
+    }
+
+    function getSelectedValues(containerId) {
+      const checkedBoxes = document.querySelectorAll(`#${containerId} .item-cb:checked`);
+      return Array.from(checkedBoxes).map(cb => cb.value);
+    }
+
+    function handleFilterChange(containerId, btnId, defaultText) {
+      const allBoxes = document.querySelectorAll(`#${containerId} .item-cb`);
+      const checkedBoxes = document.querySelectorAll(`#${containerId} .item-cb:checked`);
+      const selectAllBox = document.querySelector(`#${containerId} .select-all-cb`);
+      
+      if (selectAllBox) selectAllBox.checked = (allBoxes.length > 0 && allBoxes.length === checkedBoxes.length);
+
+      const selected = Array.from(checkedBoxes).map(cb => cb.value);
+      const btn = document.getElementById(btnId);
+      
+      if (selected.length === 0 || selected.length === allBoxes.length) btn.textContent = `ทั้งหมด ${defaultText}`;
+      else if (selected.length === 1) btn.textContent = checkedBoxes[0].nextElementSibling.textContent;
+      else btn.textContent = `เลือกแล้ว ${selected.length} รายการ`;
+      
+      applyFilters();
+    }
+
+    function applyFilters() {
+      const brands = getSelectedValues('brandOptions');
+      const selectedCats = getSelectedValues('categoryOptions');
+      const selectedTopics = getSelectedValues('topicOptions');     
+      const branches = getSelectedValues('branchOptions');  
+      const channels = getSelectedValues('channelOptions');
+      const resps = getSelectedValues('responsibleOptions');
+      const months = getSelectedValues('monthOptions');
+      const statuses = getSelectedValues('statusOptions');
+
+      filteredData = allData.filter(item => {
+        const matchBrand = brands.length === 0 || brands.includes(item.brand);
+        const matchBranch = branches.length === 0 || branches.includes(item.branch); 
+        const matchChannel = channels.length === 0 || channels.includes(item.channel);
+        const matchResp = resps.length === 0 || resps.includes(item.responsible);
+        const matchMonth = months.length === 0 || months.includes(item.monthNum.toString());
+        const matchStatus = statuses.length === 0 || statuses.includes(item.statusFilter);
+        const matchCat = selectedCats.length === 0 || item.categories.some(c => selectedCats.includes(c));
+        const matchTopic = selectedTopics.length === 0 || item.topics.some(t => selectedTopics.includes(t));       
+
+        return matchBrand && matchCat && matchTopic && matchBranch && matchChannel && matchResp && matchMonth && matchStatus;
+      });
+      
+      renderDashboard();
+    }
+
+    function renderDashboard() {
+      calculateKPIs();
+      drawCharts();
+      renderTable();
+    }
+
+function calculateKPIs() {
+      const validCases = filteredData.filter(item => item.no && item.no.toString().trim() !== '');
+      const total = validCases.length;
+      const closedCasesList = validCases.filter(item => item.closedBy && item.closedBy !== '');
+      const closed = closedCasesList.length;
+      const pending = total - closed;
+      const rate = total > 0 ? ((closed / total) * 100).toFixed(1) : 0;
+      
+      document.getElementById('kpiTotal').textContent = total.toLocaleString();
+      document.getElementById('kpiClosed').textContent = closed.toLocaleString();
+      document.getElementById('kpiPending').textContent = pending.toLocaleString();
+      document.getElementById('kpiRate').textContent = `(${rate}%)`;
+
+      // 🌟 NEW: คำนวณ SLA แปลงนาทีเฉลี่ยเป็น "วัน-ชั่วโมง-นาที"
+      const slaCases = closedCasesList.filter(item => item.slaMinutes !== null && item.slaMinutes !== undefined);
+      if (slaCases.length > 0) {
+        const totalMinutes = slaCases.reduce((sum, item) => sum + item.slaMinutes, 0);
+        const avgMinutes = Math.round(totalMinutes / slaCases.length); // ได้ค่าเฉลี่ยเป็นนาที
+        
+        // แยกตัวประกอบคณิตศาสตร์
+        const d = Math.floor(avgMinutes / (24 * 60));
+        const h = Math.floor((avgMinutes % (24 * 60)) / 60);
+        const m = avgMinutes % 60;
+        
+        let slaText = "";
+        if (d > 0) slaText += `${d} วัน `;
+        if (h > 0) slaText += `${h} ชม. `;
+        slaText += `${m} นาที`;
+        
+        document.getElementById('kpiSLA').textContent = slaText;
+      } else {
+        document.getElementById('kpiSLA').textContent = 'N/A';
+      }
+
+      const brandCounts = {};
+      let topBrandName = '-';
+      let maxCount = 0;
+      validCases.forEach(item => {
+        if(item.brand && item.brand !== 'ไม่ระบุแบรนด์') {
+          brandCounts[item.brand] = (brandCounts[item.brand] || 0) + 1;
+          if(brandCounts[item.brand] > maxCount) {
+            maxCount = brandCounts[item.brand];
+            topBrandName = item.brand;
+          }
+        }
+      });
+      document.getElementById('kpiTopBrand').textContent = topBrandName + (maxCount > 0 ? ` (${maxCount} เคส)` : '');
+    }
+
+    function getTop10Data(dataArray, key) {
+      const counts = {};
+      dataArray.forEach(item => {
+        let values = item[key];
+        if (!values) values = ['ไม่ระบุ'];
+        if (!Array.isArray(values)) values = [values];
+        values.forEach(val => { counts[val || 'ไม่ระบุ'] = (counts[val || 'ไม่ระบุ'] || 0) + 1; });
+      });
+      return Object.entries(counts).sort((a, b) => b[1] - a[1]).slice(0, 10);
+    }
+
+    function drawCharts() {
+      Chart.defaults.font.family = "'Prompt', sans-serif";
+      const totalCases = filteredData.length;
+      const isMobile = window.innerWidth < 768;
+
+      // NEW: กราฟเส้นแนวโน้ม (Trend Analysis)
+      const trendDom = document.getElementById('trendChart');
+      if (trendChartInst) trendChartInst.dispose();
+      trendChartInst = echarts.init(trendDom);
+
+      const monthCounts = new Array(12).fill(0);
+      filteredData.forEach(item => {
+        if (item.monthNum >= 1 && item.monthNum <= 12) {
+          monthCounts[item.monthNum - 1]++;
+        }
+      });
+
+      trendChartInst.setOption({
+        tooltip: { trigger: 'axis', textStyle: { fontFamily: 'Prompt' } },
+        grid: { left: '2%', right: '4%', bottom: '5%', top: '10%', containLabel: true },
+        xAxis: { 
+          type: 'category', 
+          boundaryGap: false,
+          data: ['ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.', 'พ.ค.', 'มิ.ย.', 'ก.ค.', 'ส.ค.', 'ก.ย.', 'ต.ค.', 'พ.ย.', 'ธ.ค.'],
+          axisLabel: { fontFamily: 'Prompt', color: '#64748b' }
+        },
+        yAxis: { type: 'value', axisLabel: { fontFamily: 'Prompt', color: '#64748b' }, splitLine: { lineStyle: { color: '#f1f5f9' } } },
+        series: [{
+          data: monthCounts, type: 'line', smooth: true, symbolSize: 8,
+          itemStyle: { color: '#3b82f6' }, lineStyle: { width: 3 },
+          areaStyle: { color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{offset: 0, color: 'rgba(59,130,246,0.5)'}, {offset: 1, color: 'rgba(59,130,246,0.05)'}]) },
+          label: { show: true, position: 'top', fontFamily: 'Prompt', color: '#3b82f6', fontWeight: 'bold' }
+        }]
+      });
+
+      // กราฟวงกลม
+      const brandMap = {};
+      filteredData.forEach(item => { brandMap[item.brand] = (brandMap[item.brand] || 0) + 1; });
+      const brandData = Object.keys(brandMap).map(key => ({ name: key, value: brandMap[key] }));
+      
+      const brandContainer = document.getElementById('brandChart');
+      if (brandChartInstance) brandChartInstance.dispose();
+      brandChartInstance = echarts.init(brandContainer);
+      brandChartInstance.setOption({
+        color: ['#4f46e5', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#06b6d4'],
+        tooltip: { trigger: 'item', textStyle: { fontFamily: 'Prompt' } },
+        legend: { bottom: '0%', left: 'center', icon: 'circle', textStyle: { fontFamily: 'Prompt', fontSize: 11, color: '#64748b' } },
+        series: [{
+          type: 'pie', radius: ['45%', '70%'], center: ['50%', '45%'], avoidLabelOverlap: true,
+          itemStyle: { borderColor: '#fff', borderWidth: 2 },
+          label: { show: true, position: 'outside', formatter: '{b}\n{c} ({d}%)', fontFamily: 'Prompt', fontWeight: 'bold', fontSize: 11, color: '#334155' },
+          labelLine: { show: true, length: 15, length2: 20, smooth: true },
+          data: brandData
+        }]
+      });
+
+      const channelMap = {};
+      filteredData.forEach(item => { channelMap[item.channel] = (channelMap[item.channel] || 0) + 1; });
+      const channelData = Object.keys(channelMap).map(key => ({ name: key, value: channelMap[key] }));
+      
+      const channelContainer = document.getElementById('channelPieChart');
+      if (channelPieChartInstance) channelPieChartInstance.dispose();
+      channelPieChartInstance = echarts.init(channelContainer);
+      channelPieChartInstance.setOption({
+        color: ['#0ea5e9', '#ec4899', '#f43f5e', '#8b5cf6', '#14b8a6', '#f59e0b'],
+        tooltip: { trigger: 'item', textStyle: { fontFamily: 'Prompt' } },
+        legend: { bottom: '0%', left: 'center', icon: 'circle', textStyle: { fontFamily: 'Prompt', fontSize: 11, color: '#64748b' } },
+        series: [{
+          type: 'pie', radius: ['45%', '70%'], center: ['50%', '45%'], avoidLabelOverlap: true,
+          itemStyle: { borderColor: '#fff', borderWidth: 2 },
+          label: { show: true, position: 'outside', formatter: '{b}\n{c} ({d}%)', fontFamily: 'Prompt', fontWeight: 'bold', fontSize: 11, color: '#334155' },
+          labelLine: { show: true, length: 15, length2: 20, smooth: true },
+          data: channelData
+        }]
+      });
+
+      // ฟังก์ชันวาดกราฟแท่งแนวนอน Top 10
+      const createBarChart = (containerId, dataArray, color) => {
+        const dom = document.getElementById(containerId);
+        if (!dom) return null;
+        let chartInst = echarts.getInstanceByDom(dom);
+        if (chartInst) chartInst.dispose(); 
+        chartInst = echarts.init(dom);
+        const names = dataArray.map(item => item[0]).reverse();
+        const values = dataArray.map(item => item[1]).reverse();
+        chartInst.setOption({
+          tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, textStyle: { fontFamily: 'Prompt' } },
+          grid: { containLabel: true, left: '3%', right: isMobile ? 65 : 80, top: 10, bottom: 20 },
+          xAxis: { type: 'value', show: false },
+          yAxis: { type: 'category', data: names, axisLine: { show: false }, axisTick: { show: false },
+            axisLabel: { fontFamily: 'Prompt', fontSize: isMobile ? 10 : 11, color: '#475569', fontWeight: '500', interval: 0, width: isMobile ? 130 : 160, overflow: 'break', align: 'right' }
+          },
+          series: [{ type: 'bar', data: values, itemStyle: { color: color, borderRadius: [0, 4, 4, 0] }, barWidth: 14,
+            label: { show: true, position: 'right', fontFamily: 'Prompt', fontWeight: 'bold', fontSize: isMobile ? 10 : 11, color: color,
+              formatter: (params) => { if (totalCases === 0) return params.value; return `${params.value} (${((params.value / totalCases) * 100).toFixed(1)}%)`; }
+            }
+          }]
+        });
+        return chartInst;
+      };
+
+      const topCategories = getTop10Data(filteredData, 'categories');
+      categoryChartInstance = createBarChart('categoryChart', topCategories, '#0EA5E9');
+      const topTopics = getTop10Data(filteredData, 'topics');
+      topicChartInstance = createBarChart('topicChart', topTopics, '#f59e0b');
+      const topBranches = getTop10Data(filteredData, 'branch');
+      branchChartInstance = createBarChart('branchChart', topBranches, '#EC4899');
+      
+      // กราฟแท่งจำนวนคอมเพลนแยกตามแบรนด์ (แนวตั้ง)
+      const brandBarDom = document.getElementById('brandBarChart');
+      if (brandBarChartInst) brandBarChartInst.dispose();
+      brandBarChartInst = echarts.init(brandBarDom);
+      const sortedBrandData = Object.keys(brandMap).map(key => ({ name: key, value: brandMap[key] })).sort((a, b) => b.value - a.value);
+      brandBarChartInst.setOption({
+        tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, textStyle: { fontFamily: 'Prompt' } },
+        grid: { left: '1%', right: '1%', bottom: '0%', top: '15%', containLabel: true },
+        xAxis: { type: 'category', data: sortedBrandData.map(d => d.name), axisLine: { lineStyle: { color: '#e2e8f0' } }, axisTick: { show: false }, axisLabel: { fontFamily: 'Prompt', color: '#475569', interval: 0, rotate: isMobile ? 45 : 0, fontSize: isMobile ? 10 : 12 } },
+        yAxis: { type: 'value', show: false },
+        series: [{ type: 'bar', data: sortedBrandData.map(d => d.value), itemStyle: { color: '#f97316', borderRadius: [4, 4, 0, 0] }, barMaxWidth: 45, label: { show: true, position: 'top', fontFamily: 'Prompt', fontWeight: 'bold', color: '#475569', fontSize: 13 } }]
+      });
+
+      // กราฟ Top 3 ด้าน + ตารางหัวข้อย่อย
+      const top3Cats = topCategories.slice(0, 3);
+      const top3CatDom = document.getElementById('top3CategoryChart');
+      if (top3CategoryChartInst) top3CategoryChartInst.dispose();
+      top3CategoryChartInst = echarts.init(top3CatDom);
+      const t3CatNames = top3Cats.map(item => item[0]).reverse();
+      const t3CatValues = top3Cats.map(item => item[1]).reverse();
+      top3CategoryChartInst.setOption({
+        tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, textStyle: { fontFamily: 'Prompt' } },
+        grid: { left: '1%', right: '15%', bottom: '0%', top: '5%', containLabel: true },
+        xAxis: { type: 'value', show: false },
+        yAxis: { type: 'category', data: t3CatNames, axisLine: { show: false }, axisTick: { show: false }, axisLabel: { fontFamily: 'Prompt', fontSize: isMobile ? 10 : 12, color: '#475569', fontWeight: '500', width: isMobile ? 110 : 160, overflow: 'break', align: 'right' } },
+        series: [{ type: 'bar', data: t3CatValues, itemStyle: { color: '#fbbf24', borderRadius: [0, 4, 4, 0] }, barWidth: 20, label: { show: true, position: 'right', fontFamily: 'Prompt', color: '#64748b', fontSize: isMobile ? 10 : 12, formatter: (params) => { if (totalCases === 0) return `${params.value} เรื่อง`; return `${params.value} เรื่อง (${((params.value / totalCases) * 100).toFixed(0)}%)`; } } }]
+      });
+
+      // สร้างตารางหัวข้อย่อย
+      const top3Container = document.getElementById('top3TopicsContainer');
+      top3Container.innerHTML = '';
+      top3Cats.forEach((catInfo, index) => {
+        const catName = catInfo[0];
+        const casesInCat = filteredData.filter(item => { let c = item.categories; if (!c) c = ['ไม่ระบุ']; if (!Array.isArray(c)) c = [c]; return c.includes(catName); });
+        const topicCounts = {};
+        casesInCat.forEach(item => { let t = item.topics; if (!t) t = ['ไม่ระบุ']; if (!Array.isArray(t)) t = [t]; t.forEach(val => { const finalVal = val || 'ไม่ระบุ'; topicCounts[finalVal] = (topicCounts[finalVal] || 0) + 1; }); });
+        const t3Topics = Object.entries(topicCounts).sort((a,b) => b[1] - a[1]).slice(0, 3);
+        let html = `<div class="p-4 bg-white border-b md:border-b-0 md:border-r border-slate-200 last:border-0 h-full flex flex-col"><h4 class="text-[13px] md:text-sm font-bold text-slate-800 mb-3 border-b border-slate-200 pb-2">${index + 1}. ${catName} Top 3</h4><ul class="space-y-2 flex-1">`;
+        if (t3Topics.length === 0) html += `<li class="text-xs text-slate-400">- ไม่มีข้อมูล -</li>`;
+        else t3Topics.forEach((tInfo, tIndex) => { html += `<li class="text-xs md:text-[13px] text-slate-600 flex items-start gap-2"><span class="text-slate-800 font-medium">${tIndex + 1}.</span> <span class="flex-1 leading-snug">${tInfo[0]} <span class="text-indigo-500 font-medium ml-1">(${tInfo[1]})</span></span></li>`; });
+        html += `</ul></div>`;
+        top3Container.innerHTML += html;
+      });
+
+      window.addEventListener('resize', () => {
+        if (trendChartInst) trendChartInst.resize();
+        if (brandChartInstance) brandChartInstance.resize();
+        if (channelPieChartInstance) channelPieChartInstance.resize();
+        if (categoryChartInstance) categoryChartInstance.resize();
+        if (topicChartInstance) topicChartInstance.resize();
+        if (branchChartInstance) branchChartInstance.resize();
+        if (brandBarChartInst) brandBarChartInst.resize();
+        if (top3CategoryChartInst) top3CategoryChartInst.resize();
+      });
+    } 
+
+    function renderTable() {
+      const tbody = document.getElementById('tableBody');
+      tbody.innerHTML = '';
+      
+      if (filteredData.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="7" class="px-4 py-8 text-center text-slate-400 font-light">ไม่พบข้อมูลที่ตรงกับตัวกรองสิทธิ์นี้</td></tr>`;
+        return;
+      }
+      
+      // การเรียงลำดับตาราง
+      let tableRows = [...filteredData];
+      tableRows.sort((a, b) => {
+        let valA = a[currentSortCol] || '';
+        let valB = b[currentSortCol] || '';
+        
+        if (currentSortCol === 'no') {
+          valA = parseInt(valA) || 0;
+          valB = parseInt(valB) || 0;
+        } else if (currentSortCol === 'date') {
+          valA = parseDateForSort(valA);
+          valB = parseDateForSort(valB);
+        } else {
+          valA = valA.toString().toLowerCase();
+          valB = valB.toString().toLowerCase();
+        }
+
+        if (valA < valB) return sortAsc ? -1 : 1;
+        if (valA > valB) return sortAsc ? 1 : -1;
+        return 0;
+      });
+      
+      tableRows.forEach(item => {
+        const isClosed = item.closedBy && item.closedBy !== '';
+        const badgeClass = isClosed ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-amber-50 text-amber-700 border border-amber-200';
+        const badgeText = isClosed ? `ปิดเคส (${item.closedBy})` : 'กำลังดำเนินเรื่อง';
+        const catText = item.categories.join(', ');
+        
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-slate-50 transition-colors border-b border-slate-100';
+        tr.innerHTML = `
+          <td class="px-4 py-3 text-center text-xs font-mono font-bold text-slate-400">${item.no}</td>
+          <td class="px-4 py-3 text-xs text-slate-500 whitespace-nowrap">${item.date}</td>
+          <td class="px-4 py-3 font-semibold text-slate-700 text-xs">${item.brand}</td>
+          <td class="px-4 py-3 text-xs text-slate-600 truncate max-w-[140px]" title="${item.branch}">${item.branch}</td>
+          <td class="px-4 py-3 text-xs text-slate-500 truncate max-w-[160px]" title="${catText}">${catText}</td>
+          <td class="px-4 py-3 text-xs text-slate-600 max-w-sm truncate" title="${item.complaint}">${item.complaint}</td>
+          <td class="px-4 py-3 text-center">
+            <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${badgeClass}">${badgeText}</span>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+  </script>
+</body>
+</html>
