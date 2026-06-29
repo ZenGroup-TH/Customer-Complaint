@@ -249,7 +249,7 @@
   </div>
 
   <script>
-    const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzXWZlkC2rj-ilhu4xOSJD_eYGAaB7b0R3JjHwK8XxihaG9nhWBGeq5rptan8AbpFGQsg/exec";
+    const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzJVboAnEerMIMykXDc_gtEsnDM9CVqX3GftKUGtXw-6-YIW1HZVvnKS_Hk3ZsTrX0c/exec";
     Chart.register(ChartDataLabels);
     let allData = [];
     let filteredData = [];
@@ -498,11 +498,12 @@
     }
 
     // 🌟 ฟังก์ชันคำนวณ KPI ทั้ง 6 กล่อง (สมบูรณ์ 100%)
-    function calculateKPIs() {
+function calculateKPIs() {
       const validCases = filteredData.filter(item => item.no && item.no.toString().trim() !== '');
       const total = validCases.length;
       
-      const closedCasesList = validCases.filter(item => item.status === 'ปิดเคสเรียบร้อยแล้ว');
+      // 🌟 จำนวนที่ปิดเคส: ให้นับจากคอลัมน์ AD (ถ้ามีชื่อผู้รับผิดชอบถือว่าปิดเคส)
+      const closedCasesList = validCases.filter(item => item.responsible && item.responsible !== 'ไม่มีผู้รับผิดชอบ' && item.responsible !== '');
       const closed = closedCasesList.length;
       const pending = total - closed;
       const rate = total > 0 ? ((closed / total) * 100).toFixed(1) : 0;
@@ -512,29 +513,29 @@
       document.getElementById('kpiPending').textContent = pending.toLocaleString();
       document.getElementById('kpiRate').textContent = `(${rate}%)`;
 
-      // 🌟 คำนวณเวลา Agency
+      // 🌟 1. ระยะเวลาเฉลี่ยที่ Agency แจ้งงานเข้ามา (B,C ถึง D,E)
       let sumAgencyMinutes = 0;
       let countAgencyForSla = 0;
       validCases.forEach(x => {
-        if (x.agencySlaMinutes !== null && x.agencySlaMinutes !== undefined) {
+        if (x.agencySlaMinutes !== null) {
           sumAgencyMinutes += x.agencySlaMinutes;
           countAgencyForSla++;
         }
       });
-      document.getElementById('kpiAgencySLA').textContent = formatAverageMinutes(sumAgencyMinutes, countAgencyForSla);
+      document.getElementById('kpi-agency-avg').textContent = formatAverageMinutes(sumAgencyMinutes, countAgencyForSla);
 
-      // 🌟 คำนวณเวลาส่วนกลาง
+      // 🌟 2. ระยะเวลาเฉลี่ยปิดเคสของส่วนกลาง (B,C ถึง AF,AG)
       let sumMinutes = 0;
       let countClosedForSla = 0;
       validCases.forEach(x => {
-        if (x.slaMinutes !== null && x.slaMinutes !== undefined) {
+        if (x.slaMinutes !== null) {
           sumMinutes += x.slaMinutes;
           countClosedForSla++;
         }
       });
-      document.getElementById('kpiSLA').textContent = formatAverageMinutes(sumMinutes, countClosedForSla);
+      document.getElementById('kpi-avg-time').textContent = formatAverageMinutes(sumMinutes, countClosedForSla);
 
-      // 🌟 แบรนด์ยอดฮิต (กู้คืนมาแล้ว!)
+      // แบรนด์ที่ถูกร้องเรียนสูงสุด
       const brandCounts = {};
       let topBrandName = '-';
       let maxCount = 0;
