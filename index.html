@@ -308,11 +308,12 @@
       return 0;
     }
 
-    // 🌟 ส่วนดึงข้อมูลผ่านระบบท่อส่ง API
+// 🌟 ส่วนดึงข้อมูลผ่านระบบท่อส่ง API ที่แก้ไขแล้ว
     window.addEventListener('DOMContentLoaded', () => {
-      const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbw9CtBjCI1WuJxEDIfkpsKznkaNZZaXkTrctoUGGGJUFbGhPfgU1pTML3zo0EVW9_WOAQ/exec"; 
+      const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxHDWwOsai7hOtKKBM2RO4IcUvXj-Pol2e0l9SSweh0iYHv5kCNIrNIUGG6YRODYUikhA/exec"; 
 
-      fetch(GAS_WEB_APP_URL)
+      // เพิ่ม { method: 'GET', redirect: 'follow' } เพื่ออนุญาตให้ fetch เลี้ยวตามลิงก์ของ Google ได้
+      fetch(GAS_WEB_APP_URL, { method: 'GET', redirect: 'follow' })
         .then(response => {
           if (!response.ok) {
             throw new Error('เครือข่ายมีปัญหา ไม่สามารถดึงข้อมูลได้');
