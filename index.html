@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Zen Data Complaint 2026</title>
-  <link rel="icon" type="image/png" href="https://drive.google.com/uc?export=view&id=1kLKMQgHuUEueA8XV1EextyZmB2g56Rru">
+  <link rel="icon" type="image/png" href="https://lh3.googleusercontent.com/d/1UP_YU2MVEKfSMK1Dnaxqp9yGNpwr41J6">
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
@@ -19,755 +19,769 @@
     th.sortable:hover { background-color: #f1f5f9; cursor: pointer; }
   </style>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col">
+<body class="bg-slate-900 min-h-screen flex items-center justify-center text-slate-800 antialiased">
 
-  <header class="bg-white/80 backdrop-blur-md border-b border-slate-200/80 sticky top-0 z-40 transition-all duration-300">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-      <div class="flex items-center gap-3">
-        <div class="w-9 h-9 bg-gradient-to-tr from-indigo-600 to-violet-500 rounded-xl flex items-center justify-center shadow-md shadow-indigo-200 animate-pulse">
-          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
-          </svg>
-        </div>
-        <div>
-          <h1 class="text-base font-bold bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text text-transparent tracking-tight">Zen Data Complaint</h1>
-          <p class="text-[10px] text-slate-400 font-medium tracking-wider uppercase">Executive Analytics Dashboard • 2026</p>
-        </div>
-      </div>
-      
-      <div class="flex items-center gap-4">
-        <div class="relative">
-          <select id="monthFilter" class="appearance-none bg-slate-50 border border-slate-200 rounded-xl pl-3 pr-8 py-1.5 text-xs font-medium text-slate-600 hover:border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition-all cursor-pointer">
-            <option value="all">ทุกเดือน (ม.ค. - ธ.ค.)</option>
-            <option value="1">มกราคม</option>
-            <option value="2">กุมภาพันธ์</option>
-            <option value="3">มีนาคม</option>
-            <option value="4">เมษายน</option>
-            <option value="5">พฤษภาคม</option>
-            <option value="6">มิถุนายน</option>
-            <option value="7">กรกฎาคม</option>
-            <option value="8">สิงหาคม</option>
-            <option value="9">กันยายน</option>
-            <option value="10">ตุลาคม</option>
-            <option value="11">พฤศจิกายน</option>
-            <option value="12">ธันวาคม</option>
-          </select>
-          <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-slate-400">
-            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-          </div>
-        </div>
-
-        <button id="logoutBtn" class="flex items-center gap-1.5 px-3 py-1.5 bg-rose-50 hover:bg-rose-100 text-rose-600 rounded-xl text-xs font-semibold transition-all duration-200 border border-rose-100">
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
-          </svg>
-          ออกจากระบบ
-        </button>
-      </div>
+  <div id="login-container" class="w-full max-w-md mx-4 bg-white rounded-2xl shadow-2xl overflow-hidden transition-all duration-500 transform scale-100 block z-[10000]">
+    <div class="w-full bg-slate-950 overflow-hidden border-b border-slate-800">
+      <img src="https://lh3.googleusercontent.com/d/1stuxlh_Lc8YwT7qe1pOIj2QNkul6jbUd" alt="Zen Group Logo" class="w-full h-auto object-cover block">
     </div>
-  </header>
-
-  <div id="loginOverlay" class="fixed inset-0 bg-slate-900/40 backdrop-blur-md z-50 flex items-center justify-center p-4 transition-all duration-500">
-    <div class="bg-white w-full max-w-md rounded-3xl shadow-2xl border border-slate-100 p-8 relative overflow-hidden flex flex-col gap-6 transform transition-all scale-100">
-      <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"></div>
+    
+    <div class="p-8">
+      <h2 class="text-xl font-bold text-slate-800 text-center mb-1">เข้าสู่ระบบ</h2>
+      <p class="text-xs text-slate-400 text-center mb-6">Executive Complaint Dashboard 2026</p>
       
-      <div class="text-center flex flex-col gap-2">
-        <div class="w-14 h-14 bg-indigo-50 rounded-2xl flex items-center justify-center mx-auto text-indigo-600 mb-2 shadow-inner">
-          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
-          </svg>
+      <form id="login-form" onsubmit="handleLogin(event)">
+        <div class="mb-4">
+          <label class="block text-sm font-medium text-slate-600 mb-1">ชื่อผู้ใช้งาน (User)</label>
+          <input type="text" id="username" required class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm text-slate-700" placeholder="กรอกชื่อผู้ใช้งาน">
         </div>
-        <h2 class="text-xl font-bold text-slate-800 tracking-tight">ยินดีต้อนรับเข้าสู่ระบบ</h2>
-        <p class="text-xs text-slate-400 font-medium px-4">กรุณากรอกชื่อผู้ใช้และรหัสผ่านเพื่อเข้าใช้งานระบบ Dashboard สรุปข้อมูลร้องเรียนประจำปี 2026</p>
-      </div>
-
-      <form id="loginForm" class="flex flex-col gap-4">
-        <div class="flex flex-col gap-1">
-          <label class="text-xs font-semibold text-slate-500 pl-1">ชื่อผู้ใช้งาน (Username)</label>
-          <div class="relative">
-            <input type="text" id="username" required placeholder="กรอกชื่อผู้ใช้งาน..." class="w-full bg-slate-50 border border-slate-200 rounded-xl pl-10 pr-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all placeholder:text-slate-400 text-slate-700">
-            <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
-            </div>
-          </div>
+        
+        <div class="mb-6">
+          <label class="block text-sm font-medium text-slate-600 mb-1">รหัสผ่าน (Password)</label>
+          <input type="password" id="password" required class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm text-slate-700" placeholder="••••••••">
         </div>
-
-        <div class="flex flex-col gap-1">
-          <label class="text-xs font-semibold text-slate-500 pl-1">รหัสผ่าน (Password)</label>
-          <div class="relative">
-            <input type="password" id="password" required placeholder="กรอกรหัสผ่าน..." class="w-full bg-slate-50 border border-slate-200 rounded-xl pl-10 pr-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all placeholder:text-slate-400 text-slate-700">
-            <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
-            </div>
-          </div>
-        </div>
-
-        <div id="loginError" class="text-xs text-rose-500 font-medium text-center hidden bg-rose-50 border border-rose-100 py-2 rounded-xl">
-          ⚠️ ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง ลองใหม่อีกครั้ง
-        </div>
-
-        <button type="submit" class="w-full mt-2 bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-700 hover:to-violet-700 text-white font-semibold py-2.5 rounded-xl shadow-lg shadow-indigo-100 hover:shadow-xl hover:shadow-indigo-200 transition-all duration-200 text-sm flex items-center justify-center gap-2 group">
-          เข้าสู่ระบบ
-          <svg class="w-4 h-4 transform group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7"/></svg>
+        
+        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2.5 rounded-lg transition-colors shadow-lg shadow-blue-500/20 text-sm flex items-center justify-center gap-2">
+          <span>เข้าสู่ระบบเพื่อดูข้อมูล</span>
         </button>
       </form>
     </div>
   </div>
 
-  <main id="dashboardContent" class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col gap-6 filter blur-md pointer-events-none transition-all duration-500">
-    
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-      <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm flex items-center gap-4 hover:shadow-md transition-all duration-200 group">
-        <div class="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-xl flex items-center justify-center shadow-inner group-hover:scale-105 transition-transform">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg>
-        </div>
-        <div>
-          <p class="text-[11px] text-slate-500 font-medium mb-0.5">จำนวนเรื่องร้องเรียนทั้งหมด</p>
-          <h3 id="kpiTotal" class="text-xl font-bold text-slate-900 tracking-tight">-</h3>
-        </div>
-      </div>
-
-      <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm flex items-center gap-4 hover:shadow-md transition-all duration-200 group">
-        <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center shadow-inner group-hover:scale-105 transition-transform">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-        </div>
-        <div>
-          <p class="text-[11px] text-slate-500 font-medium mb-0.5">ดำเนินการแก้ไขเสร็จสิ้น</p>
-          <h3 id="kpiClosed" class="text-xl font-bold text-slate-900 tracking-tight">-</h3>
-        </div>
-      </div>
-
-      <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm flex items-center gap-4 hover:shadow-md transition-all duration-200 group">
-        <div class="w-12 h-12 bg-amber-50 text-amber-600 rounded-xl flex items-center justify-center shadow-inner group-hover:scale-105 transition-transform">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-        </div>
-        <div>
-          <p class="text-[11px] text-slate-500 font-medium mb-0.5">ระยะเวลาเฉลี่ยปิดเคส</p>
-          <div class="flex items-baseline gap-1">
-            <h3 id="kpi-avg-time" class="text-xl font-bold text-slate-900 tracking-tight">-</h3>
-            <span class="text-[10px] text-slate-400 font-medium">นาที</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm flex items-center gap-4 hover:shadow-md transition-all duration-200 group">
-        <div class="w-12 h-12 bg-violet-50 text-violet-600 rounded-xl flex items-center justify-center shadow-inner group-hover:scale-105 transition-transform">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
-        </div>
-        <div>
-          <p class="text-[11px] text-slate-500 font-medium mb-0.5">ระยะ Agency แจ้งเฉลี่ย</p>
-          <div class="flex items-baseline gap-1">
-            <h3 id="kpi-agency-avg" class="text-xl font-bold text-slate-900 tracking-tight">-</h3>
-            <span class="text-[10px] text-slate-400 font-medium">นาที</span>
-          </div>
-        </div>
-      </div>
+  <div id="loading" class="hidden fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-slate-900 text-white transition-opacity duration-500">
+    <img src="https://lh3.googleusercontent.com/d/1UP_YU2MVEKfSMK1Dnaxqp9yGNpwr41J6" alt="Company Logo" class="h-24 w-auto mb-8 animate-pulse drop-shadow-2xl">
+    <div class="flex flex-col items-center">
+      <div class="animate-spin rounded-full h-10 w-10 border-4 border-indigo-500 border-t-transparent mb-4"></div>
+      <p class="text-sm font-medium text-slate-300 tracking-wide">กำลังเตรียมข้อมูลและจัดทำแดชบอร์ดทางการ...</p>
     </div>
+  </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-      
-      <div class="lg:col-span-1 flex flex-col gap-6">
-        <div class="bg-white p-5 rounded-3xl border border-slate-200/80 shadow-sm flex flex-col gap-4">
+  <div id="dashboard-container" class="hidden w-full min-h-screen bg-slate-50 flex flex-col opacity-0 transition-opacity duration-500">
+    <header class="bg-slate-900 text-white shadow-md">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row justify-between items-center gap-4">
+        <div class="flex items-center gap-3">
+          <img src="https://lh3.googleusercontent.com/d/1i2JLuvzO9Z0_aBapr_dw5y77ehTY4rzf" alt="Company Logo" class="h-10 w-auto object-contain">
           <div>
-            <h3 class="text-sm font-bold text-slate-900 tracking-tight">สัดส่วนตามแบรนด์ (Brand Share)</h3>
-            <p class="text-[10px] text-slate-400 font-medium">เปรียบเทียบปริมาณเรื่องร้องเรียนแต่ละแบรนด์</p>
-          </div>
-          <div class="relative h-[220px] w-full">
-            <canvas id="brandChart"></canvas>
+            <h1 class="text-xl font-bold tracking-tight">Data Customer Complaint Dashboard</h1>
+            <p class="text-xs text-slate-400 font-light">ระบบวิเคราะห์ข้อมูลลูกค้าร้องเรียนประจำปี 2026</p>
           </div>
         </div>
-
-        <div class="bg-white p-5 rounded-3xl border border-slate-200/80 shadow-sm flex flex-col gap-4">
-          <div>
-            <h3 class="text-sm font-bold text-slate-900 tracking-tight">ช่องทางการร้องเรียน (Top Channels)</h3>
-            <p class="text-[10px] text-slate-400 font-medium">ช่องทางที่ลูกค้าส่งเรื่องเข้ามามากที่สุด</p>
-          </div>
-          <div class="relative h-[220px] w-full">
-            <canvas id="channelChart"></canvas>
-          </div>
+        <div class="flex items-center gap-4">
+          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 animate-pulse">● เชื่อมต่อข้อมูลสำเร็จ</span>
+          <button onclick="location.reload()" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 px-2.5 py-1.5 rounded-lg border border-slate-700 transition-colors">ออกจากระบบ</button>
         </div>
       </div>
+    </header>
 
-      <div class="lg:col-span-2 flex flex-col gap-6">
-        <div class="bg-white p-5 rounded-3xl border border-slate-200/80 shadow-sm flex flex-col gap-4 flex-1">
-          <div>
-            <h3 class="text-sm font-bold text-slate-900 tracking-tight">ประเภทเรื่องร้องเรียนหลัก (Main Categories Breakdown)</h3>
-            <p class="text-[10px] text-slate-400 font-medium">วิเคราะห์เจาะลึกกลุ่มปัญหาหลักเพื่อหาแนวทางแก้ไข</p>
-          </div>
-          <div class="relative min-h-[260px] flex-1 w-full">
-            <canvas id="categoryChart"></canvas>
-          </div>
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
+      <section class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm">
+        <div class="flex items-center justify-between gap-6 overflow-x-auto custom-scrollbar pb-2">
+          <img src="https://lh3.googleusercontent.com/d/1Omj8k8ufA8ZPUEcZTuvxOezdn22AJK63" alt="Brand 1" class="h-10 sm:h-12 w-auto flex-shrink-0">
+          <img src="https://lh3.googleusercontent.com/d/16v7FI8EoQtCUetnrzgHiFhr2VzF_ounf" alt="Brand 2" class="h-10 sm:h-12 w-auto flex-shrink-0">
+          <img src="https://lh3.googleusercontent.com/d/1n5PjBdjmR7bsdWKywloLm3wjgIIPrRaR" alt="Brand 3" class="h-10 sm:h-12 w-auto flex-shrink-0">
+          <img src="https://lh3.googleusercontent.com/d/1GQsNkytw1zmMIzqdJ4imUL5gu2CAEjSf" alt="Brand 4" class="h-10 sm:h-12 w-auto flex-shrink-0">
+          <img src="https://lh3.googleusercontent.com/d/1vrAOZugdNWavSYnvrN0bYh06Z3Suo35O" alt="Brand 5" class="h-10 sm:h-12 w-auto flex-shrink-0">
+          <img src="https://lh3.googleusercontent.com/d/1e5aoSE14LQOUq9ouKv2kpvk6r-agmv0b" alt="Brand 6" class="h-10 sm:h-12 w-auto flex-shrink-0">
+          <img src="https://lh3.googleusercontent.com/d/1wBHbVYUcVOYwPdux6u8wg_LDMTY27ntK" alt="Brand 7" class="h-10 sm:h-12 w-auto flex-shrink-0">
+          <img src="https://lh3.googleusercontent.com/d/1LPClnkLsm-bSov-FFifJ-8hOZKNj5mnu" alt="Brand 8" class="h-10 sm:h-12 w-auto flex-shrink-0">
+          <img src="https://lh3.googleusercontent.com/d/1U0eBYqJXvaq4_Uj2Fu2QBiQte_xZ28s2" alt="Brand 9" class="h-10 sm:h-12 w-auto flex-shrink-0">
+          <img src="https://lh3.googleusercontent.com/d/1UgqKExgsENkpelT5uc81hKhujIbVdT7t" alt="Brand 10" class="h-10 sm:h-12 w-auto flex-shrink-0">
         </div>
+      </section>
 
-        <div class="bg-white p-5 rounded-3xl border border-slate-200/80 shadow-sm flex flex-col gap-4">
-          <div>
-            <h3 class="text-sm font-bold text-slate-900 tracking-tight">หัวข้อย่อยที่มีการร้องเรียนสูงสุด (Top 10 Sub-Topics Analysis)</h3>
-            <p class="text-[10px] text-slate-400 font-medium">แจกแจงประเด็นปัญหาย่อยที่ลูกค้าเผชิญบ่อยที่สุด</p>
-          </div>
-          <div id="echartsTopicTree" class="h-[238px] w-full"></div>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-      
-      <div class="lg:col-span-2 bg-white p-5 rounded-3xl border border-slate-200/80 shadow-sm flex flex-col gap-3">
-        <div>
-          <h3 class="text-sm font-bold text-slate-900 tracking-tight">สรุปยอดร้องเรียนแยกตามสาขา (Branch Rankings)</h3>
-          <p class="text-[10px] text-slate-400 font-medium">ตารางสรุปจำนวนและอัตราส่วนการปิดเคสของแต่ละสาขา</p>
-        </div>
-        <div class="overflow-x-auto custom-scrollbar flex-1 border border-slate-100 rounded-2xl max-h-[300px]">
-          <table class="w-full text-left border-collapse">
-            <thead>
-              <tr class="bg-slate-50 border-b border-slate-100 sticky top-0 z-10 text-[11px] font-bold text-slate-500 uppercase tracking-wider">
-                <th class="px-4 py-3 text-center w-14">อันดับ</th>
-                <th class="px-4 py-3">ชื่อสาขา / หน่วยงาน</th>
-                <th class="px-4 py-3 text-center w-28">เรื่องทั้งหมด</th>
-                <th class="px-4 py-3 text-center w-28">กำลังดำเนินการ</th>
-                <th class="px-4 py-3 text-center w-28">ปิดเคสสำเร็จ</th>
-              </tr>
-            </thead>
-            <tbody id="branchTableBody" class="text-xs divide-y divide-slate-50">
-              </tbody>
-          </table>
-        </div>
-      </div>
-
-      <div class="lg:col-span-1 bg-white p-5 rounded-3xl border border-slate-200/80 shadow-sm flex flex-col gap-3">
-        <div>
-          <h3 class="text-sm font-bold text-slate-900 tracking-tight">ทีมผู้รับผิดชอบหลัก (Team Workload)</h3>
-          <p class="text-[10px] text-slate-400 font-medium">สัดส่วนจำนวนเคสในความดูแลของแต่ละฝ่าย</p>
-        </div>
-        <div class="overflow-x-auto custom-scrollbar flex-1 border border-slate-100 rounded-2xl max-h-[300px]">
-          <table class="w-full text-left border-collapse">
-            <thead>
-              <tr class="bg-slate-50 border-b border-slate-100 sticky top-0 z-10 text-[11px] font-bold text-slate-500 uppercase tracking-wider">
-                <th class="px-4 py-3">ผู้รับผิดชอบ</th>
-                <th class="px-4 py-3 text-center w-24">เคสทั้งหมด</th>
-                <th class="px-4 py-3 text-center w-24">สัดส่วน</th>
-              </tr>
-            </thead>
-            <tbody id="responsibleTableBody" class="text-xs divide-y divide-slate-50">
-              </tbody>
-          </table>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="bg-white p-5 rounded-3xl border border-slate-200/80 shadow-sm flex flex-col gap-4">
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-        <div>
-          <h3 class="text-sm font-bold text-slate-900 tracking-tight">บันทึกข้อมูลร้องเรียนโดยละเอียด (Detailed Complaint Logs)</h3>
-          <p class="text-[10px] text-slate-400 font-medium">รายการบันทึกดิบทั้งหมดจากระบบ สามารถคลิกหัวตารางเพื่อเรียงข้อมูลได้</p>
+      <section class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm relative z-40">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-3">
+          <h2 class="text-sm font-semibold text-slate-500 uppercase tracking-wider flex items-center gap-2">
+            <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"></path></svg>
+            ตัวกรองข้อมูล (FILTERS) <span class="text-xs text-indigo-500 normal-case ml-2 font-normal">*เลือกได้หลายหัวข้อ</span>
+          </h2>
+          <button onclick="resetFilters()" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-200 text-xs font-medium rounded-lg transition-colors shadow-sm">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+            ล้างตัวกรองทั้งหมด
+          </button>
         </div>
         
-        <div class="relative w-full sm:w-72">
-          <input type="text" id="tableSearch" placeholder="ค้นหา แบรนด์, สาขา, ปัญหา..." class="w-full bg-slate-50 border border-slate-200 rounded-xl pl-9 pr-4 py-1.5 text-xs focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all placeholder:text-slate-400">
-          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <div class="relative dropdown-container">
+            <label class="block text-xs font-medium text-slate-600 mb-1.5">เลือกแบรนด์</label>
+            <button type="button" onclick="toggleDropdown('brandMenu')" class="w-full text-left text-sm bg-slate-50 border border-slate-300 rounded-lg p-2.5 flex justify-between items-center"><span id="brandBtnText" class="truncate">ทั้งหมด ทุกแบรนด์</span><svg class="w-4 h-4 text-slate-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+            <div id="brandMenu" class="dropdown-menu hidden absolute z-50 w-full mt-1 bg-white border border-slate-200 rounded-lg shadow-xl max-h-60 overflow-y-auto custom-scrollbar"><div class="p-2 space-y-1" id="brandOptions"></div></div>
+          </div>
+          <div class="relative dropdown-container">
+            <label class="block text-xs font-medium text-slate-600 mb-1.5">ประเภทที่ร้องเรียน</label>
+            <button type="button" onclick="toggleDropdown('categoryMenu')" class="w-full text-left text-sm bg-slate-50 border border-slate-300 rounded-lg p-2.5 flex justify-between items-center"><span id="categoryBtnText" class="truncate">ทั้งหมด ทุกด้าน</span><svg class="w-4 h-4 text-slate-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+            <div id="categoryMenu" class="dropdown-menu hidden absolute z-50 w-full mt-1 bg-white border border-slate-200 rounded-lg shadow-xl max-h-60 overflow-y-auto custom-scrollbar"><div class="p-2 space-y-1" id="categoryOptions"></div></div>
+          </div>
+          <div class="relative dropdown-container">
+            <label class="block text-xs font-medium text-slate-600 mb-1.5">หัวข้อที่ร้องเรียน</label>
+            <button type="button" onclick="toggleDropdown('topicMenu')" class="w-full text-left text-sm bg-slate-50 border border-slate-300 rounded-lg p-2.5 flex justify-between items-center"><span id="topicBtnText" class="truncate">ทั้งหมด ทุกหัวข้อ</span><svg class="w-4 h-4 text-slate-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+            <div id="topicMenu" class="dropdown-menu hidden absolute z-50 w-full mt-1 bg-white border border-slate-200 rounded-lg shadow-xl max-h-60 overflow-y-auto custom-scrollbar"><div class="p-2 space-y-1" id="topicOptions"></div></div>
+          </div>
+          <div class="relative dropdown-container">
+            <label class="block text-xs font-medium text-slate-600 mb-1.5">สาขา</label>
+            <button type="button" onclick="toggleDropdown('branchMenu')" class="w-full text-left text-sm bg-slate-50 border border-slate-300 rounded-lg p-2.5 flex justify-between items-center"><span id="branchBtnText" class="truncate">ทั้งหมด ทุกสาขา</span><svg class="w-4 h-4 text-slate-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+            <div id="branchMenu" class="dropdown-menu hidden absolute z-50 w-full mt-1 bg-white border border-slate-200 rounded-lg shadow-xl max-h-60 overflow-y-auto custom-scrollbar"><div class="p-2 space-y-1" id="branchOptions"></div></div>
+          </div>
+          <div class="relative dropdown-container">
+            <label class="block text-xs font-medium text-slate-600 mb-1.5">ช่องทาง</label>
+            <button type="button" onclick="toggleDropdown('channelMenu')" class="w-full text-left text-sm bg-slate-50 border border-slate-300 rounded-lg p-2.5 flex justify-between items-center"><span id="channelBtnText" class="truncate">ทั้งหมด ทุกช่องทาง</span><svg class="w-4 h-4 text-slate-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+            <div id="channelMenu" class="dropdown-menu hidden absolute z-50 w-full mt-1 bg-white border border-slate-200 rounded-lg shadow-xl max-h-60 overflow-y-auto custom-scrollbar"><div class="p-2 space-y-1" id="channelOptions"></div></div>
+          </div>
+          <div class="relative dropdown-container">
+            <label class="block text-xs font-medium text-slate-600 mb-1.5">ผู้รับผิดชอบ</label>
+            <button type="button" onclick="toggleDropdown('responsibleMenu')" class="w-full text-left text-sm bg-slate-50 border border-slate-300 rounded-lg p-2.5 flex justify-between items-center"><span id="responsibleBtnText" class="truncate">ทั้งหมด ทุกคน</span><svg class="w-4 h-4 text-slate-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+            <div id="responsibleMenu" class="dropdown-menu hidden absolute z-50 w-full mt-1 bg-white border border-slate-200 rounded-lg shadow-xl max-h-60 overflow-y-auto custom-scrollbar"><div class="p-2 space-y-1" id="responsibleOptions"></div></div>
+          </div>
+          <div class="relative dropdown-container">
+            <label class="block text-xs font-medium text-slate-600 mb-1.5">เดือน</label>
+            <button type="button" onclick="toggleDropdown('monthMenu')" class="w-full text-left text-sm bg-slate-50 border border-slate-300 rounded-lg p-2.5 flex justify-between items-center"><span id="monthBtnText" class="truncate">ทั้งหมด ทุกเดือน</span><svg class="w-4 h-4 text-slate-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+            <div id="monthMenu" class="dropdown-menu hidden absolute z-50 w-full mt-1 bg-white border border-slate-200 rounded-lg shadow-xl max-h-60 overflow-y-auto custom-scrollbar"><div class="p-2 space-y-1" id="monthOptions"></div></div>
+          </div>
+          <div class="relative dropdown-container">
+            <label class="block text-xs font-medium text-slate-600 mb-1.5">สถานะเคส/คนปิดเคส</label>
+            <button type="button" onclick="toggleDropdown('statusMenu')" class="w-full text-left text-sm bg-slate-50 border border-slate-300 rounded-lg p-2.5 flex justify-between items-center"><span id="statusBtnText" class="truncate">ทั้งหมด ทุกสถานะ/ทุกคน</span><svg class="w-4 h-4 text-slate-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+            <div id="statusMenu" class="dropdown-menu hidden absolute z-50 w-full mt-1 bg-white border border-slate-200 rounded-lg shadow-xl max-h-60 overflow-y-auto custom-scrollbar"><div class="p-2 space-y-1" id="statusOptions"></div></div>
           </div>
         </div>
-      </div>
+      </section>
 
-      <div class="overflow-x-auto custom-scrollbar border border-slate-100 rounded-2xl max-h-[450px]">
-        <table class="w-full text-left border-collapse table-fixed">
-          <thead>
-            <tr class="bg-slate-50 border-b border-slate-100 sticky top-0 z-10 text-[11px] font-bold text-slate-500 uppercase tracking-wider select-none">
-              <th id="th-no" data-sort="no" class="sortable px-4 py-3 text-center w-16">No. ▲▼</th>
-              <th id="th-date" data-sort="date" class="sortable px-4 py-3 w-28">วันที่แจ้ง ▲▼</th>
-              <th id="th-brand" data-sort="brand" class="sortable px-4 py-3 w-24">แบรนด์ ▲▼</th>
-              <th id="th-branch" data-sort="branch" class="sortable px-4 py-3 w-40">สาขา ▲▼</th>
-              <th class="px-4 py-3 w-48">หมวดหมู่หลัก</th>
-              <th class="px-4 py-3 w-64">ปัญหาที่ร้องเรียน</th>
-              <th id="th-responsible" data-sort="responsible" class="sortable px-4 py-3 w-32">ผู้รับผิดชอบ ▲▼</th>
-              <th id="th-status" data-sort="status" class="sortable px-4 py-3 text-center w-36">สถานะ ▲▼</th>
-            </tr>
-          </thead>
-          <tbody id="mainLogsTableBody" class="text-xs divide-y divide-slate-100">
-            <tr>
-              <td colspan="8" class="text-center py-8 text-slate-400 font-medium">กำลังโหลดข้อมูลและจัดเตรียมแดชบอร์ด...</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      
-      <div class="flex items-center justify-between text-[11px] text-slate-400 font-medium px-1">
-        <div id="tableCounter">แสดง 0 ถึง 0 จากทั้งหมด 0 รายการ</div>
-        <div class="flex gap-1">
-          <button id="btnPrevPage" class="px-2.5 py-1 bg-slate-50 border border-slate-200 hover:bg-slate-100 rounded-lg transition-all disabled:opacity-40 disabled:pointer-events-none">ก่อนหน้า</button>
-          <button id="btnNextPage" class="px-2.5 py-1 bg-slate-50 border border-slate-200 hover:bg-slate-100 rounded-lg transition-all disabled:opacity-40 disabled:pointer-events-none">ถัดไป</button>
+      <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+        <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-center">
+          <p class="text-xs text-slate-500 font-medium mb-1">เรื่องร้องเรียนทั้งหมด</p>
+          <h4 id="kpiTotal" class="text-2xl font-bold text-blue-600">-</h4>
         </div>
+        <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-center">
+          <p class="text-xs text-slate-500 font-medium mb-1">ปิดเคสแล้ว</p>
+          <div class="flex items-baseline gap-2">
+            <h4 id="kpiClosed" class="text-2xl font-bold text-emerald-600">-</h4>
+            <span id="kpiRate" class="text-xs font-semibold text-emerald-500 bg-emerald-50 px-2 py-0.5 rounded-full">-</span>
+          </div>
+        </div>
+        <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-center">
+          <p class="text-xs text-slate-500 font-medium mb-1">กำลังดำเนินการ</p>
+          <h4 id="kpiPending" class="text-2xl font-bold text-amber-500">-</h4>
+        </div>
+        <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-center">
+          <p class="text-[11px] text-slate-500 font-medium mb-1">ระยะ Agency แจ้งเฉลี่ย</p>
+          <div class="flex items-baseline gap-1">
+            <h4 id="kpi-agency-avg" class="text-sm font-bold text-indigo-600 tracking-tight whitespace-nowrap">-</h4>
+          </div>
+        </div>
+        <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-center">
+          <p class="text-[11px] text-slate-500 font-medium mb-1">ระยะเวลาเฉลี่ยปิดเคส</p>
+          <div class="flex items-baseline gap-1">
+            <h4 id="kpi-avg-time" class="text-sm font-bold text-sky-500 tracking-tight whitespace-nowrap">-</h4>
+          </div>
+        </div>
+      </section>
+
+      <div class="space-y-6">
+        <section class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm">
+          <h3 class="text-sm font-semibold text-slate-700 mb-4 flex items-center gap-1.5">แนวโน้มการร้องเรียนแยกตามเดือน (Trend Analysis)</h3>
+          <div class="w-full h-[300px]">
+             <div id="trendChart" class="w-full h-full"></div>
+          </div>
+        </section>
+
+        <section class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm">
+          <h3 class="text-sm font-semibold text-slate-700 mb-4 flex items-center gap-1.5">จำนวนเรื่องร้องเรียนแยกตามแบรนด์</h3>
+          <div class="w-full overflow-x-auto custom-scrollbar pb-2">
+             <div class="min-w-[600px] h-[350px]">
+               <div id="brandBarChart" class="w-full h-full"></div>
+             </div>
+          </div>
+        </section>
+
+        <section class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm">
+          <h3 class="text-sm font-semibold text-slate-700 mb-4 flex items-center gap-1.5">เทียบสัดส่วน Top 3 ด้านที่ถูกร้องเรียน และหัวข้อย่อย</h3>
+          <div class="w-full h-[220px]">
+             <div id="top3CategoryChart" class="w-full h-full"></div>
+          </div>
+          <div id="top3TopicsContainer" class="mt-2 grid grid-cols-1 md:grid-cols-3 border border-slate-200 rounded-lg overflow-hidden bg-slate-50/50 shadow-inner"></div>
+        </section>
+
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col">
+            <h3 class="text-sm font-semibold text-slate-700 mb-4 flex items-center gap-1.5">สัดส่วนจำนวนคอมเพลนแยกตามแบรนด์</h3>
+            <div class="flex-1 w-full min-h-[300px]">
+              <div id="brandChart" class="w-full h-full"></div>
+            </div>
+          </div>
+          <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col">
+            <h3 class="text-sm font-semibold text-slate-700 mb-4 flex items-center gap-1.5">สัดส่วนจำนวนคอมเพลนแยกตามช่องทาง</h3>
+            <div class="flex-1 w-full min-h-[300px]">
+              <div id="channelPieChart" class="w-full h-full"></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col">
+            <h3 class="text-sm font-semibold text-slate-700 mb-4 flex items-center gap-1.5">Top 10 ประเภทร้องเรียน</h3>
+            <div class="flex-1 w-full"><div id="categoryChart" class="w-full h-[300px]"></div></div>
+          </div>
+          <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col">
+            <h3 class="text-sm font-semibold text-slate-700 mb-4 flex items-center gap-1.5">Top 10 หัวข้อร้องเรียน</h3>
+            <div class="flex-1 w-full"><div id="topicChart" class="w-full h-[300px]"></div></div>
+          </div>
+          <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col">
+            <h3 class="text-sm font-semibold text-slate-700 mb-4 flex items-center gap-1.5">Top 10 สาขา ที่ถูกร้องเรียน</h3>
+            <div class="flex-1 w-full"><div id="branchChart" class="w-full h-[300px]"></div></div>
+          </div>
+        </section>
       </div>
-    </div>
 
-  </main>
-
-  <footer class="bg-white border-t border-slate-200/60 mt-auto py-4">
-    <div class="max-w-7xl mx-auto px-4 text-center text-[10px] text-slate-400 font-medium">
-      © 2026 Zen Group Data Systems. All rights reserved. • Data auto-synced via Secure Macro API Webhook.
-    </div>
-  </footer>
+      <section class="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden flex flex-col">
+        <div class="p-5 border-b border-slate-100 flex justify-between items-center">
+          <h3 class="text-sm font-semibold text-slate-700 flex items-center gap-1.5">ตารางข้อมูลสรุปรายละเอียด</h3>
+          <a href="https://docs.google.com/spreadsheets/d/1PivhE4CZ74X1rPSifghGKavYyOXgtdAlG0UG_G0nY6k/export?format=xlsx" 
+             class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-medium rounded-lg transition-colors shadow-sm cursor-pointer">
+            Export Excel
+          </a>
+        </div>
+        <div class="overflow-x-auto custom-scrollbar max-h-[450px]">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="bg-slate-50 border-b border-slate-200 sticky top-0 z-10 text-xs font-semibold text-slate-600 uppercase tracking-wider">
+                <th id="th-no" class="px-4 py-3.5 w-16 text-center sortable font-bold text-slate-400" onclick="sortTable('no')">No.</th>
+                <th id="th-date" class="px-4 py-3.5 w-28 sortable" onclick="sortTable('date')">วันที่แจ้ง</th>
+                <th id="th-brand" class="px-4 py-3.5 w-24 sortable" onclick="sortTable('brand')">แบรนด์</th>
+                <th id="th-branch" class="px-4 py-3.5 w-36 sortable" onclick="sortTable('branch')">สาขาที่ร้องเรียน</th>
+                <th class="px-4 py-3.5 w-44">ประเภทที่ร้องเรียน</th>
+                <th class="px-4 py-3.5">เนื้อหาข้อร้องเรียน</th>
+                <th class="px-4 py-3.5 w-36 text-center">สถานะเคส/คนปิดเคส</th>
+              </tr>
+            </thead>
+            <tbody id="tableBody" class="divide-y divide-slate-100 text-sm text-slate-600"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
 
   <script>
-    // Global App States
-    let rawDataGlobal = [];
-    let currentFilteredData = [];
-    let chartsInstances = {};
-    let echartsInstance = null;
+    const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzXWZlkC2rj-ilhu4xOSJD_eYGAaB7b0R3JjHwK8XxihaG9nhWBGeq5rptan8AbpFGQsg/exec";
+    Chart.register(ChartDataLabels);
+    let allData = [];
+    let filteredData = [];
     
-    // Pagination & Sort Table States
-    let currentTablePage = 1;
-    const itemsPerPage = 25;
-    let currentSortKey = 'no';
-    let currentSortOrder = 'desc'; 
+    let trendChartInst = null;
+    let brandChartInstance = null;
+    let channelPieChartInstance = null; 
+    let categoryChartInstance = null;
+    let topicChartInstance = null;      
+    let branchChartInstance = null;
+    let brandBarChartInst = null;
+    let top3CategoryChartInst = null;
 
-    // Google Web App Macro API EndPoint URL
-    const API_URL = "https://script.google.com/macros/s/AKfycbyR61QZ3G9TETtZ6a6Fw_M6z4y6_LidXq7x9H0N/exec";
+    let currentSortCol = 'no';
+    let sortAsc = false;
+    const thaiMonths = ['', 'ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.', 'พ.ค.', 'มิ.ย.', 'ก.ค.', 'ส.ค.', 'ก.ย.', 'ต.ค.', 'พ.ย.', 'ธ.ค.'];
 
-    // Setup Event Listeners on Load
-    document.addEventListener("DOMContentLoaded", () => {
-      setupLoginLogic();
-      setupFiltersAndUI();
-    });
-
-    function setupLoginLogic() {
-      const isLogged = sessionStorage.getItem("zen_dash_auth");
-      if (isLogged === "true") {
-        unlockDashboardView();
-        fetchDashboardData();
-      }
-
-      document.getElementById("loginForm").addEventListener("submit", (e) => {
-        e.preventDefault();
-        const userVal = document.getElementById("username").value.trim();
-        const passVal = document.getElementById("password").value.trim();
-        const submitBtn = e.target.querySelector("button[type='submit']");
-        const errBox = document.getElementById("loginError");
-
-        submitBtn.disabled = true;
-        submitBtn.innerHTML = `กำลังเช็คสิทธิ์...`;
-        errBox.classList.add("hidden");
-
-        const targetUrl = `${API_URL}?action=getDashboard&user=${encodeURIComponent(userVal)}&pass=${encodeURIComponent(passVal)}`;
-
-        fetch(targetUrl, { method: "GET", redirect: "follow" })
-          .then(res => {
-            if(!res.ok) throw new Error("Network response error");
-            return res.json();
-          })
-          .then(data => {
-            if (data.error) {
-              errBox.classList.remove("hidden");
-              submitBtn.disabled = false;
-              submitBtn.innerHTML = `เข้าสู่ระบบ`;
-            } else {
-              sessionStorage.setItem("zen_dash_auth", "true");
-              unlockDashboardView();
-              processAndRenderData(data);
-            }
-          })
-          .catch(err => {
-            console.error(err);
-            alert("ไม่สามารถเชื่อมต่อฐานข้อมูลได้: " + err.message);
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = `เข้าสู่ระบบ`;
-          });
-      });
-
-      document.getElementById("logoutBtn").addEventListener("click", () => {
-        sessionStorage.removeItem("zen_dash_auth");
-        location.reload();
-      });
-    }
-
-    function unlockDashboardView() {
-      document.getElementById("loginOverlay").classList.add("opacity-0", "pointer-events-none");
-      const content = document.getElementById("dashboardContent");
-      content.classList.remove("blur-md", "pointer-events-none");
-      setTimeout(() => { document.getElementById("loginOverlay").classList.add("hidden"); }, 500);
-    }
-
-    function fetchDashboardData() {
-      const targetUrl = `${API_URL}?action=getDashboard&user=session&pass=valid`;
-      fetch(targetUrl, { method: "GET", redirect: "follow" })
-        .then(res => res.json())
+    function handleLogin(event) {
+      event.preventDefault();
+      
+      const user = document.getElementById('username').value;
+      const pass = document.getElementById('password').value;
+      
+      document.getElementById('login-container').classList.add('hidden');
+      document.getElementById('loading').classList.remove('hidden');
+      const requestUrl = `${GAS_WEB_APP_URL}?action=getDashboard&user=${encodeURIComponent(user)}&pass=${encodeURIComponent(pass)}`;
+      
+      fetch(requestUrl, { method: 'GET', redirect: 'follow' })
+        .then(response => {
+          if (!response.ok) throw new Error('เครือข่ายขัดข้อง ไม่สามารถตอบรับสิทธิ์ล็อกอินได้');
+          return response.json();
+        })
         .then(data => {
-          if(data.error) {
-            sessionStorage.removeItem("zen_dash_auth");
+          if (data.error) {
+            alert('🚫 ข้อมูลผิดพลาด: ชื่อผู้ใช้งานหรือรหัสผ่านไม่ถูกต้อง');
             location.reload();
           } else {
-            processAndRenderData(data);
+            document.body.className = "bg-slate-50 min-h-screen block";
+            document.getElementById('loading').classList.add('hidden');
+            
+            const dashContainer = document.getElementById('dashboard-container');
+            dashContainer.classList.remove('hidden');
+            setTimeout(() => { dashContainer.classList.add('opacity-100'); }, 50);
+            
+            initializeDashboard(JSON.stringify(data));
           }
         })
-        .catch(err => console.error("Error loading background data:", err));
-    }
-
-    function processAndRenderData(data) {
-      rawDataGlobal = data;
-      currentFilteredData = [...rawDataGlobal];
-      
-      // Build dynamic filter values if needed, then sync dashboard
-      updateDashboardComponents();
-    }
-
-    function setupFiltersAndUI() {
-      document.getElementById("monthFilter").addEventListener("change", (e) => {
-        const val = e.target.value;
-        if (val === "all") {
-          currentFilteredData = [...rawDataGlobal];
-        } else {
-          currentFilteredData = rawDataGlobal.filter(x => x.monthNum && x.monthNum.toString() === val);
-        }
-        currentTablePage = 1;
-        updateDashboardComponents();
-      });
-
-      document.getElementById("tableSearch").addEventListener("input", (e) => {
-        const term = e.target.value.toLowerCase().trim();
-        const mFilter = document.getElementById("monthFilter").value;
-        
-        let baseData = [...rawDataGlobal];
-        if (mFilter !== "all") {
-          baseData = baseData.filter(x => x.monthNum && x.monthNum.toString() === mFilter);
-        }
-
-        if (term === "") {
-          currentFilteredData = baseData;
-        } else {
-          currentFilteredData = baseData.filter(x => 
-            (x.brand && x.brand.toLowerCase().includes(term)) ||
-            (x.branch && x.branch.toLowerCase().includes(term)) ||
-            (x.complaint && x.complaint.toLowerCase().includes(term)) ||
-            (x.responsible && x.responsible.toLowerCase().includes(term))
-          );
-        }
-        currentTablePage = 1;
-        updateDashboardComponents();
-      });
-
-      // Pagination events
-      document.getElementById("btnPrevPage").addEventListener("click", () => {
-        if (currentTablePage > 1) {
-          currentTablePage--;
-          renderLogsTable();
-        }
-      });
-
-      document.getElementById("btnNextPage").addEventListener("click", () => {
-        const totalPages = Math.ceil(currentFilteredData.length / itemsPerPage);
-        if (currentTablePage < totalPages) {
-          currentTablePage++;
-          renderLogsTable();
-        }
-      });
-
-      // Sorting table column click binders
-      document.querySelectorAll("th.sortable").forEach(th => {
-        th.addEventListener("click", () => {
-          const key = th.getAttribute("data-sort");
-          if (currentSortKey === key) {
-            currentSortOrder = currentSortOrder === 'asc' ? 'desc' : 'asc';
-          } else {
-            currentSortKey = key;
-            currentSortOrder = 'desc';
-          }
-          renderLogsTable();
+        .catch(error => {
+          console.error('Login Error:', error);
+          alert('เกิดข้อผิดพลาดในการดึงระบบ: ' + error.message);
+          location.reload();
         });
+    }
+
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.dropdown-container')) {
+        document.querySelectorAll('.dropdown-menu').forEach(menu => menu.classList.add('hidden'));
+      }
+    });
+
+    function toggleDropdown(menuId) {
+      document.querySelectorAll('.dropdown-menu').forEach(menu => {
+        if(menu.id !== menuId) menu.classList.add('hidden');
       });
+      document.getElementById(menuId).classList.toggle('hidden');
     }
 
-    function updateDashboardComponents() {
-      renderKPICards();
-      renderLogsTable();
-      renderChartBridges();
-      renderBranchAndResponsibleTables();
+    function resetFilters() {
+      document.querySelectorAll('.item-cb, .select-all-cb').forEach(cb => cb.checked = false);
+      document.getElementById('brandBtnText').textContent = 'ทั้งหมด ทุกแบรนด์';
+      document.getElementById('categoryBtnText').textContent = 'ทั้งหมด ทุกด้าน';
+      document.getElementById('topicBtnText').textContent = 'ทั้งหมด ทุกหัวข้อ';
+      document.getElementById('branchBtnText').textContent = 'ทั้งหมด ทุกสาขา';
+      document.getElementById('channelBtnText').textContent = 'ทั้งหมด ทุกช่องทาง';
+      document.getElementById('responsibleBtnText').textContent = 'ทั้งหมด ทุกคน';
+      document.getElementById('monthBtnText').textContent = 'ทั้งหมด ทุกเดือน';
+      document.getElementById('statusBtnText').textContent = 'ทั้งหมด ทุกสถานะ';
+      applyFilters();
     }
 
-    function renderKPICards() {
-      const total = currentFilteredData.length;
-      const closed = currentFilteredData.filter(x => x.status === "ปิดเคสเรียบร้อยแล้ว").length;
+    function sortTable(column) {
+      if (currentSortCol === column) {
+        sortAsc = !sortAsc;
+      } else {
+        currentSortCol = column;
+        sortAsc = true;
+      }
       
-      document.getElementById("kpiTotal").textContent = total.toLocaleString();
-      document.getElementById("kpiClosed").textContent = closed.toLocaleString();
-
-      // คำนวณระยะเวลาเฉลี่ยปิดเคสของส่วนกลาง
-      let totalSla = 0;
-      let slaCount = 0;
-      currentFilteredData.forEach(x => {
-        if (x.slaMinutes !== null && x.slaMinutes !== undefined) {
-          totalSla += x.slaMinutes;
-          slaCount++;
+      ['no', 'date', 'brand', 'branch'].forEach(col => {
+        const th = document.getElementById(`th-${col}`);
+        if(th) {
+          th.classList.remove('sort-asc', 'sort-desc');
+          if (col === currentSortCol) {
+            th.classList.add(sortAsc ? 'sort-asc' : 'sort-desc');
+          }
         }
       });
-      const avgSla = slaCount > 0 ? Math.round(totalSla / slaCount) : 0;
-      document.getElementById("kpi-avg-time").textContent = avgSla > 0 ? avgSla.toLocaleString() : "-";
-
-      // คำนวณระยะเวลาเฉลี่ยการทำงานของ Agency
-      let totalAgencySla = 0;
-      let agencyCount = 0;
-      currentFilteredData.forEach(x => {
-        if (x.agencySlaMinutes !== null && x.agencySlaMinutes !== undefined) {
-          totalAgencySla += x.agencySlaMinutes;
-          agencyCount++;
-        }
-      });
-      const avgAgencySla = agencyCount > 0 ? Math.round(totalAgencySla / agencyCount) : 0;
-      document.getElementById("kpi-agency-avg").textContent = avgAgencySla > 0 ? avgAgencySla.toLocaleString() : "-";
+      renderTable();
     }
 
-    function renderLogsTable() {
-      const tbody = document.getElementById("mainLogsTableBody");
-      tbody.innerHTML = "";
+    function parseDateForSort(dateStr) {
+      if (!dateStr || dateStr === '-') return 0;
+      const parts = dateStr.split('/');
+      if (parts.length === 3) {
+        return parseInt(parts[2] + parts[1].padStart(2, '0') + parts[0].padStart(2, '0'));
+      }
+      return 0;
+    }
 
-      if (currentFilteredData.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="8" class="text-center py-6 text-slate-400 font-medium">ไม่พบรายการบันทึกข้อมูลร้องเรียน...</td></tr>`;
-        syncTableFooterControls(0);
-        return;
+    function initializeDashboard(jsonStr) {
+      allData = JSON.parse(jsonStr);
+      if (allData.error) { alert(allData.error); return; }
+      filteredData = [...allData];
+
+      populateCheckbox('brandOptions', 'brandBtnText', 'ทุกแบรนด์', 'brand');
+      populateCheckbox('categoryOptions', 'categoryBtnText', 'ทุกด้าน', 'categories'); 
+      populateCheckbox('topicOptions', 'topicBtnText', 'ทุกหัวข้อ', 'topics');
+      populateCheckbox('branchOptions', 'branchBtnText', 'ทุกสาขา', 'branch');
+      populateCheckbox('channelOptions', 'channelBtnText', 'ทุกช่องทาง', 'channel');
+      populateCheckbox('responsibleOptions', 'responsibleBtnText', 'ทุกคน', 'responsible');
+      populateCheckbox('statusOptions', 'statusBtnText', 'ทุกสถานะ', 'status');
+      populateMonthCheckbox();
+
+      renderDashboard();
+    }
+
+    function populateCheckbox(containerId, btnId, defaultText, key) {
+      const container = document.getElementById(containerId);
+      container.innerHTML = '';
+      
+      let allValues = [];
+      allData.forEach(item => {
+        let val = item[key];
+        if (Array.isArray(val)) allValues.push(...val);
+        else allValues.push(val);
+      });
+      const uniqueValues = [...new Set(allValues)].filter(val => val && val !== '-').sort();
+      if (uniqueValues.length > 0) {
+        const selectAllLabel = document.createElement('label');
+        selectAllLabel.className = 'flex items-center space-x-2 px-2 py-2 hover:bg-slate-100 cursor-pointer text-sm font-semibold text-slate-800 rounded transition-colors border-b border-slate-200 mb-1';
+        selectAllLabel.innerHTML = `<input type="checkbox" class="rounded border-slate-300 text-indigo-600 focus:ring-indigo-500 w-4 h-4 select-all-cb" onchange="toggleSelectAll('${containerId}', this, '${btnId}', '${defaultText}')"><span class="truncate">เลือกทั้งหมด</span>`;
+        container.appendChild(selectAllLabel);
       }
 
-      // Sort Data Logic
-      let sortedData = [...currentFilteredData];
-      sortedData.sort((a, b) => {
-        let valA = a[currentSortKey];
-        let valB = b[currentSortKey];
+      uniqueValues.forEach(val => {
+        const label = document.createElement('label');
+        label.className = 'flex items-center space-x-2 px-2 py-1.5 hover:bg-indigo-50 cursor-pointer text-sm text-slate-700 rounded transition-colors';
+        label.innerHTML = `<input type="checkbox" value="${val}" class="rounded border-slate-300 text-indigo-600 focus:ring-indigo-500 w-4 h-4 item-cb" onchange="handleFilterChange('${containerId}', '${btnId}', '${defaultText}')"><span class="truncate">${val}</span>`;
+        container.appendChild(label);
+      });
+    }
 
-        if (currentSortKey === 'no') {
-          return currentSortOrder === 'asc' ? parseInt(a.no) - parseInt(b.no) : parseInt(b.no) - parseInt(a.no);
+    function populateMonthCheckbox() {
+      const containerId = 'monthOptions';
+      const btnId = 'monthBtnText';
+      const defaultText = 'ทุกเดือน';
+      const container = document.getElementById(containerId);
+      container.innerHTML = '';
+      const uniqueMonths = [...new Set(allData.map(item => item.monthNum))].filter(val => val > 0).sort((a, b) => a - b);
+      if (uniqueMonths.length > 0) {
+        const selectAllLabel = document.createElement('label');
+        selectAllLabel.className = 'flex items-center space-x-2 px-2 py-2 hover:bg-slate-100 cursor-pointer text-sm font-semibold text-slate-800 rounded transition-colors border-b border-slate-200 mb-1';
+        selectAllLabel.innerHTML = `<input type="checkbox" class="rounded border-slate-300 text-indigo-600 focus:ring-indigo-500 w-4 h-4 select-all-cb" onchange="toggleSelectAll('${containerId}', this, '${btnId}', '${defaultText}')"><span class="truncate">เลือกทั้งหมด</span>`;
+        container.appendChild(selectAllLabel);
+      }
+
+      uniqueMonths.forEach(m => {
+        const label = document.createElement('label');
+        label.className = 'flex items-center space-x-2 px-2 py-1.5 hover:bg-indigo-50 cursor-pointer text-sm text-slate-700 rounded transition-colors';
+        label.innerHTML = `<input type="checkbox" value="${m}" class="rounded border-slate-300 text-indigo-600 focus:ring-indigo-500 w-4 h-4 item-cb" onchange="handleFilterChange('${containerId}', '${btnId}', '${defaultText}')"><span class="truncate">${thaiMonths[m]}</span>`;
+        container.appendChild(label);
+      });
+    }
+
+    function toggleSelectAll(containerId, selectAllElement, btnId, defaultText) {
+      const isChecked = selectAllElement.checked;
+      const checkboxes = document.querySelectorAll(`#${containerId} .item-cb`);
+      checkboxes.forEach(cb => { cb.checked = isChecked; });
+      handleFilterChange(containerId, btnId, defaultText);
+    }
+
+    function getSelectedValues(containerId) {
+      const checkedBoxes = document.querySelectorAll(`#${containerId} .item-cb:checked`);
+      return Array.from(checkedBoxes).map(cb => cb.value);
+    }
+
+    function handleFilterChange(containerId, btnId, defaultText) {
+      const allBoxes = document.querySelectorAll(`#${containerId} .item-cb`);
+      const checkedBoxes = document.querySelectorAll(`#${containerId} .item-cb:checked`);
+      const selectAllBox = document.querySelector(`#${containerId} .select-all-cb`);
+      if (selectAllBox) selectAllBox.checked = (allBoxes.length > 0 && allBoxes.length === checkedBoxes.length);
+
+      const selected = Array.from(checkedBoxes).map(cb => cb.value);
+      const btn = document.getElementById(btnId);
+      
+      if (selected.length === 0 || selected.length === allBoxes.length) btn.textContent = `ทั้งหมด ${defaultText}`;
+      else if (selected.length === 1) btn.textContent = checkedBoxes[0].nextElementSibling.textContent;
+      else btn.textContent = `เลือกแล้ว ${selected.length} รายการ`;
+      applyFilters();
+    }
+
+    function applyFilters() {
+      const brands = getSelectedValues('brandOptions');
+      const selectedCats = getSelectedValues('categoryOptions');
+      const selectedTopics = getSelectedValues('topicOptions');     
+      const branches = getSelectedValues('branchOptions');  
+      const channels = getSelectedValues('channelOptions');
+      const resps = getSelectedValues('responsibleOptions');
+      const months = getSelectedValues('monthOptions');
+      const statuses = getSelectedValues('statusOptions');
+
+      filteredData = allData.filter(item => {
+        const matchBrand = brands.length === 0 || brands.includes(item.brand);
+        const matchBranch = branches.length === 0 || branches.includes(item.branch); 
+        const matchChannel = channels.length === 0 || channels.includes(item.channel);
+        const matchResp = resps.length === 0 || resps.includes(item.responsible);
+        const matchMonth = months.length === 0 || months.includes(item.monthNum.toString());
+        const matchStatus = statuses.length === 0 || statuses.includes(item.status);
+        const matchCat = selectedCats.length === 0 || item.categories.some(c => selectedCats.includes(c));
+        const matchTopic = selectedTopics.length === 0 || item.topics.some(t => selectedTopics.includes(t));       
+
+        return matchBrand && matchCat && matchTopic && matchBranch && matchChannel && matchResp && matchMonth && matchStatus;
+      });
+      renderDashboard();
+    }
+
+    function renderDashboard() {
+      calculateKPIs();
+      drawCharts();
+      renderTable();
+    }
+
+    // ฟังก์ชันคำนวณสถิติและจับแปลงเวลาแสดงผล
+    function formatAverageMinutes(totalMinutes, count) {
+      if (count === 0 || totalMinutes === null || totalMinutes === 0) return "-";
+      const avgMin = Math.round(totalMinutes / count);
+      
+      const d = Math.floor(avgMin / (24 * 60));
+      const rem = avgMin % (24 * 60);
+      const h = Math.floor(rem / 60);
+      const m = rem % 60;
+      
+      let res = "";
+      if (d > 0) res += d + " วัน ";
+      if (h > 0 || d > 0) res += h + " ชม. ";
+      res += m + " นาที";
+      return res;
+    }
+
+    function calculateKPIs() {
+      const validCases = filteredData.filter(item => item.no && item.no.toString().trim() !== '');
+      const total = validCases.length;
+      
+      // 🌟 จำนวนที่ปิดเคส: นับจากที่มีสถานะเป็น 'ปิดเคสเรียบร้อยแล้ว'
+      const closedCasesList = validCases.filter(item => item.status === 'ปิดเคสเรียบร้อยแล้ว');
+      const closed = closedCasesList.length;
+      const pending = total - closed;
+      const rate = total > 0 ? ((closed / total) * 100).toFixed(1) : 0;
+      
+      document.getElementById('kpiTotal').textContent = total.toLocaleString();
+      document.getElementById('kpiClosed').textContent = closed.toLocaleString();
+      document.getElementById('kpiPending').textContent = pending.toLocaleString();
+      document.getElementById('kpiRate').textContent = `(${rate}%)`;
+
+      // 🌟 1. ระยะเวลาเฉลี่ยปิดเคสของส่วนกลาง (B,C ถึง AF,AG)
+      let sumMinutes = 0;
+      let countClosedForSla = 0;
+      validCases.forEach(x => {
+        if (x.slaMinutes !== null) {
+          sumMinutes += x.slaMinutes;
+          countClosedForSla++;
         }
-        
-        valA = valA ? valA.toString().toLowerCase() : "";
-        valB = valB ? valB.toString().toLowerCase() : "";
+      });
+      document.getElementById('kpiSLA').textContent = formatAverageMinutes(sumMinutes, countClosedForSla);
 
-        if (valA < valB) return currentSortOrder === 'asc' ? -1 : 1;
-        if (valA > valB) return currentSortOrder === 'asc' ? 1 : -1;
-        return 0;
+      // 🌟 2. ระยะเวลาเฉลี่ยที่ Agency แจ้งงานเข้ามา (B,C ถึง D,E)
+      let sumAgencyMinutes = 0;
+      let countAgencyForSla = 0;
+      validCases.forEach(x => {
+        if (x.agencySlaMinutes !== null) {
+          sumAgencyMinutes += x.agencySlaMinutes;
+          countAgencyForSla++;
+        }
+      });
+      document.getElementById('kpiAgencySLA').textContent = formatAverageMinutes(sumAgencyMinutes, countAgencyForSla);
+
+      const brandCounts = {};
+      let topBrandName = '-';
+      let maxCount = 0;
+      validCases.forEach(item => {
+        if(item.brand && item.brand !== 'ไม่ระบุแบรนด์') {
+          brandCounts[item.brand] = (brandCounts[item.brand] || 0) + 1;
+          if(brandCounts[item.brand] > maxCount) {
+            maxCount = brandCounts[item.brand];
+            topBrandName = item.brand;
+          }
+        }
+      });
+      document.getElementById('kpiTopBrand').textContent = topBrandName + (maxCount > 0 ? ` (${maxCount} เคส)` : '');
+    }
+
+    function getTop10Data(dataArray, key) {
+      const counts = {};
+      dataArray.forEach(item => {
+        let values = item[key];
+        if (!values) values = ['ไม่ระบุ'];
+        if (!Array.isArray(values)) values = [values];
+        values.forEach(val => { counts[val || 'ไม่ระบุ'] = (counts[val || 'ไม่ระบุ'] || 0) + 1; });
+      });
+      return Object.entries(counts).sort((a, b) => b[1] - a[1]).slice(0, 10);
+    }
+
+    function drawCharts() {
+      Chart.defaults.font.family = "'Prompt', sans-serif";
+      const totalCases = filteredData.length;
+      const isMobile = window.innerWidth < 768;
+
+      const trendDom = document.getElementById('trendChart');
+      if (trendChartInst) trendChartInst.dispose();
+      trendChartInst = echarts.init(trendDom);
+      const monthCounts = new Array(12).fill(0);
+      filteredData.forEach(item => {
+        if (item.monthNum >= 1 && item.monthNum <= 12) {
+          monthCounts[item.monthNum - 1]++;
+        }
+      });
+      trendChartInst.setOption({
+        tooltip: { trigger: 'axis', textStyle: { fontFamily: 'Prompt' } },
+        grid: { left: '2%', right: '4%', bottom: '5%', top: '10%', containLabel: true },
+        xAxis: { 
+          type: 'category', 
+          boundaryGap: false,
+          data: ['ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.', 'พ.ค.', 'มิ.ย.', 'ก.ค.', 'ส.ค.', 'ก.ย.', 'ต.ค.', 'พ.ย.', 'ธ.ค.'],
+          axisLabel: { fontFamily: 'Prompt', color: '#64748b' }
+        },
+        yAxis: { type: 'value', axisLabel: { fontFamily: 'Prompt', color: '#64748b' }, splitLine: { lineStyle: { color: '#f1f5f9' } } },
+        series: [{
+          data: monthCounts, type: 'line', smooth: true, symbolSize: 8,
+          itemStyle: { color: '#3b82f6' }, lineStyle: { width: 3 },
+          areaStyle: { 
+            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{offset: 0, color: 'rgba(59,130,246,0.5)'}, {offset: 1, color: 'rgba(59,130,246,0.05)'}]) },
+          label: { show: true, position: 'top', fontFamily: 'Prompt', color: '#3b82f6', fontWeight: 'bold' }
+        }]
       });
 
-      // Pagination Slice
-      const startIdx = (currentTablePage - 1) * itemsPerPage;
-      const endIdx = Math.min(startIdx + itemsPerPage, sortedData.length);
-      const pageItems = sortedData.slice(startIdx, endIdx);
+      const brandMap = {};
+      filteredData.forEach(item => { brandMap[item.brand] = (brandMap[item.brand] || 0) + 1; });
+      const brandData = Object.keys(brandMap).map(key => ({ name: key, value: brandMap[key] }));
+      
+      const brandContainer = document.getElementById('brandChart');
+      if (brandChartInstance) brandChartInstance.dispose();
+      brandChartInstance = echarts.init(brandContainer);
+      brandChartInstance.setOption({
+        color: ['#4f46e5', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#06b6d4'],
+        tooltip: { trigger: 'item', textStyle: { fontFamily: 'Prompt' } },
+        legend: { bottom: '0%', left: 'center', icon: 'circle', textStyle: { fontFamily: 'Prompt', fontSize: 11, color: '#64748b' } },
+        series: [{
+          type: 'pie', radius: ['45%', '70%'], center: ['50%', '45%'], avoidLabelOverlap: true,
+          itemStyle: { borderColor: '#fff', borderWidth: 2 },
+          label: { show: true, position: 'outside', formatter: '{b}\n{c} ({d}%)', fontFamily: 'Prompt', fontWeight: 'bold', fontSize: 11, color: '#334155' },
+          labelLine: { show: true, length: 15, length2: 20, smooth: true },
+          data: brandData
+        }]
+      });
 
-      pageItems.forEach(item => {
-        const isClosed = item.status === "ปิดเคสเรียบร้อยแล้ว";
-        const badgeStyle = isClosed 
-          ? "bg-emerald-50 text-emerald-600 border border-emerald-100" 
-          : "bg-amber-50 text-amber-600 border border-amber-100";
-          
-        const tr = document.createElement("tr");
-        tr.className = "hover:bg-slate-50/80 transition-colors";
+      const channelMap = {};
+      filteredData.forEach(item => { channelMap[item.channel] = (channelMap[item.channel] || 0) + 1; });
+      const channelData = Object.keys(channelMap).map(key => ({ name: key, value: channelMap[key] }));
+      
+      const channelContainer = document.getElementById('channelPieChart');
+      if (channelPieChartInstance) channelPieChartInstance.dispose();
+      channelPieChartInstance = echarts.init(channelContainer);
+      channelPieChartInstance.setOption({
+        color: ['#0ea5e9', '#ec4899', '#f43f5e', '#8b5cf6', '#14b8a6', '#f59e0b'],
+        tooltip: { trigger: 'item', textStyle: { fontFamily: 'Prompt' } },
+        legend: { bottom: '0%', left: 'center', icon: 'circle', textStyle: { fontFamily: 'Prompt', fontSize: 11, color: '#64748b' } },
+        series: [{
+          type: 'pie', radius: ['45%', '70%'], center: ['50%', '45%'], avoidLabelOverlap: true,
+          itemStyle: { borderColor: '#fff', borderWidth: 2 },
+          label: { show: true, position: 'outside', formatter: '{b}\n{c} ({d}%)', fontFamily: 'Prompt', fontWeight: 'bold', fontSize: 11, color: '#334155' },
+          labelLine: { show: true, length: 15, length2: 20, smooth: true },
+          data: channelData
+        }]
+      });
+
+      const createBarChart = (containerId, dataArray, color) => {
+        const dom = document.getElementById(containerId);
+        if (!dom) return null;
+        let chartInst = echarts.getInstanceByDom(dom);
+        if (chartInst) chartInst.dispose(); 
+        chartInst = echarts.init(dom);
+        const names = dataArray.map(item => item[0]).reverse();
+        const values = dataArray.map(item => item[1]).reverse();
+        chartInst.setOption({
+          tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, textStyle: { fontFamily: 'Prompt' } },
+          grid: { containLabel: true, left: '3%', right: isMobile ? 65 : 80, top: 10, bottom: 20 },
+          xAxis: { type: 'value', show: false },
+          yAxis: { type: 'category', data: names, axisLine: { show: false }, axisTick: { show: false },
+            axisLabel: { fontFamily: 'Prompt', fontSize: isMobile ? 10 : 11, color: '#475569', fontWeight: '500', interval: 0, width: isMobile ? 130 : 160, overflow: 'break', align: 'right' }
+          },
+          series: [{ type: 'bar', data: values, itemStyle: { color: color, borderRadius: [0, 4, 4, 0] }, barWidth: 14,
+            label: { show: true, position: 'right', fontFamily: 'Prompt', fontWeight: 'bold', fontSize: isMobile ? 10 : 11, 
+              color: color,
+              formatter: (params) => { if (totalCases === 0) return params.value; return `${params.value} (${((params.value / totalCases) * 100).toFixed(1)}%)`; }
+            }
+          }]
+        });
+        return chartInst;
+      };
+
+      const topCategories = getTop10Data(filteredData, 'categories');
+      categoryChartInstance = createBarChart('categoryChart', topCategories, '#0EA5E9');
+      const topTopics = getTop10Data(filteredData, 'topics');
+      topicChartInstance = createBarChart('topicChart', topTopics, '#f59e0b');
+      const topBranches = getTop10Data(filteredData, 'branch');
+      branchChartInstance = createBarChart('branchChart', topBranches, '#EC4899');
+
+      const brandBarDom = document.getElementById('brandBarChart');
+      if (brandBarChartInst) brandBarChartInst.dispose();
+      brandBarChartInst = echarts.init(brandBarDom);
+      const sortedBrandData = Object.keys(brandMap).map(key => ({ name: key, value: brandMap[key] })).sort((a, b) => b.value - a.value);
+      brandBarChartInst.setOption({
+        tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, textStyle: { fontFamily: 'Prompt' } },
+        grid: { left: '1%', right: '1%', bottom: '0%', top: '15%', containLabel: true },
+        xAxis: { type: 'category', data: sortedBrandData.map(d => d.name), axisLine: { lineStyle: { color: '#e2e8f0' } }, axisTick: { show: false }, axisLabel: { fontFamily: 'Prompt', color: '#475569', interval: 0, rotate: isMobile ? 45 : 0, fontSize: isMobile ? 10 : 12 } },
+        yAxis: { type: 'value', show: false },
+        series: [{ type: 'bar', data: sortedBrandData.map(d => d.value), itemStyle: { color: '#f97316', borderRadius: [4, 4, 0, 0] }, barMaxWidth: 45, label: { show: true, position: 'top', fontFamily: 'Prompt', fontWeight: 'bold', color: '#475569', fontSize: 13 } }]
+      });
+
+      const top3Cats = topCategories.slice(0, 3);
+      const top3CatDom = document.getElementById('top3CategoryChart');
+      if (top3CategoryChartInst) top3CategoryChartInst.dispose();
+      top3CategoryChartInst = echarts.init(top3CatDom);
+      const t3CatNames = top3Cats.map(item => item[0]).reverse();
+      const t3CatValues = top3Cats.map(item => item[1]).reverse();
+      top3CategoryChartInst.setOption({
+        tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, textStyle: { fontFamily: 'Prompt' } },
+        grid: { left: '1%', right: '15%', bottom: '0%', top: '5%', containLabel: true },
+        xAxis: { type: 'value', show: false },
+        yAxis: { type: 'category', data: t3CatNames, axisLine: { show: false }, axisTick: { show: false }, axisLabel: { fontFamily: 'Prompt', fontSize: isMobile ? 10 : 12, color: '#475569', fontWeight: '500', width: isMobile ? 110 : 160, 
+          overflow: 'break', align: 'right' } },
+        series: [{ type: 'bar', data: t3CatValues, itemStyle: { color: '#fbbf24', borderRadius: [0, 4, 4, 0] }, barWidth: 20, label: { show: true, position: 'right', fontFamily: 'Prompt', color: '#64748b', fontSize: isMobile ? 10 : 12, formatter: (params) => { if (totalCases === 0) return `${params.value} เรื่อง`; return `${params.value} เรื่อง (${((params.value / totalCases) * 100).toFixed(0)}%)`; } } }]
+      });
+
+      const top3Container = document.getElementById('top3TopicsContainer');
+      top3Container.innerHTML = '';
+      top3Cats.forEach((catInfo, index) => {
+        const catName = catInfo[0];
+        const casesInCat = filteredData.filter(item => { let c = item.categories; if (!c) c = ['ไม่ระบุ']; if (!Array.isArray(c)) c = [c]; return c.includes(catName); });
+        const topicCounts = {};
+        casesInCat.forEach(item => { let t = item.topics; if (!t) t = ['ไม่ระบุ']; if (!Array.isArray(t)) t = [t]; t.forEach(val => { const finalVal = val || 'ไม่ระบุ'; topicCounts[finalVal] = (topicCounts[finalVal] || 0) + 1; }); });
+        const t3Topics = Object.entries(topicCounts).sort((a,b) => b[1] - a[1]).slice(0, 3);
+        let html = `<div class="p-4 bg-white border-b md:border-b-0 md:border-r border-slate-200 last:border-0 h-full flex flex-col"><h4 class="text-[13px] md:text-sm font-bold text-slate-800 mb-3 border-b border-slate-200 pb-2">${index + 1}. ${catName} Top 3</h4><ul class="space-y-2 flex-1">`;
+        if (t3Topics.length === 0) html += `<li class="text-xs text-slate-400">- ไม่มีข้อมูล -</li>`;
+        else t3Topics.forEach((tInfo, tIndex) => { html += `<li class="text-xs md:text-[13px] text-slate-600 flex items-start gap-2"><span class="text-slate-800 font-medium">${tIndex + 1}.</span> <span class="flex-1 leading-snug">${tInfo[0]} <span class="text-indigo-500 font-medium ml-1">(${tInfo[1]})</span></span></li>`; });
+        html += `</ul></div>`;
+        top3Container.innerHTML += html;
+      });
+
+      window.addEventListener('resize', () => {
+        if (trendChartInst) trendChartInst.resize();
+        if (brandChartInstance) brandChartInstance.resize();
+        if (channelPieChartInstance) channelPieChartInstance.resize();
+        if (categoryChartInstance) categoryChartInstance.resize();
+        if (topicChartInstance) topicChartInstance.resize();
+        if (branchChartInstance) branchChartInstance.resize();
+        if (brandBarChartInst) brandBarChartInst.resize();
+        if (top3CategoryChartInst) top3CategoryChartInst.resize();
+      });
+    } 
+
+    function renderTable() {
+      const tbody = document.getElementById('tableBody');
+      tbody.innerHTML = '';
+      if (filteredData.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="7" class="px-4 py-8 text-center text-slate-400 font-light">ไม่พบข้อมูลที่ตรงกับตัวกรองสิทธิ์นี้</td></tr>`;
+        return;
+      }
+      
+      let tableRows = [...filteredData];
+      tableRows.sort((a, b) => {
+        let valA = a[currentSortCol] || '';
+        let valB = b[currentSortCol] || '';
+        
+        if (currentSortCol === 'no') {
+          valA = parseInt(valA) || 0;
+          valB = parseInt(valB) || 0;
+        } else if (currentSortCol === 'date') {
+          valA = parseDateForSort(valA);
+          valB = parseDateForSort(valB);
+        } else {
+          valA = valA.toString().toLowerCase();
+          valB = valB.toString().toLowerCase();
+        }
+
+        if (valA < valB) return sortAsc ? -1 : 1;
+        if (valA > valB) return sortAsc ? 1 : -1;
+        return 0;
+      });
+      
+      tableRows.forEach(item => {
+        const isPending = item.status === 'กำลังดำเนินเรื่อง';
+        const badgeClass = !isPending ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-amber-50 text-amber-700 border border-amber-200';
+        const badgeText = item.status;
+        const catText = item.categories.join(', ');
+        
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-slate-50 transition-colors border-b border-slate-100';
         tr.innerHTML = `
-          <td class="px-4 py-2.5 text-center font-mono font-bold text-slate-400 border-b border-slate-100">${item.no}</td>
-          <td class="px-4 py-2.5 text-slate-500 border-b border-slate-100">${item.date || '-'}</td>
-          <td class="px-4 py-2.5 font-semibold text-slate-700 border-b border-slate-100">${item.brand || '-'}</td>
-          <td class="px-4 py-2.5 text-slate-600 border-b border-slate-100 truncate" title="${item.branch}">${item.branch || '-'}</td>
-          <td class="px-4 py-2.5 text-slate-500 border-b border-slate-100 truncate" title="${item.categories ? item.categories.join(', ') : '-'}">${item.categories ? item.categories[0] : '-'}</td>
-          <td class="px-4 py-2.5 text-slate-600 border-b border-slate-100 truncate font-medium" title="${item.complaint}">${item.complaint || '-'}</td>
-          <td class="px-4 py-2.5 text-slate-500 border-b border-slate-100 truncate" title="${item.responsible}">${item.responsible || '-'}</td>
-          <td class="px-4 py-2.5 text-center border-b border-slate-100">
-            <span class="inline-block px-2 py-0.5 rounded-full text-[10px] font-bold tracking-wide ${badgeStyle}">${item.status || 'กำลังดำเนินเรื่อง'}</span>
+          <td class="px-4 py-3 text-center text-xs font-mono font-bold text-slate-400">${item.no}</td>
+          <td class="px-4 py-3 text-xs text-slate-500 whitespace-nowrap">${item.date}</td>
+          <td class="px-4 py-3 font-semibold text-slate-700 text-xs">${item.brand}</td>
+          <td class="px-4 py-3 text-xs text-slate-600 truncate max-w-[140px]" title="${item.branch}">${item.branch}</td>
+          <td class="px-4 py-3 text-xs text-slate-500 truncate max-w-[160px]" title="${catText}">${catText}</td>
+          <td class="px-4 py-3 text-xs text-slate-600 max-w-sm truncate" title="${item.complaint}">${item.complaint}</td>
+          <td class="px-4 py-3 text-center">
+            <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${badgeClass}">${badgeText}</span>
           </td>
         `;
         tbody.appendChild(tr);
       });
-
-      syncTableFooterControls(sortedData.length);
-      updateHeaderSortIndicators();
-    }
-
-    function syncTableFooterControls(totalItems) {
-      const totalPages = Math.ceil(totalItems / itemsPerPage) || 1;
-      const startItem = totalItems === 0 ? 0 : (currentTablePage - 1) * itemsPerPage + 1;
-      const endItem = Math.min(startItem + itemsPerPage - 1, totalItems);
-
-      document.getElementById("tableCounter").textContent = `แสดง ${startItem} ถึง ${endItem} จากทั้งหมด ${totalItems.toLocaleString()} รายการ`;
-      document.getElementById("btnPrevPage").disabled = currentTablePage === 1;
-      document.getElementById("btnNextPage").disabled = currentTablePage === totalPages;
-    }
-
-    function updateHeaderSortIndicators() {
-      document.querySelectorAll("th.sortable").forEach(th => {
-        const key = th.getAttribute("data-sort");
-        let txt = th.textContent.replace(/[▲▼↕\s]/g, "");
-        if (key === currentSortKey) {
-          th.innerHTML = `${txt} ${currentSortOrder === 'asc' ? '▲' : '▼'}`;
-          th.className = "sortable px-4 py-3 bg-slate-100/80 text-indigo-600 font-bold transition-all cursor-pointer";
-        } else {
-          th.innerHTML = `${txt} ▲▼`;
-          th.className = "sortable px-4 py-3 hover:bg-slate-100 transition-all cursor-pointer";
-        }
-      });
-    }
-
-    function renderBranchAndResponsibleTables() {
-      // 1. Branch Rankings Summary Table
-      const branchBody = document.getElementById("branchTableBody");
-      branchBody.innerHTML = "";
-      
-      const branchMap = {};
-      currentFilteredData.forEach(x => {
-        if (!x.branch) return;
-        if (!branchMap[x.branch]) branchMap[x.branch] = { total: 0, pending: 0, closed: 0 };
-        branchMap[x.branch].total++;
-        if (x.status === "ปิดเคสเรียบร้อยแล้ว") branchMap[x.branch].closed++;
-        else branchMap[x.branch].pending++;
-      });
-
-      const sortedBranches = Object.entries(branchMap).sort((a, b) => b[1].total - a[1].total).slice(0, 15);
-      
-      if (sortedBranches.length === 0) {
-        branchBody.innerHTML = `<tr><td colspan="5" class="text-center py-4 text-slate-400">ไม่มีข้อมูลบันทึกสาขา...</td></tr>`;
-      } else {
-        sortedBranches.forEach((br, i) => {
-          const tr = document.createElement("tr");
-          tr.className = "hover:bg-slate-50/50";
-          tr.innerHTML = `
-            <td class="px-4 py-2 text-center font-bold text-slate-400">${i+1}</td>
-            <td class="px-4 py-2 font-semibold text-slate-700">${br[0]}</td>
-            <td class="px-4 py-2 text-center text-slate-900 font-bold">${br[1].total}</td>
-            <td class="px-4 py-2 text-center text-amber-600 font-medium">${br[1].pending}</td>
-            <td class="px-4 py-2 text-center text-emerald-600 font-medium">${br[1].closed}</td>
-          `;
-          branchBody.appendChild(tr);
-        });
-      }
-
-      // 2. Responsible Workload Share Table
-      const respBody = document.getElementById("responsibleTableBody");
-      respBody.innerHTML = "";
-      
-      const respMap = {};
-      currentFilteredData.forEach(x => {
-        const name = x.responsible || "ไม่ระบุฝ่าย";
-        respMap[name] = (respMap[name] || 0) + 1;
-      });
-
-      const sortedResp = Object.entries(respMap).sort((a,b) => b[1] - a[1]).slice(0, 10);
-      const totalCases = currentFilteredData.length || 1;
-
-      if (sortedResp.length === 0) {
-        respBody.innerHTML = `<tr><td colspan="3" class="text-center py-4 text-slate-400">ไม่มีข้อมูลผู้รับผิดชอบ...</td></tr>`;
-      } else {
-        sortedResp.forEach(rs => {
-          const percentage = ((rs[1] / totalCases) * 100).toFixed(1) + "%";
-          const tr = document.createElement("tr");
-          tr.className = "hover:bg-slate-50/50";
-          tr.innerHTML = `
-            <td class="px-4 py-2 font-semibold text-slate-600">${rs[0]}</td>
-            <td class="px-4 py-2 text-center font-bold text-slate-900">${rs[1]}</td>
-            <td class="px-4 py-2 text-center text-indigo-500 font-semibold">${percentage}</td>
-          `;
-          respBody.appendChild(tr);
-        });
-      }
-    }
-
-    function renderChartBridges() {
-      // 1. Chart.js Brand Share Doughnut
-      const brandCounts = {};
-      currentFilteredData.forEach(x => { if(x.brand) brandCounts[x.brand] = (brandCounts[x.brand] || 0) + 1; });
-      
-      if(chartsInstances.brand) chartsInstances.brand.destroy();
-      chartsInstances.brand = new Chart(document.getElementById("brandChart"), {
-        type: 'doughnut',
-        data: {
-          labels: Object.keys(brandCounts),
-          datasets: [{
-            data: Object.values(brandCounts),
-            backgroundColor: ['#4f46e5', '#8b5cf6', '#ec4899', '#f59e0b', '#10b981', '#06b6d4', '#64748b'],
-            borderWidth: 2, borderColor: '#ffffff'
-          }]
-        },
-        options: {
-          responsive: true, maintainAspectRatio: false,
-          plugins: {
-            legend: { position: 'right', labels: { font: { family: 'Prompt', size: 10, weight: 500 }, boxWidth: 12 } },
-            datalabels: { display: false }
-          },
-          cutout: '65%'
-        }
-      });
-
-      // 2. Chart.js Channels Share Pie
-      const chanCounts = {};
-      currentFilteredData.forEach(x => { if(x.channel) chanCounts[x.channel] = (chanCounts[x.channel] || 0) + 1; });
-      
-      if(chartsInstances.channel) chartsInstances.channel.destroy();
-      chartsInstances.channel = new Chart(document.getElementById("channelChart"), {
-        type: 'pie',
-        data: {
-          labels: Object.keys(chanCounts),
-          datasets: [{
-            data: Object.values(chanCounts),
-            backgroundColor: ['#0ea5e9', '#f43f5e', '#10b981', '#eab308', '#a855f7', '#64748b']
-          }]
-        },
-        options: {
-          responsive: true, maintainAspectRatio: false,
-          plugins: {
-            legend: { position: 'bottom', labels: { font: { family: 'Prompt', size: 10, weight: 500 }, boxWidth: 10 } },
-            datalabels: { display: false }
-          }
-        }
-      });
-
-      // 3. Chart.js Main Category Horizontal Bars
-      const catCounts = {};
-      currentFilteredData.forEach(x => {
-        if(x.categories) x.categories.forEach(c => { catCounts[c] = (catCounts[c] || 0) + 1; });
-      });
-      const sortedCats = Object.entries(catCounts).sort((a,b) => b[1] - a[1]).slice(0, 7);
-
-      if(chartsInstances.category) chartsInstances.category.destroy();
-      chartsInstances.category = new Chart(document.getElementById("categoryChart"), {
-        type: 'bar',
-        data: {
-          labels: sortedCats.map(x => x[0]),
-          datasets: [{
-            data: sortedCats.map(x => x[1]),
-            backgroundColor: 'rgba(79, 70, 229, 0.85)',
-            hoverBackgroundColor: '#4f46e5',
-            borderRadius: 6, barThickness: 15
-          }]
-        },
-        options: {
-          indexAxis: 'y', responsive: true, maintainAspectRatio: false,
-          plugins: { legend: { display: false }, datalabels: { display: false } },
-          scales: {
-            x: { grid: { color: '#f1f5f9' }, ticks: { font: { family: 'Prompt', size: 9 } } },
-            y: { grid: { display: false }, ticks: { font: { family: 'Prompt', size: 10, weight: 600 } } }
-          }
-        }
-      });
-
-      // 4. ECharts Top 10 Subtopic Treemap Layout
-      const topicCounts = {};
-      currentFilteredData.forEach(x => {
-        if(x.topics) x.topics.forEach(t => { topicCounts[t] = (topicCounts[t] || 0) + 1; });
-      });
-      const treemapData = Object.entries(topicCounts)
-        .sort((a,b) => b[1] - a[1])
-        .slice(0, 10)
-        .map(x => ({ name: x[0], value: x[1] }));
-
-      if (echartsInstance) echartsInstance.dispose();
-      echartsInstance = echarts.init(document.getElementById("echartsTopicTree"));
-      
-      echartsInstance.setOption({
-        tooltip: { formatter: '{b}: <b>{c} เคส</b>' },
-        series: [{
-          type: 'treemap',
-          data: treemapData,
-          roam: false, nodeClick: false, breadcrumb: { show: false },
-          label: { show: true, fontFamily: 'Prompt', fontSize: 11, fontWeight: 'bold' },
-          itemStyle: { borderMode: 'inner', borderWidth: 1, borderColor: '#ffffff' },
-          levels: [{ itemStyle: { color: '#6366f1', gapWidth: 2, borderColorSaturation: 0.6 } }]
-        }]
-      });
-
-      window.addEventListener("resize", () => { if(echartsInstance) echartsInstance.resize(); });
     }
   </script>
 </body>
