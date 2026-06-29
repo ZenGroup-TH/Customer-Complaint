@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Zen Data Complaint 2026</title>
-  <link rel="icon" type="image/png" href="https://lh3.googleusercontent.com/d/1i2JLuvzO9Z0_aBapr_dw5y77ehTY4rzf">
+  <link rel="icon" type="image/png" href="https://lh3.googleusercontent.com/d/1UP_YU2MVEKfSMK1Dnaxqp9yGNpwr41J6">
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
@@ -16,16 +16,13 @@
     .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
     .custom-scrollbar::-webkit-scrollbar-track { background: #f1f5f9; }
     .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
-    th.sortable:hover { background-color: #f1f5f9; color: #334155; }
-    th.sortable::after { content: ' \21C5'; opacity: 0.3; font-size: 0.8em; }
-    th.sort-asc::after { content: ' \2191'; opacity: 1; color: #4f46e5; }
-    th.sort-desc::after { content: ' \2193'; opacity: 1; color: #4f46e5; }
+    th.sortable:hover { background-color: #f1f5f9; cursor: pointer; }
   </style>
 </head>
 <body class="bg-slate-900 min-h-screen flex items-center justify-center text-slate-800 antialiased">
 
   <div id="login-container" class="w-full max-w-md mx-4 bg-white rounded-2xl shadow-2xl overflow-hidden transition-all duration-500 transform scale-100 block z-[10000]">
-    <div class="w-full bg-slate-950 p-6 flex justify-center items-center border-b border-slate-800">
+    <div class="w-full bg-slate-950 overflow-hidden border-b border-slate-800">
       <img src="https://lh3.googleusercontent.com/d/1stuxlh_Lc8YwT7qe1pOIj2QNkul6jbUd" alt="Zen Group Logo" class="w-full h-auto object-cover block">
     </div>
     
@@ -63,7 +60,7 @@
     <header class="bg-slate-900 text-white shadow-md">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row justify-between items-center gap-4">
         <div class="flex items-center gap-3">
-          <img src="https://lh3.googleusercontent.com/d/1UP_YU2MVEKfSMK1Dnaxqp9yGNpwr41J6" alt="Company Logo" class="h-10 w-auto object-contain">
+          <img src="https://lh3.googleusercontent.com/d/1i2JLuvzO9Z0_aBapr_dw5y77ehTY4rzf" alt="Company Logo" class="h-10 w-auto object-contain">
           <div>
             <h1 class="text-xl font-bold tracking-tight">Data Customer Complaint Dashboard</h1>
             <p class="text-xs text-slate-400 font-light">ระบบวิเคราะห์ข้อมูลลูกค้าร้องเรียนประจำปี 2026</p>
@@ -148,7 +145,7 @@
         </div>
       </section>
 
-      <section class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4">
+      <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
         <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-center">
           <p class="text-xs text-slate-500 font-medium mb-1">เรื่องร้องเรียนทั้งหมด</p>
           <h4 id="kpiTotal" class="text-2xl font-bold text-blue-600">-</h4>
@@ -164,15 +161,17 @@
           <p class="text-xs text-slate-500 font-medium mb-1">กำลังดำเนินการ</p>
           <h4 id="kpiPending" class="text-2xl font-bold text-amber-500">-</h4>
         </div>
-        <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-center lg:col-span-2">
-          <p class="text-[11px] text-slate-500 font-medium mb-1">ระยะเวลาเฉลี่ยปิดเคส</p>
+        <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-center">
+          <p class="text-[11px] text-slate-500 font-medium mb-1">ระยะ Agency แจ้งเฉลี่ย</p>
           <div class="flex items-baseline gap-1">
-            <h4 id="kpiSLA" class="text-base lg:text-lg font-bold text-sky-500 tracking-tight whitespace-nowrap">-</h4>
+            <h4 id="kpiAgencySLA" class="text-sm font-bold text-indigo-600 tracking-tight whitespace-nowrap">-</h4>
           </div>
         </div>
-        <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-center lg:col-span-2">
-          <p class="text-xs text-slate-500 font-medium mb-1">แบรนด์ที่ถูกร้องเรียนสูงสุด</p>
-          <h4 id="kpiTopBrand" class="text-xl font-bold text-rose-600 truncate">-</h4>
+        <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-center">
+          <p class="text-[11px] text-slate-500 font-medium mb-1">ระยะเวลาเฉลี่ยปิดเคส</p>
+          <div class="flex items-baseline gap-1">
+            <h4 id="kpiSLA" class="text-sm font-bold text-sky-500 tracking-tight whitespace-nowrap">-</h4>
+          </div>
         </div>
       </section>
 
@@ -261,9 +260,7 @@
   </div>
 
   <script>
-    // 🌟 1. ลิงก์ Web App ของ Google Apps Script (ตรวจสอบให้ตรงกับ deployment ล่าสุดนะครับ)
-    const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyIFr3nLLUc1iG2WyLXMkmtaI8GpYu05wOAlpJeyPv5WEghEFThtajlGvwNA9VpucuFOA/exec"; 
-
+    const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzXWZlkC2rj-ilhu4xOSJD_eYGAaB7b0R3JjHwK8XxihaG9nhWBGeq5rptan8AbpFGQsg/exec";
     Chart.register(ChartDataLabels);
     let allData = [];
     let filteredData = [];
@@ -274,12 +271,11 @@
     let categoryChartInstance = null;
     let topicChartInstance = null;      
     let branchChartInstance = null;
-    let brandBarChartInst = null; 
+    let brandBarChartInst = null;
     let top3CategoryChartInst = null;
 
     let currentSortCol = 'no';
-    let sortAsc = false; 
-
+    let sortAsc = false;
     const thaiMonths = ['', 'ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.', 'พ.ค.', 'มิ.ย.', 'ก.ค.', 'ส.ค.', 'ก.ย.', 'ต.ค.', 'พ.ย.', 'ธ.ค.'];
 
     function handleLogin(event) {
@@ -290,7 +286,6 @@
       
       document.getElementById('login-container').classList.add('hidden');
       document.getElementById('loading').classList.remove('hidden');
-      
       const requestUrl = `${GAS_WEB_APP_URL}?action=getDashboard&user=${encodeURIComponent(user)}&pass=${encodeURIComponent(pass)}`;
       
       fetch(requestUrl, { method: 'GET', redirect: 'follow' })
@@ -498,12 +493,29 @@
       renderTable();
     }
 
+    // ฟังก์ชันคำนวณสถิติและจับแปลงเวลาแสดงผล
+    function formatAverageMinutes(totalMinutes, count) {
+      if (count === 0 || totalMinutes === null || totalMinutes === 0) return "-";
+      const avgMin = Math.round(totalMinutes / count);
+      
+      const d = Math.floor(avgMin / (24 * 60));
+      const rem = avgMin % (24 * 60);
+      const h = Math.floor(rem / 60);
+      const m = rem % 60;
+      
+      let res = "";
+      if (d > 0) res += d + " วัน ";
+      if (h > 0 || d > 0) res += h + " ชม. ";
+      res += m + " นาที";
+      return res;
+    }
+
     function calculateKPIs() {
       const validCases = filteredData.filter(item => item.no && item.no.toString().trim() !== '');
       const total = validCases.length;
       
-      // 🌟 จำนวนที่ปิดเคส: นับจากที่มีผู้รับผิดชอบระบุในคอลัมน์ AD (ไม่ใช่ 'ไม่มีผู้รับผิดชอบ')
-      const closedCasesList = validCases.filter(item => item.responsible && item.responsible !== 'ไม่มีผู้รับผิดชอบ' && item.responsible !== '');
+      // 🌟 จำนวนที่ปิดเคส: นับจากที่มีสถานะเป็น 'ปิดเคสเรียบร้อยแล้ว'
+      const closedCasesList = validCases.filter(item => item.status === 'ปิดเคสเรียบร้อยแล้ว');
       const closed = closedCasesList.length;
       const pending = total - closed;
       const rate = total > 0 ? ((closed / total) * 100).toFixed(1) : 0;
@@ -513,23 +525,27 @@
       document.getElementById('kpiPending').textContent = pending.toLocaleString();
       document.getElementById('kpiRate').textContent = `(${rate}%)`;
 
-      // 🌟 ระยะเวลาเฉลี่ยปิดเคสคำนวณจากสูตรจับคู่ (D,E -> AF,AG)
-      const slaCases = validCases.filter(item => item.slaMinutes !== null && item.slaMinutes !== undefined);
-      if (slaCases.length > 0) {
-        const totalMinutes = slaCases.reduce((sum, item) => sum + item.slaMinutes, 0);
-        const avgMinutes = Math.round(totalMinutes / slaCases.length);
-        const d = Math.floor(avgMinutes / (24 * 60));
-        const h = Math.floor((avgMinutes % (24 * 60)) / 60);
-        const m = avgMinutes % 60;
-        
-        let slaText = "";
-        if (d > 0) slaText += `${d} วัน `;
-        if (h > 0) slaText += `${h} ชม. `;
-        slaText += `${m} นาที`;
-        document.getElementById('kpiSLA').textContent = slaText;
-      } else {
-        document.getElementById('kpiSLA').textContent = 'N/A';
-      }
+      // 🌟 1. ระยะเวลาเฉลี่ยปิดเคสของส่วนกลาง (B,C ถึง AF,AG)
+      let sumMinutes = 0;
+      let countClosedForSla = 0;
+      validCases.forEach(x => {
+        if (x.slaMinutes !== null) {
+          sumMinutes += x.slaMinutes;
+          countClosedForSla++;
+        }
+      });
+      document.getElementById('kpiSLA').textContent = formatAverageMinutes(sumMinutes, countClosedForSla);
+
+      // 🌟 2. ระยะเวลาเฉลี่ยที่ Agency แจ้งงานเข้ามา (B,C ถึง D,E)
+      let sumAgencyMinutes = 0;
+      let countAgencyForSla = 0;
+      validCases.forEach(x => {
+        if (x.agencySlaMinutes !== null) {
+          sumAgencyMinutes += x.agencySlaMinutes;
+          countAgencyForSla++;
+        }
+      });
+      document.getElementById('kpiAgencySLA').textContent = formatAverageMinutes(sumAgencyMinutes, countAgencyForSla);
 
       const brandCounts = {};
       let topBrandName = '-';
@@ -584,7 +600,8 @@
         series: [{
           data: monthCounts, type: 'line', smooth: true, symbolSize: 8,
           itemStyle: { color: '#3b82f6' }, lineStyle: { width: 3 },
-          areaStyle: { color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{offset: 0, color: 'rgba(59,130,246,0.5)'}, {offset: 1, color: 'rgba(59,130,246,0.05)'}]) },
+          areaStyle: { 
+            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{offset: 0, color: 'rgba(59,130,246,0.5)'}, {offset: 1, color: 'rgba(59,130,246,0.05)'}]) },
           label: { show: true, position: 'top', fontFamily: 'Prompt', color: '#3b82f6', fontWeight: 'bold' }
         }]
       });
@@ -645,7 +662,8 @@
             axisLabel: { fontFamily: 'Prompt', fontSize: isMobile ? 10 : 11, color: '#475569', fontWeight: '500', interval: 0, width: isMobile ? 130 : 160, overflow: 'break', align: 'right' }
           },
           series: [{ type: 'bar', data: values, itemStyle: { color: color, borderRadius: [0, 4, 4, 0] }, barWidth: 14,
-            label: { show: true, position: 'right', fontFamily: 'Prompt', fontWeight: 'bold', fontSize: isMobile ? 10 : 11, color: color,
+            label: { show: true, position: 'right', fontFamily: 'Prompt', fontWeight: 'bold', fontSize: isMobile ? 10 : 11, 
+              color: color,
               formatter: (params) => { if (totalCases === 0) return params.value; return `${params.value} (${((params.value / totalCases) * 100).toFixed(1)}%)`; }
             }
           }]
@@ -682,7 +700,8 @@
         tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, textStyle: { fontFamily: 'Prompt' } },
         grid: { left: '1%', right: '15%', bottom: '0%', top: '5%', containLabel: true },
         xAxis: { type: 'value', show: false },
-        yAxis: { type: 'category', data: t3CatNames, axisLine: { show: false }, axisTick: { show: false }, axisLabel: { fontFamily: 'Prompt', fontSize: isMobile ? 10 : 12, color: '#475569', fontWeight: '500', width: isMobile ? 110 : 160, overflow: 'break', align: 'right' } },
+        yAxis: { type: 'category', data: t3CatNames, axisLine: { show: false }, axisTick: { show: false }, axisLabel: { fontFamily: 'Prompt', fontSize: isMobile ? 10 : 12, color: '#475569', fontWeight: '500', width: isMobile ? 110 : 160, 
+          overflow: 'break', align: 'right' } },
         series: [{ type: 'bar', data: t3CatValues, itemStyle: { color: '#fbbf24', borderRadius: [0, 4, 4, 0] }, barWidth: 20, label: { show: true, position: 'right', fontFamily: 'Prompt', color: '#64748b', fontSize: isMobile ? 10 : 12, formatter: (params) => { if (totalCases === 0) return `${params.value} เรื่อง`; return `${params.value} เรื่อง (${((params.value / totalCases) * 100).toFixed(0)}%)`; } } }]
       });
 
