@@ -510,7 +510,7 @@
       return res;
     }
 
-    function calculateKPIs() {
+function calculateKPIs() {
       const validCases = filteredData.filter(item => item.no && item.no.toString().trim() !== '');
       const total = validCases.length;
       
@@ -520,23 +520,13 @@
       const pending = total - closed;
       const rate = total > 0 ? ((closed / total) * 100).toFixed(1) : 0;
       
+      // อัปเดต 3 กล่องแรก
       document.getElementById('kpiTotal').textContent = total.toLocaleString();
       document.getElementById('kpiClosed').textContent = closed.toLocaleString();
       document.getElementById('kpiPending').textContent = pending.toLocaleString();
       document.getElementById('kpiRate').textContent = `(${rate}%)`;
 
-      // 🌟 1. ระยะเวลาเฉลี่ยปิดเคสของส่วนกลาง (B,C ถึง AF,AG)
-      let sumMinutes = 0;
-      let countClosedForSla = 0;
-      validCases.forEach(x => {
-        if (x.slaMinutes !== null) {
-          sumMinutes += x.slaMinutes;
-          countClosedForSla++;
-        }
-      });
-      document.getElementById('kpiSLA').textContent = formatAverageMinutes(sumMinutes, countClosedForSla);
-
-      // 🌟 2. ระยะเวลาเฉลี่ยที่ Agency แจ้งงานเข้ามา (B,C ถึง D,E)
+      // 🌟 1. ระยะเวลาเฉลี่ยที่ Agency แจ้งงานเข้ามา (B,C ถึง D,E)
       let sumAgencyMinutes = 0;
       let countAgencyForSla = 0;
       validCases.forEach(x => {
@@ -545,21 +535,22 @@
           countAgencyForSla++;
         }
       });
-      document.getElementById('kpiAgencySLA').textContent = formatAverageMinutes(sumAgencyMinutes, countAgencyForSla);
+      // แมตช์ ID ให้ตรงกับ HTML คือ kpi-agency-avg
+      document.getElementById('kpi-agency-avg').textContent = formatAverageMinutes(sumAgencyMinutes, countAgencyForSla);
 
-      const brandCounts = {};
-      let topBrandName = '-';
-      let maxCount = 0;
-      validCases.forEach(item => {
-        if(item.brand && item.brand !== 'ไม่ระบุแบรนด์') {
-          brandCounts[item.brand] = (brandCounts[item.brand] || 0) + 1;
-          if(brandCounts[item.brand] > maxCount) {
-            maxCount = brandCounts[item.brand];
-            topBrandName = item.brand;
-          }
+      // 🌟 2. ระยะเวลาเฉลี่ยปิดเคสของส่วนกลาง (B,C ถึง AF,AG)
+      let sumMinutes = 0;
+      let countClosedForSla = 0;
+      validCases.forEach(x => {
+        if (x.slaMinutes !== null) {
+          sumMinutes += x.slaMinutes;
+          countClosedForSla++;
         }
       });
-      document.getElementById('kpiTopBrand').textContent = topBrandName + (maxCount > 0 ? ` (${maxCount} เคส)` : '');
+      // แมตช์ ID ให้ตรงกับ HTML คือ kpi-avg-time
+      document.getElementById('kpi-avg-time').textContent = formatAverageMinutes(sumMinutes, countClosedForSla);
+
+      // (ลบโค้ดส่วนคำนวณ Top Brand ออกไป เพื่อไม่ให้ระบบฟ้อง Error เพราะกล่อง HTML ถูกนำออกไปแล้ว)
     }
 
     function getTop10Data(dataArray, key) {
