@@ -26,8 +26,7 @@
 
   <div id="login-container" class="w-full max-w-md mx-4 bg-white rounded-2xl shadow-2xl overflow-hidden transition-all duration-500 transform scale-100 block z-[10000]">
     <div class="w-full bg-slate-950 p-6 flex justify-center items-center border-b border-slate-800">
-      <img src="https://lh3.googleusercontent.com/d/1stuxlh_Lc8YwT7qe1pOIj2QNkul6jbUd
-" alt="Zen Group Logo" class="h-16 object-contain">
+      <img src="https://lh3.googleusercontent.com/d/1stuxlh_Lc8YwT7qe1pOIj2QNkul6jbUd" alt="Zen Group Logo" class="h-16 object-contain">
     </div>
     
     <div class="p-8">
@@ -60,11 +59,11 @@
     </div>
   </div>
 
-  <div id="dashboard-container" class="hidden w-full min-h-screen flex flex-col opacity-0 transition-opacity duration-500">
+  <div id="dashboard-container" class="hidden w-full min-h-screen bg-slate-50 flex flex-col opacity-0 transition-opacity duration-500">
     <header class="bg-slate-900 text-white shadow-md">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row justify-between items-center gap-4">
         <div class="flex items-center gap-3">
-          <img src="https://lh3.googleusercontent.com/d/1i2JLuvzO9Z0_aBapr_dw5y77ehTY4rzf" alt="Company Logo" class="h-10 w-auto object-contain">
+          <img src="https://drive.google.com/uc?export=view&id=1stuxlh_Lc8YwT7qe1pOIj2QNkul6jbUd" alt="Company Logo" class="h-10 w-auto object-contain">
           <div>
             <h1 class="text-xl font-bold tracking-tight">Data Customer Complaint Dashboard</h1>
             <p class="text-xs text-slate-400 font-light">ระบบวิเคราะห์ข้อมูลลูกค้าร้องเรียนประจำปี 2026</p>
@@ -97,7 +96,7 @@
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-3">
           <h2 class="text-sm font-semibold text-slate-500 uppercase tracking-wider flex items-center gap-2">
             <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"></path></svg>
-            ตัวกรองข้อมูล (FILTERS) <span class="text-xs text-indigo-500 normal-case ml-2 font-normal">*เลือกได้หลายข้อ</span>
+            ตัวกรองข้อมูล (FILTERS) <span class="text-xs text-indigo-500 normal-case ml-2 font-normal">*เชื่อมต่อข้อมูลสำเร็จ</span>
           </h2>
           <button onclick="resetFilters()" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-200 text-xs font-medium rounded-lg transition-colors shadow-sm">
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
@@ -112,12 +111,12 @@
             <div id="brandMenu" class="dropdown-menu hidden absolute z-50 w-full mt-1 bg-white border border-slate-200 rounded-lg shadow-xl max-h-60 overflow-y-auto custom-scrollbar"><div class="p-2 space-y-1" id="brandOptions"></div></div>
           </div>
           <div class="relative dropdown-container">
-            <label class="block text-xs font-medium text-slate-600 mb-1.5">ประเภทที่ร้องเรียน</label>
+            <label class="block text-xs font-medium text-slate-600 mb-1.5">ประเภทที่ร้องเรียน (คอลัมน์ O-S)</label>
             <button type="button" onclick="toggleDropdown('categoryMenu')" class="w-full text-left text-sm bg-slate-50 border border-slate-300 rounded-lg p-2.5 flex justify-between items-center"><span id="categoryBtnText" class="truncate">ทั้งหมด ทุกด้าน</span><svg class="w-4 h-4 text-slate-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
             <div id="categoryMenu" class="dropdown-menu hidden absolute z-50 w-full mt-1 bg-white border border-slate-200 rounded-lg shadow-xl max-h-60 overflow-y-auto custom-scrollbar"><div class="p-2 space-y-1" id="categoryOptions"></div></div>
           </div>
           <div class="relative dropdown-container">
-            <label class="block text-xs font-medium text-slate-600 mb-1.5">หัวข้อที่ร้องเรียน</label>
+            <label class="block text-xs font-medium text-slate-600 mb-1.5">หัวข้อที่ร้องเรียน (คอลัมน์ T-AC)</label>
             <button type="button" onclick="toggleDropdown('topicMenu')" class="w-full text-left text-sm bg-slate-50 border border-slate-300 rounded-lg p-2.5 flex justify-between items-center"><span id="topicBtnText" class="truncate">ทั้งหมด ทุกหัวข้อ</span><svg class="w-4 h-4 text-slate-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
             <div id="topicMenu" class="dropdown-menu hidden absolute z-50 w-full mt-1 bg-white border border-slate-200 rounded-lg shadow-xl max-h-60 overflow-y-auto custom-scrollbar"><div class="p-2 space-y-1" id="topicOptions"></div></div>
           </div>
@@ -132,7 +131,7 @@
             <div id="channelMenu" class="dropdown-menu hidden absolute z-50 w-full mt-1 bg-white border border-slate-200 rounded-lg shadow-xl max-h-60 overflow-y-auto custom-scrollbar"><div class="p-2 space-y-1" id="channelOptions"></div></div>
           </div>
           <div class="relative dropdown-container">
-            <label class="block text-xs font-medium text-slate-600 mb-1.5">ผู้รับผิดชอบ</label>
+            <label class="block text-xs font-medium text-slate-600 mb-1.5">ผู้รับผิดชอบ (คอลัมน์ AD)</label>
             <button type="button" onclick="toggleDropdown('responsibleMenu')" class="w-full text-left text-sm bg-slate-50 border border-slate-300 rounded-lg p-2.5 flex justify-between items-center"><span id="responsibleBtnText" class="truncate">ทั้งหมด ทุกคน</span><svg class="w-4 h-4 text-slate-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
             <div id="responsibleMenu" class="dropdown-menu hidden absolute z-50 w-full mt-1 bg-white border border-slate-200 rounded-lg shadow-xl max-h-60 overflow-y-auto custom-scrollbar"><div class="p-2 space-y-1" id="responsibleOptions"></div></div>
           </div>
@@ -142,7 +141,7 @@
             <div id="monthMenu" class="dropdown-menu hidden absolute z-50 w-full mt-1 bg-white border border-slate-200 rounded-lg shadow-xl max-h-60 overflow-y-auto custom-scrollbar"><div class="p-2 space-y-1" id="monthOptions"></div></div>
           </div>
           <div class="relative dropdown-container">
-            <label class="block text-xs font-medium text-slate-600 mb-1.5">สถานะเคส/คนปิดเคส</label>
+            <label class="block text-xs font-medium text-slate-600 mb-1.5">สถานะเคส/คนปิดเคส (คอลัมน์ AH)</label>
             <button type="button" onclick="toggleDropdown('statusMenu')" class="w-full text-left text-sm bg-slate-50 border border-slate-300 rounded-lg p-2.5 flex justify-between items-center"><span id="statusBtnText" class="truncate">ทั้งหมด ทุกสถานะ/ทุกคน</span><svg class="w-4 h-4 text-slate-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
             <div id="statusMenu" class="dropdown-menu hidden absolute z-50 w-full mt-1 bg-white border border-slate-200 rounded-lg shadow-xl max-h-60 overflow-y-auto custom-scrollbar"><div class="p-2 space-y-1" id="statusOptions"></div></div>
           </div>
@@ -155,7 +154,7 @@
           <h4 id="kpiTotal" class="text-2xl font-bold text-blue-600">-</h4>
         </div>
         <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-center">
-          <p class="text-xs text-slate-500 font-medium mb-1">ปิดเคสแล้ว</p>
+          <p class="text-xs text-slate-500 font-medium mb-1">ปิดเคสแล้ว (คอลัมน์ AD)</p>
           <div class="flex items-baseline gap-2">
             <h4 id="kpiClosed" class="text-2xl font-bold text-emerald-600">-</h4>
             <span id="kpiRate" class="text-xs font-semibold text-emerald-500 bg-emerald-50 px-2 py-0.5 rounded-full">-</span>
@@ -166,7 +165,7 @@
           <h4 id="kpiPending" class="text-2xl font-bold text-amber-500">-</h4>
         </div>
         <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-center lg:col-span-2">
-          <p class="text-[11px] text-slate-500 font-medium mb-1">ระยะเวลาเฉลี่ยที่ปิดเคส</p>
+          <p class="text-[11px] text-slate-500 font-medium mb-1">ระยะเวลาเฉลี่ยปิดเคส (D,E -> AF,AG)</p>
           <div class="flex items-baseline gap-1">
             <h4 id="kpiSLA" class="text-base lg:text-lg font-bold text-sky-500 tracking-tight whitespace-nowrap">-</h4>
           </div>
@@ -219,11 +218,11 @@
 
         <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col">
-            <h3 class="text-sm font-semibold text-slate-700 mb-4 flex items-center gap-1.5">Top 10 ประเภทร้อยเรียน</h3>
+            <h3 class="text-sm font-semibold text-slate-700 mb-4 flex items-center gap-1.5">Top 10 ประเภทร้องเรียน (O-S)</h3>
             <div class="flex-1 w-full"><div id="categoryChart" class="w-full h-[300px]"></div></div>
           </div>
           <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col">
-            <h3 class="text-sm font-semibold text-slate-700 mb-4 flex items-center gap-1.5">Top 10 หัวข้อร้องเรียน</h3>
+            <h3 class="text-sm font-semibold text-slate-700 mb-4 flex items-center gap-1.5">Top 10 หัวข้อร้องเรียน (T-AC)</h3>
             <div class="flex-1 w-full"><div id="topicChart" class="w-full h-[300px]"></div></div>
           </div>
           <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col">
@@ -249,7 +248,7 @@
                 <th id="th-date" class="px-4 py-3.5 w-28 sortable" onclick="sortTable('date')">วันที่แจ้ง</th>
                 <th id="th-brand" class="px-4 py-3.5 w-24 sortable" onclick="sortTable('brand')">แบรนด์</th>
                 <th id="th-branch" class="px-4 py-3.5 w-36 sortable" onclick="sortTable('branch')">สาขาที่เกิดเรื่อง</th>
-                <th class="px-4 py-3.5 w-44">ประเภท</th>
+                <th class="px-4 py-3.5 w-44">ประเภทที่ร้องเรียน</th>
                 <th class="px-4 py-3.5">เนื้อหาข้อร้องเรียน</th>
                 <th class="px-4 py-3.5 w-36 text-center">สถานะเคส</th>
               </tr>
@@ -262,14 +261,13 @@
   </div>
 
   <script>
-    // 🌟 1. ลิงก์เชื่อมโยงไปยังท่อน้ำเลี้ยงหลังบ้าน Google Apps Script (คงตัวแปรเดิมที่คุณ Deploy ล่าสุดไว้)
-    const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzft6PaP9AjcYFvGwlQkoOkZlE8hjjTfmhm0kV1N5dwBM7uwBdJJPLIebtoB8mxvs-LZg/exec"; 
+    // 🌟 1. ลิงก์ Web App ของ Google Apps Script (ตรวจสอบให้ตรงกับ deployment ล่าสุดนะครับ)
+    const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyN0EsbYKFwItGrLFJWFw77HsUnzuQRvBN6g18rEL8oVM_VISqL_lKumN8A8Z-5gRSpOw/exec"; 
 
     Chart.register(ChartDataLabels);
     let allData = [];
     let filteredData = [];
     
-    // เค้าร่างตัวแปรสำหรับกราฟ
     let trendChartInst = null;
     let brandChartInstance = null;
     let channelPieChartInstance = null; 
@@ -279,24 +277,20 @@
     let brandBarChartInst = null; 
     let top3CategoryChartInst = null;
 
-    // ระบบจัดการเรียงลำดับตาราง
     let currentSortCol = 'no';
     let sortAsc = false; 
 
     const thaiMonths = ['', 'ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.', 'พ.ค.', 'มิ.ย.', 'ก.ค.', 'ส.ค.', 'ก.ย.', 'ต.ค.', 'พ.ย.', 'ธ.ค.'];
 
-    // 🌟 ฟังก์ชันจัดการกดปุ่มยืนยันฟอร์ม LOGIN (เพิ่มความปลอดภัย)
     function handleLogin(event) {
       event.preventDefault();
       
       const user = document.getElementById('username').value;
       const pass = document.getElementById('password').value;
       
-      // สับเปลี่ยนหน้าจอเป็นสถานะโหลดประมวลผลล็อกอิน
       document.getElementById('login-container').classList.add('hidden');
       document.getElementById('loading').classList.remove('hidden');
       
-      // ส่งค่าชื่อผู้ใช้และรหัสผ่านไปสแกนหาในตารางกูเกิลชีตแท็บ User หลังบ้าน
       const requestUrl = `${GAS_WEB_APP_URL}?action=getDashboard&user=${encodeURIComponent(user)}&pass=${encodeURIComponent(pass)}`;
       
       fetch(requestUrl, { method: 'GET', redirect: 'follow' })
@@ -307,17 +301,15 @@
         .then(data => {
           if (data.error) {
             alert('🚫 ข้อมูลผิดพลาด: ชื่อผู้ใช้งานหรือรหัสผ่านไม่ถูกต้อง');
-            location.reload(); // เด้งสิทธิ์กลับหน้า Login เริ่มต้นใหม่
+            location.reload();
           } else {
-            // ล็อกอินผ่านฉลุย -> เปิดเผยโครงร่าง Dashboard ออกมา
-            document.body.className = "bg-slate-50 min-h-screen block"; // ถอนหน้าจอล็อกอินสีเข้มออก
+            document.body.className = "bg-slate-50 min-h-screen block";
             document.getElementById('loading').classList.add('hidden');
             
             const dashContainer = document.getElementById('dashboard-container');
             dashContainer.classList.remove('hidden');
             setTimeout(() => { dashContainer.classList.add('opacity-100'); }, 50);
             
-            // ขับดันข้อมูลพนักงานเข้าสู่ศูนย์คำนวณแดชบอร์ดหลักของคุณ
             initializeDashboard(JSON.stringify(data));
           }
         })
@@ -328,7 +320,6 @@
         });
     }
 
-    // ซ่อนเมนูตัวกรองเมื่อกดด้านนอก
     document.addEventListener('click', (e) => {
       if (!e.target.closest('.dropdown-container')) {
         document.querySelectorAll('.dropdown-menu').forEach(menu => menu.classList.add('hidden'));
@@ -384,14 +375,9 @@
       return 0;
     }
 
-    // 🌟 ศูนย์เริ่มรันวิเคราะห์แดชบอร์ดจากชุดข้อมูลหลังล็อกอิน
     function initializeDashboard(jsonStr) {
       allData = JSON.parse(jsonStr);
       if (allData.error) { alert(allData.error); return; }
-
-      allData.forEach(item => {
-        item.statusFilter = (item.closedBy && item.closedBy.trim() !== '') ? item.closedBy : 'กำลังดำเนินเรื่อง';
-      });
       filteredData = [...allData];
 
       populateCheckbox('brandOptions', 'brandBtnText', 'ทุกแบรนด์', 'brand');
@@ -400,7 +386,7 @@
       populateCheckbox('branchOptions', 'branchBtnText', 'ทุกสาขา', 'branch');
       populateCheckbox('channelOptions', 'channelBtnText', 'ทุกช่องทาง', 'channel');
       populateCheckbox('responsibleOptions', 'responsibleBtnText', 'ทุกคน', 'responsible');
-      populateCheckbox('statusOptions', 'statusBtnText', 'ทุกสถานะ', 'statusFilter');
+      populateCheckbox('statusOptions', 'statusBtnText', 'ทุกสถานะ', 'status');
       populateMonthCheckbox();
 
       renderDashboard();
@@ -497,7 +483,7 @@
         const matchChannel = channels.length === 0 || channels.includes(item.channel);
         const matchResp = resps.length === 0 || resps.includes(item.responsible);
         const matchMonth = months.length === 0 || months.includes(item.monthNum.toString());
-        const matchStatus = statuses.length === 0 || statuses.includes(item.statusFilter);
+        const matchStatus = statuses.length === 0 || statuses.includes(item.status);
         const matchCat = selectedCats.length === 0 || item.categories.some(c => selectedCats.includes(c));
         const matchTopic = selectedTopics.length === 0 || item.topics.some(t => selectedTopics.includes(t));       
 
@@ -515,16 +501,20 @@
     function calculateKPIs() {
       const validCases = filteredData.filter(item => item.no && item.no.toString().trim() !== '');
       const total = validCases.length;
-      const closedCasesList = validCases.filter(item => item.closedBy && item.closedBy !== '');
+      
+      // 🌟 จำนวนที่ปิดเคส: นับจากที่มีผู้รับผิดชอบระบุในคอลัมน์ AD (ไม่ใช่ 'ไม่มีผู้รับผิดชอบ')
+      const closedCasesList = validCases.filter(item => item.responsible && item.responsible !== 'ไม่มีผู้รับผิดชอบ' && item.responsible !== '');
       const closed = closedCasesList.length;
       const pending = total - closed;
       const rate = total > 0 ? ((closed / total) * 100).toFixed(1) : 0;
+      
       document.getElementById('kpiTotal').textContent = total.toLocaleString();
       document.getElementById('kpiClosed').textContent = closed.toLocaleString();
       document.getElementById('kpiPending').textContent = pending.toLocaleString();
       document.getElementById('kpiRate').textContent = `(${rate}%)`;
 
-      const slaCases = closedCasesList.filter(item => item.slaMinutes !== null && item.slaMinutes !== undefined);
+      // 🌟 ระยะเวลาเฉลี่ยปิดเคสคำนวณจากสูตรจับคู่ (D,E -> AF,AG)
+      const slaCases = validCases.filter(item => item.slaMinutes !== null && item.slaMinutes !== undefined);
       if (slaCases.length > 0) {
         const totalMinutes = slaCases.reduce((sum, item) => sum + item.slaMinutes, 0);
         const avgMinutes = Math.round(totalMinutes / slaCases.length);
@@ -753,9 +743,9 @@
       });
       
       tableRows.forEach(item => {
-        const isClosed = item.closedBy && item.closedBy !== '';
-        const badgeClass = isClosed ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-amber-50 text-amber-700 border border-amber-200';
-        const badgeText = isClosed ? `ปิดเคส (${item.closedBy})` : 'กำลังดำเนินเรื่อง';
+        const isPending = item.status === 'กำลังดำเนินเรื่อง';
+        const badgeClass = !isPending ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-amber-50 text-amber-700 border border-amber-200';
+        const badgeText = item.status;
         const catText = item.categories.join(', ');
         
         const tr = document.createElement('tr');
