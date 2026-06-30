@@ -569,30 +569,47 @@
       const totalCases = filteredData.length;
       const isMobile = window.innerWidth < 768;
 
-      const trendDom = document.getElementById('trendChart');
+const trendDom = document.getElementById('trendChart');
       if (trendChartInst) trendChartInst.dispose();
       trendChartInst = echarts.init(trendDom);
+      
+      const allMonthLabels = ['ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.', 'พ.ค.', 'มิ.ย.', 'ก.ค.', 'ส.ค.', 'ก.ย.', 'ต.ค.', 'พ.ย.', 'ธ.ค.'];
       const monthCounts = new Array(12).fill(0);
+      let maxMonthWithData = 0; // ตัวแปรเก็บเดือนล่าสุดที่มีข้อมูล
+
       filteredData.forEach(item => {
         if (item.monthNum >= 1 && item.monthNum <= 12) {
           monthCounts[item.monthNum - 1]++;
+          if (item.monthNum > maxMonthWithData) {
+            maxMonthWithData = item.monthNum; // หาเดือนที่ไกลที่สุด
+          }
         }
       });
+
+      // ถ้าไม่มีข้อมูลเลย ให้แสดงอย่างน้อย 1 เดือน (ม.ค.) ป้องกันกราฟบั๊ก
+      if (maxMonthWithData === 0) maxMonthWithData = 1;
+
+      // ตัดข้อมูลและป้ายกำกับให้เหลือแค่เดือนที่มีข้อมูลจริงๆ
+      const displayLabels = allMonthLabels.slice(0, maxMonthWithData);
+      const displayData = monthCounts.slice(0, maxMonthWithData);
+
       trendChartInst.setOption({
         tooltip: { trigger: 'axis', textStyle: { fontFamily: 'Prompt' } },
         grid: { left: '2%', right: '4%', bottom: '5%', top: '10%', containLabel: true },
         xAxis: { 
           type: 'category', 
           boundaryGap: false,
-          data: ['ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.', 'พ.ค.', 'มิ.ย.', 'ก.ค.', 'ส.ค.', 'ก.ย.', 'ต.ค.', 'พ.ย.', 'ธ.ค.'],
+          data: displayLabels, // ใช้ป้ายกำกับที่ตัดแล้ว
           axisLabel: { fontFamily: 'Prompt', color: '#64748b' }
         },
         yAxis: { type: 'value', axisLabel: { fontFamily: 'Prompt', color: '#64748b' }, splitLine: { lineStyle: { color: '#f1f5f9' } } },
         series: [{
-          data: monthCounts, type: 'line', smooth: true, symbolSize: 8,
+          data: displayData, // ใช้ตัวเลขข้อมูลที่ตัดแล้ว
+          type: 'line', smooth: true, symbolSize: 8,
           itemStyle: { color: '#3b82f6' }, lineStyle: { width: 3 },
           areaStyle: { 
-            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{offset: 0, color: 'rgba(59,130,246,0.5)'}, {offset: 1, color: 'rgba(59,130,246,0.05)'}]) },
+            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{offset: 0, color: 'rgba(59,130,246,0.5)'}, {offset: 1, color: 'rgba(59,130,246,0.05)'}]) 
+          },
           label: { show: true, position: 'top', fontFamily: 'Prompt', color: '#3b82f6', fontWeight: 'bold' }
         }]
       });
