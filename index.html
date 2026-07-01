@@ -275,7 +275,7 @@
   </div>
 
   <script>
-    const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbx29sILn_IO3E5nHVm4SSCSqQa3LbsOYC0GpM-J2pW55MAaAPUHt6R9bnqNj6ZboYgkPw/exec";
+    const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxKA96q_ZEOsfMJEKHibxyrPpi7CrYgulFbyAJcsk2eyPIXZAEN9ZWTum0OhytT0-B4_A/exec";
     Chart.register(ChartDataLabels);
     let allData = [];
     let filteredData = [];
@@ -824,7 +824,7 @@
       });
       
       tableRows.forEach(item => {
-        const isPending = item.status === 'CMPOS';
+        const isPending = item.status === 'ไม่ปิดเคส';
         const badgeClass = !isPending ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-amber-50 text-amber-700 border border-amber-200';
         const badgeText = item.status;
         const catText = item.categories.join(', ');
