@@ -824,7 +824,7 @@
       });
       
       tableRows.forEach(item => {
-        const isPending = item.status === 'ไม่ปิดเคส';
+        const isPending = item.status === 'CMPOS';
         const badgeClass = !isPending ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-amber-50 text-amber-700 border border-amber-200';
         const badgeText = item.status;
         const catText = item.categories.join(', ');
