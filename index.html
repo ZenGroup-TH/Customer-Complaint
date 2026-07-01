@@ -130,10 +130,18 @@
         </div>
       </section>
 
-      <section class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+      <section class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-4">
         <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-center">
           <p class="text-xs text-slate-500 font-medium mb-1">เรื่องร้องเรียนทั้งหมด</p>
-          <h4 id="kpiTotal" class="text-2xl font-bold text-blue-600">-</h4>
+          <h4 id="kpiTotalTopics" class="text-2xl font-bold text-blue-600">-</h4>
+        </div>
+        <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-center">
+          <p class="text-xs text-slate-500 font-medium mb-1">ด้านร้องเรียนทั้งหมด</p>
+          <h4 id="kpiTotalCategories" class="text-2xl font-bold text-blue-600">-</h4>
+        </div>
+        <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-center">
+          <p class="text-xs text-slate-500 font-medium mb-1">เคสร้องเรียนทั้งหมด</p>
+          <h4 id="kpiTotalCases" class="text-2xl font-bold text-blue-600">-</h4>
         </div>
         <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-center">
           <p class="text-xs text-slate-500 font-medium mb-1">ปิดเคสแล้ว</p>
@@ -147,20 +155,23 @@
           <h4 id="kpiPending" class="text-2xl font-bold text-amber-500">-</h4>
         </div>
         <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-center">
-          <p class="text-[11px] text-slate-500 font-medium mb-1">เวลาเฉลี่ยแจ้งเคส (Agency)</p>
-          <div class="flex items-baseline gap-1">
-            <h4 id="kpiAgencySLA" class="text-[13px] lg:text-sm font-bold text-indigo-500 tracking-tight whitespace-nowrap">-</h4>
-          </div>
-        </div>
-        <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-center">
-          <p class="text-[11px] text-slate-500 font-medium mb-1">เวลาเฉลี่ยปิดเคส (ส่วนกลาง)</p>
-          <div class="flex items-baseline gap-1">
-            <h4 id="kpiSLA" class="text-[13px] lg:text-sm font-bold text-sky-500 tracking-tight whitespace-nowrap">-</h4>
-          </div>
-        </div>
-        <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-center">
           <p class="text-[11px] text-slate-500 font-medium mb-1">แบรนด์ที่ถูกร้องเรียนสูงสุด</p>
           <h4 id="kpiTopBrand" class="text-[13px] lg:text-sm font-bold text-rose-600 truncate">-</h4>
+        </div>
+      </section>
+
+      <section class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-center">
+          <p class="text-xs text-slate-500 font-medium mb-2">เวลาเฉลี่ยแจ้งเคส (Agency)</p>
+          <div class="flex items-baseline gap-1">
+            <h4 id="kpiAgencySLA" class="text-xl lg:text-2xl font-bold text-cyan-500 tracking-tight whitespace-nowrap">-</h4>
+          </div>
+        </div>
+        <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-center">
+          <p class="text-xs text-slate-500 font-medium mb-2">เวลาเฉลี่ยปิดเคส (ส่วนกลาง)</p>
+          <div class="flex items-baseline gap-1">
+            <h4 id="kpiSLA" class="text-xl lg:text-2xl font-bold text-indigo-600 tracking-tight whitespace-nowrap">-</h4>
+          </div>
         </div>
       </section>
 
@@ -249,7 +260,7 @@
   </div>
 
   <script>
-    const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzJVboAnEerMIMykXDc_gtEsnDM9CVqX3GftKUGtXw-6-YIW1HZVvnKS_Hk3ZsTrX0c/exec";
+    const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbx29sILn_IO3E5nHVm4SSCSqQa3LbsOYC0GpM-J2pW55MAaAPUHt6R9bnqNj6ZboYgkPw/exec";
     Chart.register(ChartDataLabels);
     let allData = [];
     let filteredData = [];
@@ -497,23 +508,47 @@
       return res;
     }
 
-// 🌟 ฟังก์ชันคำนวณ KPI ทั้ง 6 กล่อง (สมบูรณ์ 100%)
+// 🌟 ฟังก์ชันคำนวณ KPI (อัปเดตคอลัมน์ใหม่)
     function calculateKPIs() {
       const validCases = filteredData.filter(item => item.no && item.no.toString().trim() !== '');
-      const total = validCases.length;
       
-      // 🌟 จำนวนที่ปิดเคส: ให้นับจากคอลัมน์ AD (ถ้ามีชื่อผู้รับผิดชอบถือว่าปิดเคส)
-      const closedCasesList = validCases.filter(item => item.responsible && item.responsible !== 'ไม่มีผู้รับผิดชอบ' && item.responsible !== '');
-      const closed = closedCasesList.length;
-      const pending = total - closed;
-      const rate = total > 0 ? ((closed / total) * 100).toFixed(1) : 0;
+      // 1. เคสร้องเรียนทั้งหมด (นับจากคอลัมน์ A)
+      const totalCases = validCases.length;
+
+      // 2. เรื่องร้องเรียนทั้งหมด (T ถึง AC) และ ด้านร้องเรียนทั้งหมด (O ถึง S)
+      let totalTopics = 0;
+      let totalCategories = 0;
+      let closedCount = 0;
+      let pendingCount = 0;
+
+      validCases.forEach(item => {
+        // นับ เรื่องร้องเรียนทั้งหมด
+        if (item.topics && item.topics[0] !== 'ไม่ระบุหัวข้อ') {
+          totalTopics += item.topics.length;
+        }
+        // นับ ด้านร้องเรียนทั้งหมด
+        if (item.categories && item.categories[0] !== 'ไม่ระบุประเภท') {
+          totalCategories += item.categories.length;
+        }
+        // นับ ปิดเคส/กำลังดำเนินการ จากคอลัมน์ AI (ถ้ามีข้อมูลนับปิด ถ้าว่างนับดำเนินการ)
+        if (item.colAI && item.colAI !== '') {
+          closedCount++;
+        } else {
+          pendingCount++;
+        }
+      });
+
+      const rate = totalCases > 0 ? ((closedCount / totalCases) * 100).toFixed(1) : 0;
       
-      document.getElementById('kpiTotal').textContent = total.toLocaleString();
-      document.getElementById('kpiClosed').textContent = closed.toLocaleString();
-      document.getElementById('kpiPending').textContent = pending.toLocaleString();
+      // ใส่ค่าลง DOM
+      document.getElementById('kpiTotalTopics').textContent = totalTopics.toLocaleString();
+      document.getElementById('kpiTotalCategories').textContent = totalCategories.toLocaleString();
+      document.getElementById('kpiTotalCases').textContent = totalCases.toLocaleString();
+      document.getElementById('kpiClosed').textContent = closedCount.toLocaleString();
+      document.getElementById('kpiPending').textContent = pendingCount.toLocaleString();
       document.getElementById('kpiRate').textContent = `(${rate}%)`;
 
-      // 🌟 1. ระยะเวลาเฉลี่ยที่ Agency แจ้งงานเข้ามา (B,C ถึง D,E)
+      // ระยะเวลาเฉลี่ยที่ Agency แจ้งงานเข้ามา
       let sumAgencyMinutes = 0;
       let countAgencyForSla = 0;
       validCases.forEach(x => {
@@ -522,10 +557,9 @@
           countAgencyForSla++;
         }
       });
-      // ✅ แก้ไข ID ให้ตรงกับ HTML
       document.getElementById('kpiAgencySLA').textContent = formatAverageMinutes(sumAgencyMinutes, countAgencyForSla);
 
-      // 🌟 2. ระยะเวลาเฉลี่ยปิดเคสของส่วนกลาง (B,C ถึง AF,AG)
+      // ระยะเวลาเฉลี่ยปิดเคสของส่วนกลาง
       let sumMinutes = 0;
       let countClosedForSla = 0;
       validCases.forEach(x => {
@@ -534,7 +568,6 @@
           countClosedForSla++;
         }
       });
-      // ✅ แก้ไข ID ให้ตรงกับ HTML
       document.getElementById('kpiSLA').textContent = formatAverageMinutes(sumMinutes, countClosedForSla);
 
       // แบรนด์ที่ถูกร้องเรียนสูงสุด
