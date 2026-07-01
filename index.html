@@ -664,8 +664,7 @@
 
       const brandMap = {};
       filteredData.forEach(item => { brandMap[item.brand] = (brandMap[item.brand] || 0) + 1; });
-      // 🌟 เพิ่มคำสั่ง .sort() เพื่อเรียงลำดับจากมากไปน้อย กราฟจะได้สมดุล
-      const brandData = Object.keys(brandMap).map(key => ({ name: key, value: brandMap[key] })).sort((a, b) => b.value - a.value);
+      const brandData = Object.keys(brandMap).map(key => ({ name: key, value: brandMap[key] }));
       
       const brandContainer = document.getElementById('brandChart');
       if (brandChartInstance) brandChartInstance.dispose();
@@ -678,30 +677,13 @@
           '#22c55e', '#a855f7', '#eab308', '#6366f1', '#fb923c'
         ],
         tooltip: { trigger: 'item', textStyle: { fontFamily: 'Prompt' } },
+        // ...
         legend: { bottom: '0%', left: 'center', icon: 'circle', textStyle: { fontFamily: 'Prompt', fontSize: 11, color: '#64748b' } },
         series: [{
-          type: 'pie', 
-          radius: ['40%', '55%'], // 🌟 ย่อขนาดวงกลมลงนิดนึงเพื่อให้มีพื้นที่วางข้อความซ้ายขวา
-          center: ['50%', '45%'], 
-          avoidLabelOverlap: true,
+          type: 'pie', radius: ['45%', '70%'], center: ['50%', '45%'], avoidLabelOverlap: true,
           itemStyle: { borderColor: '#fff', borderWidth: 2 },
-          label: { 
-            show: true, 
-            position: 'outside', 
-            alignTo: 'edge', // 🌟 คำสั่งลับ! ดึงข้อความให้ไปเรียงชิดขอบซ้าย-ขวาอย่างเป็นระเบียบ
-            margin: 10,      // 🌟 เว้นระยะห่างจากขอบ
-            formatter: '{b}\n{c} ({d}%)', 
-            fontFamily: 'Prompt', 
-            fontWeight: 'bold', 
-            fontSize: 11, 
-            color: '#334155' 
-          },
-          labelLine: { 
-            show: true, 
-            length: 15, 
-            length2: 15, 
-            smooth: true 
-          },
+          label: { show: true, position: 'outside', formatter: '{b}\n{c} ({d}%)', fontFamily: 'Prompt', fontWeight: 'bold', fontSize: 11, color: '#334155' },
+          labelLine: { show: true, length: 15, length2: 20, smooth: true },
           data: brandData
         }]
       });
