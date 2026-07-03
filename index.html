@@ -237,6 +237,15 @@
         </section>
 
         <section class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm">
+          <h3 class="text-sm font-semibold text-slate-700 mb-4 flex items-center gap-1.5">จำนวนเรื่องร้องเรียนแยกตามแบรนด์</h3>
+          <div class="w-full overflow-x-auto custom-scrollbar pb-2">
+             <div class="min-w-[600px] h-[350px]">
+               <div id="brandTopicBarChart" class="w-full h-full"></div>
+             </div>
+          </div>
+        </section>
+
+        <section class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm">
           <h3 class="text-sm font-semibold text-slate-700 mb-4 flex items-center gap-1.5">เทียบสัดส่วน Top 3 ด้านที่ถูกร้องเรียน และหัวข้อย่อย</h3>
           <div class="w-full h-[220px]">
              <div id="top3CategoryChart" class="w-full h-full"></div>
@@ -326,7 +335,7 @@
     let categoryChartInstance = null;
     let topicChartInstance = null;      
     let branchChartInstance = null;
-    let brandBarChartInst = null;
+    let brandTopicBarChartInst = null;
     let top3CategoryChartInst = null;
 
     let currentSortCol = 'no';
@@ -889,6 +898,35 @@
         series: [{ type: 'bar', data: sortedBrandData.map(d => d.value), itemStyle: { color: '#f97316', borderRadius: [4, 4, 0, 0] }, barMaxWidth: 45, label: { show: true, position: 'top', fontFamily: 'Prompt', fontWeight: 'bold', color: '#475569', fontSize: 13 } }]
       });
 
+      // 🌟 [ส่วนที่เพิ่มใหม่] กราฟจำนวน "เรื่องร้องเรียน" แยกตามแบรนด์ (นับจากคอลัมน์ T-AC)
+      const brandTopicBarDom = document.getElementById('brandTopicBarChart');
+      if (brandTopicBarChartInst) brandTopicBarChartInst.dispose();
+      brandTopicBarChartInst = echarts.init(brandTopicBarDom);
+
+      const brandTopicMap = {};
+      filteredData.forEach(item => {
+        const b = item.brand;
+        if (!brandTopicMap[b]) brandTopicMap[b] = 0;
+        
+        // นับเรื่องร้องเรียนจริงๆ เหมือนที่คำนวณในกล่อง KPI
+        if (item.topics && item.topics[0] !== 'ไม่ระบุหัวข้อ') {
+          brandTopicMap[b] += item.topics.length;
+        }
+      });
+      
+      // เรียงลำดับจากมากไปน้อย
+      const sortedBrandTopicData = Object.keys(brandTopicMap)
+        .map(key => ({ name: key, value: brandTopicMap[key] }))
+        .sort((a, b) => b.value - a.value);
+
+      brandTopicBarChartInst.setOption({
+        tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, textStyle: { fontFamily: 'Prompt' } },
+        grid: { left: '1%', right: '1%', bottom: '0%', top: '15%', containLabel: true },
+        xAxis: { type: 'category', data: sortedBrandTopicData.map(d => d.name), axisLine: { lineStyle: { color: '#e2e8f0' } }, axisTick: { show: false }, axisLabel: { fontFamily: 'Prompt', color: '#475569', interval: 0, rotate: isMobile ? 45 : 0, fontSize: isMobile ? 10 : 12 } },
+        yAxis: { type: 'value', show: false },
+        series: [{ type: 'bar', data: sortedBrandTopicData.map(d => d.value), itemStyle: { color: '#8b5cf6', borderRadius: [4, 4, 0, 0] }, barMaxWidth: 45, label: { show: true, position: 'top', fontFamily: 'Prompt', fontWeight: 'bold', color: '#475569', fontSize: 13 } }]
+      });
+
       const top3Cats = topCategories.slice(0, 3);
       const top3CatDom = document.getElementById('top3CategoryChart');
       if (top3CategoryChartInst) top3CategoryChartInst.dispose();
@@ -927,6 +965,7 @@
         if (topicChartInstance) topicChartInstance.resize();
         if (branchChartInstance) branchChartInstance.resize();
         if (brandBarChartInst) brandBarChartInst.resize();
+        if (brandTopicBarChartInst) brandTopicBarChartInst.resize();
         if (top3CategoryChartInst) top3CategoryChartInst.resize();
       });
     } 
