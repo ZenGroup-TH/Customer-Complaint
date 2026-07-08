@@ -6,8 +6,6 @@
   <title>Zen Data Complaint 2026</title>
   <link rel="icon" type="image/png" href="https://lh3.googleusercontent.com/d/1i2JLuvzO9Z0_aBapr_dw5y77ehTY4rzf">
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
   <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
@@ -331,7 +329,6 @@
 
   <script>
     const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbz_ezKSLy-6HDADokDTXVV6ucCHMFpzWmd6DVjuQFFfSBCuGAgd3ghjtOUT6hI2baOdxg/exec";
-    Chart.register(ChartDataLabels);
     let allData = [];
     let filteredData = [];
     
@@ -779,7 +776,6 @@
     }
 
     function drawCharts() {
-      Chart.defaults.font.family = "'Prompt', sans-serif";
       const totalCases = filteredData.length;
       const isMobile = window.innerWidth < 768;
 
