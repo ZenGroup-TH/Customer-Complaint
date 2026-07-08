@@ -15,6 +15,19 @@
     .custom-scrollbar::-webkit-scrollbar-track { background: #f1f5f9; }
     .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
     th.sortable:hover { background-color: #f1f5f9; cursor: pointer; }
+/* 🌟 เพิ่ม Transition ให้ข้อมูลค่อยๆ Fade In ขึ้นมา (1 วินาที) */
+    #dashboard-container h1, 
+    #dashboard-container h2, 
+    #dashboard-container h3, 
+    #dashboard-container h4, 
+    #dashboard-container p, 
+    #dashboard-container button, 
+    #dashboard-container table, 
+    #dashboard-container img,
+    #dashboard-container canvas {
+      transition: opacity 1s ease-in-out;
+    }
+
     /* 🌟 คลาสสำหรับโหมด Skeleton Loading */
     .skeleton-mode .bg-white {
       position: relative;
@@ -27,14 +40,23 @@
       background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
       background-size: 200% 100%;
       animation: shimmer 1.5s infinite;
-      z-index: 50; /* บังเนื้อหาข้างในทั้งหมด */
+      z-index: 50;
     }
     @keyframes shimmer {
       0% { background-position: 200% 0; }
       100% { background-position: -200% 0; }
     }
+    
     /* ซ่อนเนื้อหาเดิมชั่วคราวตอนเป็น Skeleton */
-    .skeleton-mode h1, .skeleton-mode h2, .skeleton-mode h3, .skeleton-mode h4, .skeleton-mode p, .skeleton-mode button, .skeleton-mode table, .skeleton-mode img {
+    .skeleton-mode h1, 
+    .skeleton-mode h2, 
+    .skeleton-mode h3, 
+    .skeleton-mode h4, 
+    .skeleton-mode p, 
+    .skeleton-mode button, 
+    .skeleton-mode table, 
+    .skeleton-mode img, 
+    .skeleton-mode canvas {
       opacity: 0 !important;
     }
   </style>
