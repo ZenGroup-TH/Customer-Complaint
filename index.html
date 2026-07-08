@@ -15,6 +15,28 @@
     .custom-scrollbar::-webkit-scrollbar-track { background: #f1f5f9; }
     .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
     th.sortable:hover { background-color: #f1f5f9; cursor: pointer; }
+    /* 🌟 คลาสสำหรับโหมด Skeleton Loading */
+    .skeleton-mode .bg-white {
+      position: relative;
+      overflow: hidden;
+    }
+    .skeleton-mode .bg-white::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
+      z-index: 50; /* บังเนื้อหาข้างในทั้งหมด */
+    }
+    @keyframes shimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+    /* ซ่อนเนื้อหาเดิมชั่วคราวตอนเป็น Skeleton */
+    .skeleton-mode h1, .skeleton-mode h2, .skeleton-mode h3, .skeleton-mode h4, .skeleton-mode p, .skeleton-mode button, .skeleton-mode table, .skeleton-mode img {
+      opacity: 0 !important;
+    }
   </style>
 </head>
 <body class="bg-slate-900 min-h-screen flex items-center justify-center text-slate-800 antialiased">
@@ -356,8 +378,24 @@
       const user = document.getElementById('username').value;
       const pass = document.getElementById('password').value;
       
+      // 1. ซ่อนหน้า Login โชว์หน้าหมุนๆ (Splash Screen)
       document.getElementById('login-container').classList.add('hidden');
       document.getElementById('loading').classList.remove('hidden');
+      
+      const dashContainer = document.getElementById('dashboard-container');
+      
+      // 2. ตั้งเวลา 1.5 วินาที ให้เปลี่ยนจากหน้าหมุนๆ เป็นหน้า Skeleton
+      let isSkeletonActive = false;
+      const skeletonTimer = setTimeout(() => {
+        document.getElementById('loading').classList.add('hidden'); // ซ่อนหน้าหมุน
+        document.body.className = "bg-slate-50 min-h-screen block";
+        
+        dashContainer.classList.add('skeleton-mode'); // เปิดโหมด Skeleton
+        dashContainer.classList.remove('hidden');
+        setTimeout(() => { dashContainer.classList.add('opacity-100'); }, 50);
+        isSkeletonActive = true;
+      }, 1500);
+
       const requestUrl = `${GAS_WEB_APP_URL}?action=getDashboard&user=${encodeURIComponent(user)}&pass=${encodeURIComponent(pass)}`;
       
       fetch(requestUrl, { method: 'GET', redirect: 'follow' })
@@ -367,32 +405,43 @@
         })
         .then(data => {
           if (data.error) {
-            // 🌟 ถ้ารหัสผ่านผิด: ซ่อนหน้าโหลด โชว์กล่องล็อกอินใหม่ ล้างรหัสผ่าน แล้วโชว์ Toast
+            // ถ้ารหัสผิด: ยกเลิกการไปหน้า Skeleton แล้วกลับไปหน้า Login
+            clearTimeout(skeletonTimer);
             document.getElementById('loading').classList.add('hidden');
+            dashContainer.classList.add('hidden');
+            dashContainer.classList.remove('skeleton-mode');
+            
             document.getElementById('login-container').classList.remove('hidden');
             document.getElementById('password').value = ''; 
-            showToast('ชื่อผู้ใช้งานหรือรหัสผ่านไม่ถูกต้อง กรุณาลองใหม่');
+            showToast('ชื่อผู้ใช้งานหรือรหัสผ่านไม่ถูกต้อง กรุณาลองใหม่', 'error');
           } else {
-            // 🌟 ถ้ารหัสผ่านถูก: เปิดหน้าแดชบอร์ดตามปกติ
-            document.body.className = "bg-slate-50 min-h-screen block";
-            document.getElementById('loading').classList.add('hidden');
-            
-            // 👇 🌟 เพิ่มบรรทัดนี้เข้าไปครับ สั่งให้โชว์ Toast สีเขียว
             showToast('เข้าสู่ระบบสำเร็จ! กำลังโหลดข้อมูล...', 'success');
             
-            const dashContainer = document.getElementById('dashboard-container');
-            dashContainer.classList.remove('hidden');
-            setTimeout(() => { dashContainer.classList.add('opacity-100'); }, 50);
-            
-            initializeDashboard(JSON.stringify(data));
+            // 3. ข้อมูลมาแล้ว! เช็คว่าตอนหน้าเกิน 1.5 วินาทีไปหรือยัง
+            if (isSkeletonActive) {
+              // ถ้าโชว์ Skeleton อยู่แล้ว ให้วาดข้อมูลแล้วปิดโหมด Skeleton
+              initializeDashboard(JSON.stringify(data));
+              setTimeout(() => { dashContainer.classList.remove('skeleton-mode'); }, 500); // ดีเลย์นิดนึงให้กราฟวาดเสร็จ
+            } else {
+              // ถ้าข้อมูลมาไวกว่า 1.5 วินาที ให้เคลียร์เวลาทิ้ง แล้วกระโดดไปหน้าสมบูรณ์เลย
+              clearTimeout(skeletonTimer);
+              document.getElementById('loading').classList.add('hidden');
+              document.body.className = "bg-slate-50 min-h-screen block";
+              
+              dashContainer.classList.remove('skeleton-mode', 'hidden');
+              setTimeout(() => { dashContainer.classList.add('opacity-100'); }, 50);
+              
+              initializeDashboard(JSON.stringify(data));
+            }
           }
         })
         .catch(error => {
           console.error('Login Error:', error);
-          // 🌟 ถ้าเซิร์ฟเวอร์พัง: โชว์ Toast เหมือนกัน
+          clearTimeout(skeletonTimer);
           document.getElementById('loading').classList.add('hidden');
+          dashContainer.classList.add('hidden');
           document.getElementById('login-container').classList.remove('hidden');
-          showToast('เกิดข้อผิดพลาดในการเชื่อมต่อเซิร์ฟเวอร์ โปรดลองอีกครั้ง');
+          showToast('เกิดข้อผิดพลาดในการเชื่อมต่อเซิร์ฟเวอร์ โปรดลองอีกครั้ง', 'error');
         });
     }
 
