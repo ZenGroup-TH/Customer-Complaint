@@ -22,8 +22,8 @@
 <body class="bg-slate-900 min-h-screen flex items-center justify-center text-slate-800 antialiased">
   <!-- 🌟 แจ้งเตือน Toast (ซ่อนไว้ก่อน จะสไลด์ลงมาเมื่อ Error) -->
   <div id="toast-notification" class="fixed top-6 left-1/2 -translate-x-1/2 z-[10001] transform transition-all duration-500 translate-y-[-150%] opacity-0 flex items-center w-full max-w-sm p-4 space-x-3 text-slate-600 bg-white rounded-xl shadow-2xl border-b-4 border-rose-500" role="alert">
-    <div class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-rose-500 bg-rose-50 rounded-lg">
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+    <div id="toast-icon-container" class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-rose-500 bg-rose-50 rounded-lg">
+      <svg id="toast-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
     </div>
     <div id="toast-message" class="text-sm font-medium">ข้อความแจ้งเตือน</div>
     <button type="button" onclick="hideToast()" class="ml-auto -mx-1.5 -my-1.5 bg-white text-slate-400 hover:text-slate-900 rounded-lg focus:ring-2 focus:ring-slate-300 p-1.5 hover:bg-slate-100 inline-flex items-center justify-center h-8 w-8 transition-colors">
@@ -379,6 +379,9 @@
             // 🌟 ถ้ารหัสผ่านถูก: เปิดหน้าแดชบอร์ดตามปกติ
             document.body.className = "bg-slate-50 min-h-screen block";
             document.getElementById('loading').classList.add('hidden');
+            
+            // 👇 🌟 เพิ่มบรรทัดนี้เข้าไปครับ สั่งให้โชว์ Toast สีเขียว
+            showToast('เข้าสู่ระบบสำเร็จ! กำลังโหลดข้อมูลแดชบอร์ด...', 'success');
             
             const dashContainer = document.getElementById('dashboard-container');
             dashContainer.classList.remove('hidden');
@@ -1125,16 +1128,28 @@
       return `${parts[2]}/${parts[1]}/${parts[0]}`;
     }
     // 🌟 ฟังก์ชันโชว์ป้ายแจ้งเตือน
-    function showToast(message) {
+    // 🌟 ฟังก์ชันโชว์ป้ายแจ้งเตือน (สลับสีแดง/เขียวอัตโนมัติ)
+    function showToast(message, type = 'error') {
       const toast = document.getElementById('toast-notification');
+      const iconContainer = document.getElementById('toast-icon-container');
+      const iconSvg = document.getElementById('toast-icon');
+      
       document.getElementById('toast-message').textContent = message;
+
+      if (type === 'success') {
+        // โหมดสำเร็จ (ขอบสีเขียว ไอคอนเครื่องหมายถูก)
+        toast.className = "fixed top-6 left-1/2 -translate-x-1/2 z-[10001] transform transition-all duration-500 flex items-center w-full max-w-sm p-4 space-x-3 text-slate-600 bg-white rounded-xl shadow-2xl border-b-4 border-emerald-500 translate-y-0 opacity-100";
+        iconContainer.className = "inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-emerald-500 bg-emerald-50 rounded-lg";
+        iconSvg.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>`;
+      } else {
+        // โหมดล้มเหลว (ขอบสีแดง ไอคอนตกใจ)
+        toast.className = "fixed top-6 left-1/2 -translate-x-1/2 z-[10001] transform transition-all duration-500 flex items-center w-full max-w-sm p-4 space-x-3 text-slate-600 bg-white rounded-xl shadow-2xl border-b-4 border-rose-500 translate-y-0 opacity-100";
+        iconContainer.className = "inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-rose-500 bg-rose-50 rounded-lg";
+        iconSvg.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>`;
+      }
       
-      // สไลด์ลงมาโชว์
-      toast.classList.remove('translate-y-[-150%]', 'opacity-0');
-      toast.classList.add('translate-y-0', 'opacity-100');
-      
-      // ตั้งเวลาซ่อนอัตโนมัติใน 3.5 วินาที
-      setTimeout(() => { hideToast(); }, 3500);
+      // ให้โชว์ค้างไว้ 3 วินาทีแล้วหดกลับ
+      setTimeout(() => { hideToast(); }, 3000);
     }
 
     // 🌟 ฟังก์ชันซ่อนป้ายแจ้งเตือน
