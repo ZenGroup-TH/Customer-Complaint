@@ -124,7 +124,7 @@
         </div>
         <div class="flex items-center gap-4">
           <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 animate-pulse">● เชื่อมต่อข้อมูลสำเร็จ</span>
-          <button onclick="if(confirm('ท่านยืนยันที่จะออกจากระบบใช่หรือไม่?')) location.reload();" class="inline-flex items-center gap-1.5 text-xs font-medium bg-slate-800 text-slate-300 border border-slate-700 hover:bg-rose-50 hover:text-rose-600 hover:border-rose-200 px-3 py-1.5 rounded-lg transition-colors duration-300">
+          <button onclick="showLogoutModal()" class="inline-flex items-center gap-1.5 text-xs font-medium bg-slate-800 text-slate-300 border border-slate-700 hover:bg-rose-50 hover:text-rose-600 hover:border-rose-200 px-3 py-1.5 rounded-lg transition-colors duration-300">
   <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
   ออกจากระบบ
 </button>
@@ -386,6 +386,34 @@
   <svg class="w-5 h-5 mb-0.5 group-hover:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 15l7-7 7 7"></path></svg>
   <span class="text-[10px] font-bold uppercase tracking-widest">Top</span>
 </button>
+  <!-- 🌟 แจ้งเตือน Pop-up ยืนยันการออกจากระบบ (ซ่อนไว้ก่อน) -->
+  <div id="logout-modal" class="fixed inset-0 z-[10002] flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
+    <!-- พื้นหลังสีดำเบลอ -->
+    <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" onclick="hideLogoutModal()"></div>
+    
+    <!-- กล่อง Pop-up กลางจอ -->
+    <div class="relative bg-white rounded-2xl shadow-2xl p-6 w-full max-w-sm mx-4 transform scale-95 transition-transform duration-300" id="logout-modal-box">
+      <div class="flex flex-col items-center text-center">
+        <!-- ไอคอนประตูทางออก -->
+        <div class="w-14 h-14 bg-slate-100 text-slate-600 rounded-full flex items-center justify-center mb-4">
+          <svg class="w-7 h-7 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
+        </div>
+        
+        <h3 class="text-lg font-bold text-slate-800 mb-2">ยืนยันการออกจากระบบ?</h3>
+        <p class="text-sm text-slate-500 mb-6">หากออกจากระบบ ข้อมูลตัวกรองที่คุณเลือกไว้ทั้งหมดจะถูกรีเซ็ตใหม่</p>
+        
+        <!-- กลุ่มปุ่มกดยกเลิก(แดง) และ ยืนยัน(เขียว) -->
+        <div class="flex items-center justify-center gap-3 w-full">
+          <button onclick="hideLogoutModal()" class="flex-1 px-4 py-2.5 bg-rose-50 hover:bg-rose-500 text-rose-600 hover:text-white font-medium rounded-lg transition-colors border border-rose-200 hover:border-rose-500">
+            ยกเลิก
+          </button>
+          <button onclick="location.reload()" class="flex-1 px-4 py-2.5 bg-emerald-500 hover:bg-emerald-600 text-white font-medium rounded-lg transition-colors shadow-sm shadow-emerald-500/30">
+            ยืนยัน
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 <script>
   const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbz_ezKSLy-6HDADokDTXVV6ucCHMFpzWmd6DVjuQFFfSBCuGAgd3ghjtOUT6hI2baOdxg/exec";
@@ -1296,6 +1324,34 @@
         top: 0, 
         behavior: 'smooth' 
       });
+    }
+
+  // 🌟 ฟังก์ชันเปิด Pop-up ออกจากระบบ
+    function showLogoutModal() {
+      const modal = document.getElementById('logout-modal');
+      const box = document.getElementById('logout-modal-box');
+      modal.classList.remove('hidden');
+      // หน่วงเวลาให้เบราว์เซอร์เตรียมเรนเดอร์แป๊บนึง แล้วค่อยสั่งแสดงผล
+      setTimeout(() => {
+        modal.classList.remove('opacity-0');
+        modal.classList.add('opacity-100');
+        box.classList.remove('scale-95');
+        box.classList.add('scale-100');
+      }, 10);
+    }
+
+    // 🌟 ฟังก์ชันปิด Pop-up ออกจากระบบ
+    function hideLogoutModal() {
+      const modal = document.getElementById('logout-modal');
+      const box = document.getElementById('logout-modal-box');
+      modal.classList.remove('opacity-100');
+      modal.classList.add('opacity-0');
+      box.classList.remove('scale-100');
+      box.classList.add('scale-95');
+      // รอให้แอนิเมชันจางหายเสร็จก่อนค่อยซ่อนกล่อง (300ms)
+      setTimeout(() => {
+        modal.classList.add('hidden');
+      }, 300);
     }
   </script>
 </body>
