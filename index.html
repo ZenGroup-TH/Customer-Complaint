@@ -342,12 +342,24 @@
         </section>
 
       <section class="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden flex flex-col">
-        <div class="p-5 border-b border-slate-100 flex justify-between items-center">
+        <div class="p-5 border-b border-slate-100 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <h3 class="text-sm font-semibold text-slate-700 flex items-center gap-1.5">ตารางข้อมูลสรุปรายละเอียด</h3>
-          <button onclick="exportToCSV()" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-medium rounded-lg transition-colors shadow-sm cursor-pointer">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-            Export Excel
-          </button>
+          
+          <!-- 🌟 กลุ่มปุ่ม Export 2 แบบ -->
+          <div class="flex items-center gap-2">
+            <!-- ปุ่ม 1: โหลดเฉพาะที่กรอง (CSV) -->
+            <button onclick="exportToCSV()" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-medium rounded-lg transition-colors shadow-sm cursor-pointer">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+              Export Filtered Excel
+            </button>
+            
+            <!-- ปุ่ม 2: โหลดข้อมูลดิบทั้งหมด (Excel ต้นฉบับ) -->
+            <a href="https://docs.google.com/spreadsheets/d/1PivhE4CZ74X1rPSifghGKavYyOXgtdAlG0UG_G0nY6k/export?format=xlsx" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white hover:bg-slate-50 text-slate-700 text-xs font-medium rounded-lg border border-slate-300 transition-colors shadow-sm cursor-pointer">
+              <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+              Export Raw Data
+            </a>
+          </div>
+        </div>
         </div>
         <div class="overflow-x-auto custom-scrollbar max-h-[450px]">
           <table class="w-full text-left border-collapse">
