@@ -124,7 +124,9 @@
         </div>
         <div class="flex items-center gap-4">
           <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 animate-pulse">● เชื่อมต่อข้อมูลสำเร็จ</span>
-          <button onclick="location.reload()" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 px-2.5 py-1.5 rounded-lg border border-slate-700 transition-colors">ออกจากระบบ</button>
+          <button onclick="if(confirm('ท่านยืนยันที่จะออกจากระบบใช่หรือไม่?')) location.reload();" class="text-xs font-medium bg-slate-800 text-slate-300 border border-slate-700 hover:bg-rose-50 hover:text-rose-600 hover:border-rose-200 px-2.5 py-1.5 rounded-lg transition-colors duration-300">
+  ออกจากระบบ
+</button>
         </div>
       </div>
     </header>
