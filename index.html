@@ -344,10 +344,10 @@
       <section class="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden flex flex-col">
         <div class="p-5 border-b border-slate-100 flex justify-between items-center">
           <h3 class="text-sm font-semibold text-slate-700 flex items-center gap-1.5">ตารางข้อมูลสรุปรายละเอียด</h3>
-          <a href="https://docs.google.com/spreadsheets/d/1PivhE4CZ74X1rPSifghGKavYyOXgtdAlG0UG_G0nY6k/export?format=xlsx" 
-             class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-medium rounded-lg transition-colors shadow-sm cursor-pointer">
+          <button onclick="exportToCSV()" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-medium rounded-lg transition-colors shadow-sm cursor-pointer">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
             Export Excel
-          </a>
+          </button>
         </div>
         <div class="overflow-x-auto custom-scrollbar max-h-[450px]">
           <table class="w-full text-left border-collapse">
@@ -1352,6 +1352,64 @@
       setTimeout(() => {
         modal.classList.add('hidden');
       }, 300);
+    }
+
+  // 🌟 ฟังก์ชันโหลดข้อมูลที่กรองแล้วออกมาเป็นไฟล์ CSV
+    function exportToCSV() {
+      // 1. เช็คว่ามีข้อมูลให้โหลดไหม
+      if (!filteredData || filteredData.length === 0) {
+        showToast('ไม่มีข้อมูลสำหรับ Export กรุณาปรับตัวกรองใหม่', 'error');
+        return;
+      }
+
+      // 2. ตั้งชื่อหัวคอลัมน์ (Headers)
+      const headers = ['No.', 'วันที่แจ้ง', 'แบรนด์', 'สาขาที่ร้องเรียน', 'ประเภทที่ร้องเรียน', 'ช่องทาง', 'เนื้อหาข้อร้องเรียน', 'สถานะเคส'];
+      
+      // ฟังก์ชันจัดการข้อความ ป้องกันคอมม่า (,) หรือการขึ้นบรรทัดใหม่ในเนื้อหา ทำให้ไฟล์พัง
+      const escapeCSV = (val) => {
+        if (val === null || val === undefined || val === '') return '""';
+        let str = Array.isArray(val) ? val.join(', ') : String(val);
+        str = str.replace(/"/g, '""'); // เปลี่ยน " เป็น "" ตามหลัก CSV
+        return `"${str}"`;
+      };
+
+      const csvRows = [];
+      csvRows.push(headers.join(',')); // ใส่หัวคอลัมน์ไปที่บรรทัดแรก
+
+      // 3. เอาข้อมูลที่กรองแล้วมาเรียงใส่ทีละบรรทัด
+      filteredData.forEach(item => {
+        const row = [
+          item.no,
+          item.date,
+          item.brand,
+          item.branch,
+          item.categories, // ถ้ามีหลายประเภท ฟังก์ชัน escapeCSV จะจับรวมคอมม่าให้เอง
+          item.channel,
+          item.complaint,
+          item.status
+        ].map(escapeCSV);
+        csvRows.push(row.join(','));
+      });
+
+      // 4. สั่งสร้างไฟล์ (ใส่ \uFEFF หรือ BOM ลงไป เพื่อบอกให้ MS Excel รู้ว่าเป็น UTF-8 ภาษาไทยจะได้ไม่เพี้ยน)
+      const csvString = '\uFEFF' + csvRows.join('\n');
+      const blob = new Blob([csvString], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      
+      // 5. สร้างลิงก์ล่องหน กดดาวน์โหลด แล้วลบทิ้ง
+      const link = document.createElement('a');
+      link.href = url;
+      
+      // ตั้งชื่อไฟล์พร้อมวันที่ปัจจุบัน
+      const today = new Date();
+      const dateStr = today.getFullYear() + String(today.getMonth() + 1).padStart(2, '0') + String(today.getDate()).padStart(2, '0');
+      link.download = `Zen_Complaint_Data_${dateStr}.csv`;
+      
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      
+      showToast('ดาวน์โหลดไฟล์ข้อมูลเรียบร้อยแล้ว', 'success');
     }
   </script>
 </body>
