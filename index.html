@@ -1446,7 +1446,7 @@
       
       showToast('ดาวน์โหลดไฟล์ข้อมูลเรียบร้อยแล้ว', 'success');
     }
-  // 🌟 ฟังก์ชันสมองกล: คำนวณและสร้างประโยคสรุป Insight อัตโนมัติ
+  // 🌟 ฟังก์ชันสมองกล: คำนวณและสร้างประโยคสรุป Insight อัตโนมัติ (เพิ่มมิติช่องทาง)
     function generateSmartInsights() {
       const container = document.getElementById('ai-insights-container');
       const listDom = document.getElementById('ai-insights-list');
@@ -1467,6 +1467,7 @@
       let brandCounts = {};
       let topicCounts = {};
       let branchCounts = {};
+      let channelCounts = {}; // 🌟 ตัวแปรใหม่สำหรับนับช่องทาง
 
       validCases.forEach(item => {
         if (item.colAI && item.colAI !== '') closedCount++;
@@ -1480,11 +1481,14 @@
         if (item.branch && item.branch !== 'ไม่ระบุสาขา') {
           branchCounts[item.branch] = (branchCounts[item.branch] || 0) + 1;
         }
+        if (item.channel && item.channel !== 'ไม่ระบุช่องทาง') { // 🌟 นำข้อมูลช่องทางมาจัดกลุ่ม
+          channelCounts[item.channel] = (channelCounts[item.channel] || 0) + 1;
+        }
       });
 
       const closeRate = ((closedCount / total) * 100).toFixed(1);
 
-      // 2. หา Top 1 ของแต่ละหมวด (แบรนด์, หัวข้อ, สาขา)
+      // 2. หา Top 1 ของแต่ละหมวด (แบรนด์, หัวข้อ, สาขา, ช่องทาง)
       let topBrand = '-'; let topBrandCount = 0;
       for (const [b, c] of Object.entries(brandCounts)) { if (c > topBrandCount) { topBrandCount = c; topBrand = b; } }
 
@@ -1493,6 +1497,9 @@
       
       let topBranch = '-'; let topBranchCount = 0;
       for (const [br, c] of Object.entries(branchCounts)) { if (c > topBranchCount) { topBranchCount = c; topBranch = br; } }
+
+      let topChannel = '-'; let topChannelCount = 0; // 🌟 หาช่องทางที่มีจำนวนเยอะที่สุด
+      for (const [ch, c] of Object.entries(channelCounts)) { if (c > topChannelCount) { topChannelCount = c; topChannel = ch; } }
 
       // 3. ประกอบร่างประโยค (Bullet Points)
       let listHtml = '';
@@ -1503,6 +1510,10 @@
       }
       if (topTopicCount > 0) {
         listHtml += `<li class="flex items-start gap-2.5"><span class="text-slate-400 mt-0.5">•</span><span>ประเด็นหลักที่ลูกค้าคอมเพลนเข้ามามากที่สุดคือเรื่อง <strong class="text-amber-600 text-sm">${topTopic}</strong></span></li>`;
+      }
+      if (topChannelCount > 0) { // 🌟 เพิ่ม Bullet สำหรับช่องทาง
+        const channelPercent = ((topChannelCount / total) * 100).toFixed(0);
+        listHtml += `<li class="flex items-start gap-2.5"><span class="text-slate-400 mt-0.5">•</span><span>ช่องทางที่ลูกค้าร้องเรียนเข้ามามากที่สุดคือ <strong class="text-cyan-600 text-sm">${topChannel}</strong> (คิดเป็น ${channelPercent}%)</span></li>`;
       }
       listDom.innerHTML = listHtml;
 
