@@ -988,7 +988,7 @@
       return Object.entries(counts).sort((a, b) => b[1] - a[1]).slice(0, 10);
     }
 
-    function drawCharts() {
+    function drawCharts(isThemeToggle = false) {
       const isDark = document.documentElement.classList.contains('dark');
       const textColor = isDark ? '#cbd5e1' : '#64748b'; 
       const gridColor = isDark ? '#334155' : '#e2e8f0'; 
@@ -1149,20 +1149,27 @@
         series: [{ type: 'bar', data: t3CatValues, itemStyle: { color: '#fbbf24', borderRadius: [0, 4, 4, 0] }, barWidth: 20, label: { show: true, position: 'right', fontFamily: 'Prompt', color: textColor, fontSize: isMobile ? 10 : 12, formatter: (params) => { if (totalCases === 0) return `${params.value} เรื่อง`; return `${params.value} เรื่อง (${((params.value / totalCases) * 100).toFixed(0)}%)`; } } }]
       });
 
-      const top3Container = document.getElementById('top3TopicsContainer');
-      top3Container.innerHTML = '';
-      top3Cats.forEach((catInfo, index) => {
-        const catName = catInfo[0];
-        const casesInCat = filteredData.filter(item => { let c = item.categories; if (!c) c = ['ไม่ระบุ']; if (!Array.isArray(c)) c = [c]; return c.includes(catName); });
-        const topicCounts = {};
-        casesInCat.forEach(item => { let t = item.topics; if (!t) t = ['ไม่ระบุ']; if (!Array.isArray(t)) t = [t]; t.forEach(val => { const finalVal = val || 'ไม่ระบุ'; topicCounts[finalVal] = (topicCounts[finalVal] || 0) + 1; }); });
-        const t3Topics = Object.entries(topicCounts).sort((a,b) => b[1] - a[1]).slice(0, 3);
-        let html = `<div class="p-4 bg-white dark:bg-slate-800 border-b md:border-b-0 md:border-r border-slate-200 dark:border-slate-700 last:border-0 h-full flex flex-col"><h4 class="text-[13px] md:text-sm font-bold text-slate-800 dark:text-slate-200 mb-3 border-b border-slate-200 dark:border-slate-700 pb-2">${index + 1}. ${catName} Top 3</h4><ul class="space-y-2 flex-1">`;
-        if (t3Topics.length === 0) html += `<li class="text-xs text-slate-400">- ไม่มีข้อมูล -</li>`;
-        else t3Topics.forEach((tInfo, tIndex) => { html += `<li class="text-xs md:text-[13px] text-slate-600 dark:text-slate-400 flex items-start gap-2"><span class="text-slate-800 dark:text-slate-300 font-medium">${tIndex + 1}.</span> <span class="flex-1 leading-snug">${tInfo[0]} <span class="text-indigo-500 dark:text-indigo-400 font-medium ml-1">(${tInfo[1]})</span></span></li>`; });
-        html += `</ul></div>`;
-        top3Container.innerHTML += html;
-      });
+      // 🌟 ถ้าแค่กดเปลี่ยนธีม (isThemeToggle) จะไม่ลบและสร้าง HTML ใหม่ เพื่อให้มันเฟดสีนุ่มๆ ได้
+      if (!isThemeToggle) {
+        const top3Container = document.getElementById('top3TopicsContainer');
+        top3Container.innerHTML = '';
+        top3Cats.forEach((catInfo, index) => {
+          const catName = catInfo[0];
+          const casesInCat = filteredData.filter(item => { let c = item.categories; if (!c) c = ['ไม่ระบุ']; if (!Array.isArray(c)) c = [c]; return c.includes(catName); });
+          const topicCounts = {};
+          casesInCat.forEach(item => { let t = item.topics; if (!t) t = ['ไม่ระบุ']; if (!Array.isArray(t)) t = [t]; t.forEach(val => { const finalVal = val || 'ไม่ระบุ'; topicCounts[finalVal] = (topicCounts[finalVal] || 0) + 1; }); });
+          const t3Topics = Object.entries(topicCounts).sort((a,b) => b[1] - a[1]).slice(0, 3);
+          
+          // แอบฝังคลาส transition-colors duration-1000 เพื่อให้มันเฟดสวยงาม
+          let html = `<div class="p-4 bg-white dark:bg-slate-800 border-b md:border-b-0 md:border-r border-slate-200 dark:border-slate-700 last:border-0 h-full flex flex-col transition-colors duration-1000"><h4 class="text-[13px] md:text-sm font-bold text-slate-800 dark:text-slate-200 mb-3 border-b border-slate-200 dark:border-slate-700 pb-2 transition-colors duration-1000">${index + 1}. ${catName} Top 3</h4><ul class="space-y-2 flex-1">`;
+          
+          if (t3Topics.length === 0) html += `<li class="text-xs text-slate-400">- ไม่มีข้อมูล -</li>`;
+          else t3Topics.forEach((tInfo, tIndex) => { html += `<li class="text-xs md:text-[13px] text-slate-600 dark:text-slate-400 flex items-start gap-2 transition-colors duration-1000"><span class="text-slate-800 dark:text-slate-300 font-medium transition-colors duration-1000">${tIndex + 1}.</span> <span class="flex-1 leading-snug">${tInfo[0]} <span class="text-indigo-500 dark:text-indigo-400 font-medium ml-1">(${tInfo[1]})</span></span></li>`; });
+          
+          html += `</ul></div>`;
+          top3Container.innerHTML += html;
+        });
+      }
 
       window.addEventListener('resize', () => {
         if (trendChartInst) trendChartInst.resize();
@@ -1553,7 +1560,7 @@
       
       // 🌟 สั่งให้ฟังก์ชันวาดกราฟทำงานใหม่ เพื่อเปลี่ยนสีเส้นและตัวหนังสือ
       if (typeof drawCharts === 'function') {
-        drawCharts(); 
+        drawCharts(true); 
       }
     }
 
