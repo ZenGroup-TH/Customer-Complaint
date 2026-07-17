@@ -72,9 +72,9 @@
   }
 </script>
 </head>
-<body class="bg-slate-900 min-h-screen flex items-center justify-center text-slate-800 antialiased">
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-200 min-h-screen transition-colors duration-300">
   <!-- 🌟 แจ้งเตือน Toast (ซ่อนไว้ก่อน จะสไลด์ลงมาเมื่อ Error) -->
-  <div id="toast-notification" class="fixed top-6 left-1/2 -translate-x-1/2 z-[10001] transform transition-all duration-500 translate-y-[-150%] opacity-0 flex items-center w-max max-w-[90vw] p-4 space-x-3 text-slate-600 bg-white rounded-xl shadow-2xl border-b-4 border-rose-500" role="alert">
+  <div id="toast-notification" class="fixed top-6 left-1/2 -translate-x-1/2 z-[10001] transform transition-all duration-500 translate-y-[-150%] opacity-0 flex items-center w-max max-w-[90vw] p-4 space-x-3 text-slate-600 dark:text-slate-400 bg-white rounded-xl shadow-2xl border-b-4 border-rose-500" role="alert">
     <div id="toast-icon-container" class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-rose-500 bg-rose-50 rounded-lg">
       <svg id="toast-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
     </div>
@@ -95,13 +95,13 @@
       
       <form id="login-form" onsubmit="handleLogin(event)">
         <div class="mb-4">
-          <label class="block text-sm font-medium text-slate-600 mb-1">ชื่อผู้ใช้งาน (User)</label>
-          <input type="text" id="username" required class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm text-slate-700" placeholder="กรอกชื่อผู้ใช้งาน">
+          <label class="block text-sm font-medium text-slate-600 dark:text-slate-400 mb-1">ชื่อผู้ใช้งาน (User)</label>
+          <input type="text" id="username" required class="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-950 dark:bg-slate-950 border border-slate-200 dark:border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm text-slate-700 dark:text-slate-200" placeholder="กรอกชื่อผู้ใช้งาน">
         </div>
         
         <div class="mb-6">
-          <label class="block text-sm font-medium text-slate-600 mb-1">รหัสผ่าน (Password)</label>
-          <input type="password" id="password" required class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm text-slate-700" placeholder="••••••••">
+          <label class="block text-sm font-medium text-slate-600 dark:text-slate-400 mb-1">รหัสผ่าน (Password)</label>
+          <input type="password" id="password" required class="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-950 dark:bg-slate-950 border border-slate-200 dark:border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm text-slate-700 dark:text-slate-200" placeholder="••••••••">
         </div>
         
         <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2.5 rounded-lg transition-colors shadow-lg shadow-blue-500/20 text-sm flex items-center justify-center gap-2">
@@ -119,8 +119,8 @@
     </div>
   </div>
 
-  <div id="dashboard-container" class="hidden w-full min-h-screen bg-slate-50 flex flex-col opacity-0 transition-opacity duration-500">
-    <header class="bg-slate-900 text-white shadow-md">
+  <div id="dashboard-container" class="hidden w-full min-h-screen bg-slate-50 dark:bg-slate-950 dark:bg-slate-950 flex flex-col opacity-0 transition-opacity duration-500">
+    <header class="bg-slate-900 dark:bg-slate-950 text-white shadow-md">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row justify-between items-center gap-4">
         <div class="flex items-center gap-3">
           <img src="https://lh3.googleusercontent.com/d/1UP_YU2MVEKfSMK1Dnaxqp9yGNpwr41J6" alt="Company Logo" class="h-10 w-auto object-contain">
@@ -136,7 +136,7 @@
         <div class="flex items-center gap-4">
           <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 animate-pulse">● เชื่อมต่อข้อมูลสำเร็จ</span>
           <!-- 🌟 ปุ่มสลับโหมดกลางคืน -->
-          <button onclick="toggleDarkMode()" id="theme-toggle" class="p-2 mr-2 rounded-lg bg-slate-100 text-slate-500 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-400 dark:hover:bg-slate-700 transition-colors border border-slate-200 dark:border-slate-700">
+          <button onclick="toggleDarkMode()" id="theme-toggle" class="p-2 mr-2 rounded-lg bg-slate-100 text-slate-500 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-400 dark:hover:bg-slate-700 transition-colors border border-slate-200 dark:border-slate-700 dark:border-slate-700">
   <!-- ไอคอนพระจันทร์ (ค่าเริ่มต้น) -->
   <svg class="w-4 h-4" id="theme-icon-moon" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
   <!-- ไอคอนพระอาทิตย์ (ซ่อนไว้ก่อน) -->
@@ -151,7 +151,7 @@
     </header>
 
     <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
-      <section class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm">
+      <section class="bg-white dark:bg-slate-800 p-4 rounded-2xl border border-slate-200 dark:border-slate-700/80 shadow-sm">
         <div class="flex items-center justify-between gap-6 overflow-x-auto custom-scrollbar pb-2">
           <img src="https://lh3.googleusercontent.com/d/1Omj8k8ufA8ZPUEcZTuvxOezdn22AJK63" alt="Brand 1" class="h-10 sm:h-12 w-auto flex-shrink-0">
           <img src="https://lh3.googleusercontent.com/d/16v7FI8EoQtCUetnrzgHiFhr2VzF_ounf" alt="Brand 2" class="h-10 sm:h-12 w-auto flex-shrink-0">
@@ -165,7 +165,7 @@
           <img src="https://lh3.googleusercontent.com/d/1UgqKExgsENkpelT5uc81hKhujIbVdT7t" alt="Brand 10" class="h-10 sm:h-12 w-auto flex-shrink-0">
         </div>
       </section>
-      <section class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm relative z-40">
+      <section class="bg-white dark:bg-slate-800 p-5 rounded-2xl border border-slate-200 dark:border-slate-700/80 shadow-sm relative z-40">
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-3">
           <h2 class="text-sm font-semibold text-slate-500 uppercase tracking-wider flex items-center gap-2">
             <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"></path></svg>
@@ -179,62 +179,62 @@
         
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           <div class="relative dropdown-container">
-            <label class="block text-xs font-medium text-slate-600 mb-1.5">เลือกแบรนด์</label>
-            <button type="button" onclick="toggleDropdown('brandMenu')" class="w-full text-left text-sm bg-slate-50 border border-slate-300 rounded-lg p-2.5 flex justify-between items-center"><span id="brandBtnText" class="truncate">ทั้งหมด ทุกแบรนด์</span><svg class="w-4 h-4 text-slate-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
-            <div id="brandMenu" class="dropdown-menu hidden absolute z-50 w-full mt-1 bg-white border border-slate-200 rounded-lg shadow-xl max-h-60 overflow-y-auto custom-scrollbar"><div class="p-2 space-y-1" id="brandOptions"></div></div>
+            <label class="block text-xs font-medium text-slate-600 dark:text-slate-400 mb-1.5">เลือกแบรนด์</label>
+            <button type="button" onclick="toggleDropdown('brandMenu')" class="w-full text-left text-sm bg-slate-50 dark:bg-slate-950 dark:bg-slate-950 border border-slate-300 rounded-lg p-2.5 flex justify-between items-center"><span id="brandBtnText" class="truncate">ทั้งหมด ทุกแบรนด์</span><svg class="w-4 h-4 text-slate-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+            <div id="brandMenu" class="dropdown-menu hidden absolute z-50 w-full mt-1 bg-white border border-slate-200 dark:border-slate-700 rounded-lg shadow-xl max-h-60 overflow-y-auto custom-scrollbar"><div class="p-2 space-y-1" id="brandOptions"></div></div>
           </div>
           <div class="relative dropdown-container">
-            <label class="block text-xs font-medium text-slate-600 mb-1.5">ประเภทด้านที่ร้องเรียน</label>
-            <button type="button" onclick="toggleDropdown('categoryMenu')" class="w-full text-left text-sm bg-slate-50 border border-slate-300 rounded-lg p-2.5 flex justify-between items-center"><span id="categoryBtnText" class="truncate">ทั้งหมด ทุกด้าน</span><svg class="w-4 h-4 text-slate-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
-            <div id="categoryMenu" class="dropdown-menu hidden absolute z-50 w-full mt-1 bg-white border border-slate-200 rounded-lg shadow-xl max-h-60 overflow-y-auto custom-scrollbar"><div class="p-2 space-y-1" id="categoryOptions"></div></div>
+            <label class="block text-xs font-medium text-slate-600 dark:text-slate-400 mb-1.5">ประเภทด้านที่ร้องเรียน</label>
+            <button type="button" onclick="toggleDropdown('categoryMenu')" class="w-full text-left text-sm bg-slate-50 dark:bg-slate-950 dark:bg-slate-950 border border-slate-300 rounded-lg p-2.5 flex justify-between items-center"><span id="categoryBtnText" class="truncate">ทั้งหมด ทุกด้าน</span><svg class="w-4 h-4 text-slate-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+            <div id="categoryMenu" class="dropdown-menu hidden absolute z-50 w-full mt-1 bg-white border border-slate-200 dark:border-slate-700 rounded-lg shadow-xl max-h-60 overflow-y-auto custom-scrollbar"><div class="p-2 space-y-1" id="categoryOptions"></div></div>
           </div>
           <div class="relative dropdown-container">
-            <label class="block text-xs font-medium text-slate-600 mb-1.5">หัวข้อเคสที่ร้องเรียน</label>
-            <button type="button" onclick="toggleDropdown('topicMenu')" class="w-full text-left text-sm bg-slate-50 border border-slate-300 rounded-lg p-2.5 flex justify-between items-center"><span id="topicBtnText" class="truncate">ทั้งหมด ทุกเคส</span><svg class="w-4 h-4 text-slate-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
-            <div id="topicMenu" class="dropdown-menu hidden absolute z-50 w-full mt-1 bg-white border border-slate-200 rounded-lg shadow-xl max-h-60 overflow-y-auto custom-scrollbar"><div class="p-2 space-y-1" id="topicOptions"></div></div>
+            <label class="block text-xs font-medium text-slate-600 dark:text-slate-400 mb-1.5">หัวข้อเคสที่ร้องเรียน</label>
+            <button type="button" onclick="toggleDropdown('topicMenu')" class="w-full text-left text-sm bg-slate-50 dark:bg-slate-950 dark:bg-slate-950 border border-slate-300 rounded-lg p-2.5 flex justify-between items-center"><span id="topicBtnText" class="truncate">ทั้งหมด ทุกเคส</span><svg class="w-4 h-4 text-slate-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+            <div id="topicMenu" class="dropdown-menu hidden absolute z-50 w-full mt-1 bg-white border border-slate-200 dark:border-slate-700 rounded-lg shadow-xl max-h-60 overflow-y-auto custom-scrollbar"><div class="p-2 space-y-1" id="topicOptions"></div></div>
           </div>
           <div class="relative dropdown-container">
-            <label class="block text-xs font-medium text-slate-600 mb-1.5">สาขา</label>
-            <button type="button" onclick="toggleDropdown('branchMenu')" class="w-full text-left text-sm bg-slate-50 border border-slate-300 rounded-lg p-2.5 flex justify-between items-center"><span id="branchBtnText" class="truncate">ทั้งหมด ทุกสาขา</span><svg class="w-4 h-4 text-slate-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
-            <div id="branchMenu" class="dropdown-menu hidden absolute z-50 w-full mt-1 bg-white border border-slate-200 rounded-lg shadow-xl max-h-60 overflow-y-auto custom-scrollbar"><div class="p-2 space-y-1" id="branchOptions"></div></div>
+            <label class="block text-xs font-medium text-slate-600 dark:text-slate-400 mb-1.5">สาขา</label>
+            <button type="button" onclick="toggleDropdown('branchMenu')" class="w-full text-left text-sm bg-slate-50 dark:bg-slate-950 dark:bg-slate-950 border border-slate-300 rounded-lg p-2.5 flex justify-between items-center"><span id="branchBtnText" class="truncate">ทั้งหมด ทุกสาขา</span><svg class="w-4 h-4 text-slate-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+            <div id="branchMenu" class="dropdown-menu hidden absolute z-50 w-full mt-1 bg-white border border-slate-200 dark:border-slate-700 rounded-lg shadow-xl max-h-60 overflow-y-auto custom-scrollbar"><div class="p-2 space-y-1" id="branchOptions"></div></div>
           </div>
           <div class="relative dropdown-container">
-            <label class="block text-xs font-medium text-slate-600 mb-1.5">ช่องทาง</label>
-            <button type="button" onclick="toggleDropdown('channelMenu')" class="w-full text-left text-sm bg-slate-50 border border-slate-300 rounded-lg p-2.5 flex justify-between items-center"><span id="channelBtnText" class="truncate">ทั้งหมด ทุกช่องทาง</span><svg class="w-4 h-4 text-slate-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
-            <div id="channelMenu" class="dropdown-menu hidden absolute z-50 w-full mt-1 bg-white border border-slate-200 rounded-lg shadow-xl max-h-60 overflow-y-auto custom-scrollbar"><div class="p-2 space-y-1" id="channelOptions"></div></div>
+            <label class="block text-xs font-medium text-slate-600 dark:text-slate-400 mb-1.5">ช่องทาง</label>
+            <button type="button" onclick="toggleDropdown('channelMenu')" class="w-full text-left text-sm bg-slate-50 dark:bg-slate-950 dark:bg-slate-950 border border-slate-300 rounded-lg p-2.5 flex justify-between items-center"><span id="channelBtnText" class="truncate">ทั้งหมด ทุกช่องทาง</span><svg class="w-4 h-4 text-slate-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+            <div id="channelMenu" class="dropdown-menu hidden absolute z-50 w-full mt-1 bg-white border border-slate-200 dark:border-slate-700 rounded-lg shadow-xl max-h-60 overflow-y-auto custom-scrollbar"><div class="p-2 space-y-1" id="channelOptions"></div></div>
           </div>
           <div class="relative dropdown-container">
-            <label class="block text-xs font-medium text-slate-600 mb-1.5">ผู้รับผิดชอบ</label>
-            <button type="button" onclick="toggleDropdown('responsibleMenu')" class="w-full text-left text-sm bg-slate-50 border border-slate-300 rounded-lg p-2.5 flex justify-between items-center"><span id="responsibleBtnText" class="truncate">ทั้งหมด ทุกคน</span><svg class="w-4 h-4 text-slate-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
-            <div id="responsibleMenu" class="dropdown-menu hidden absolute z-50 w-full mt-1 bg-white border border-slate-200 rounded-lg shadow-xl max-h-60 overflow-y-auto custom-scrollbar"><div class="p-2 space-y-1" id="responsibleOptions"></div></div>
+            <label class="block text-xs font-medium text-slate-600 dark:text-slate-400 mb-1.5">ผู้รับผิดชอบ</label>
+            <button type="button" onclick="toggleDropdown('responsibleMenu')" class="w-full text-left text-sm bg-slate-50 dark:bg-slate-950 dark:bg-slate-950 border border-slate-300 rounded-lg p-2.5 flex justify-between items-center"><span id="responsibleBtnText" class="truncate">ทั้งหมด ทุกคน</span><svg class="w-4 h-4 text-slate-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+            <div id="responsibleMenu" class="dropdown-menu hidden absolute z-50 w-full mt-1 bg-white border border-slate-200 dark:border-slate-700 rounded-lg shadow-xl max-h-60 overflow-y-auto custom-scrollbar"><div class="p-2 space-y-1" id="responsibleOptions"></div></div>
           </div>
           <div class="relative dropdown-container">
-            <label class="block text-xs font-medium text-slate-600 mb-1.5">ช่วงวันที่แจ้งเคส</label>
-            <button type="button" onclick="toggleDropdown('dateMenu')" class="w-full text-left text-sm bg-slate-50 border border-slate-300 rounded-lg p-2.5 flex justify-between items-center">
+            <label class="block text-xs font-medium text-slate-600 dark:text-slate-400 mb-1.5">ช่วงวันที่แจ้งเคส</label>
+            <button type="button" onclick="toggleDropdown('dateMenu')" class="w-full text-left text-sm bg-slate-50 dark:bg-slate-950 dark:bg-slate-950 border border-slate-300 rounded-lg p-2.5 flex justify-between items-center">
               <span id="dateBtnText" class="truncate">ทั้งหมด ทุกช่วงเวลา</span>
               <svg class="w-4 h-4 text-slate-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
             </button>
-            <div id="dateMenu" class="dropdown-menu hidden absolute z-50 w-full mt-1 bg-white border border-slate-200 rounded-lg shadow-xl p-3">
+            <div id="dateMenu" class="dropdown-menu hidden absolute z-50 w-full mt-1 bg-white border border-slate-200 dark:border-slate-700 rounded-lg shadow-xl p-3">
               <div class="space-y-3">
                 <div>
                   <label class="block text-xs text-slate-500 mb-1">ตั้งแต่วันที่</label>
-                  <input type="date" id="startDate" class="w-full text-sm border border-slate-300 rounded-md p-1.5 focus:ring-blue-500 focus:border-blue-500 text-slate-600">
+                  <input type="date" id="startDate" class="w-full text-sm border border-slate-300 rounded-md p-1.5 focus:ring-blue-500 focus:border-blue-500 text-slate-600 dark:text-slate-400">
                 </div>
                 <div>
                   <label class="block text-xs text-slate-500 mb-1">ถึงวันที่</label>
-                  <input type="date" id="endDate" class="w-full text-sm border border-slate-300 rounded-md p-1.5 focus:ring-blue-500 focus:border-blue-500 text-slate-600">
+                  <input type="date" id="endDate" class="w-full text-sm border border-slate-300 rounded-md p-1.5 focus:ring-blue-500 focus:border-blue-500 text-slate-600 dark:text-slate-400">
                 </div>
                 <div class="flex gap-2 pt-1 border-t border-slate-100 mt-2">
-                  <button type="button" onclick="clearDateFilter()" class="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-600 text-xs font-medium py-2 rounded-md transition-colors">ล้าง</button>
+                  <button type="button" onclick="clearDateFilter()" class="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-600 dark:text-slate-400 text-xs font-medium py-2 rounded-md transition-colors">ล้าง</button>
                   <button type="button" onclick="applyDateFilter()" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white text-xs font-medium py-2 rounded-md transition-colors shadow-sm">ตกลง</button>
                 </div>
               </div>
             </div>
           </div>
           <div class="relative dropdown-container">
-            <label class="block text-xs font-medium text-slate-600 mb-1.5">สถานะเคส/คนปิดเคส</label>
-            <button type="button" onclick="toggleDropdown('statusMenu')" class="w-full text-left text-sm bg-slate-50 border border-slate-300 rounded-lg p-2.5 flex justify-between items-center"><span id="statusBtnText" class="truncate">ทั้งหมด ทุกสถานะ/ทุกคน</span><svg class="w-4 h-4 text-slate-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
-            <div id="statusMenu" class="dropdown-menu hidden absolute z-50 w-full mt-1 bg-white border border-slate-200 rounded-lg shadow-xl max-h-60 overflow-y-auto custom-scrollbar"><div class="p-2 space-y-1" id="statusOptions"></div></div>
+            <label class="block text-xs font-medium text-slate-600 dark:text-slate-400 mb-1.5">สถานะเคส/คนปิดเคส</label>
+            <button type="button" onclick="toggleDropdown('statusMenu')" class="w-full text-left text-sm bg-slate-50 dark:bg-slate-950 dark:bg-slate-950 border border-slate-300 rounded-lg p-2.5 flex justify-between items-center"><span id="statusBtnText" class="truncate">ทั้งหมด ทุกสถานะ/ทุกคน</span><svg class="w-4 h-4 text-slate-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+            <div id="statusMenu" class="dropdown-menu hidden absolute z-50 w-full mt-1 bg-white border border-slate-200 dark:border-slate-700 rounded-lg shadow-xl max-h-60 overflow-y-auto custom-scrollbar"><div class="p-2 space-y-1" id="statusOptions"></div></div>
           </div>
          </div> <div id="activeFilterTags" class="flex flex-wrap items-center gap-2 mt-4 pt-4 border-t border-slate-100 hidden">
           </div> 
@@ -242,50 +242,50 @@
       </section>
 
       <section class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-4">
-        <div class="bg-white p-4 rounded-2xl shadow-sm flex flex-col justify-center border border-slate-100 border-t-4 border-t-blue-500 hover:shadow-md transition-shadow">
-          <p class="text-xs text-slate-600 font-medium mb-1">เรื่องร้องเรียนทั้งหมด</p>
+        <div class="bg-white dark:bg-slate-800 p-4 rounded-2xl shadow-sm flex flex-col justify-center border border-slate-100 border-t-4 border-t-blue-500 hover:shadow-md transition-shadow">
+          <p class="text-xs text-slate-600 dark:text-slate-400 font-medium mb-1">เรื่องร้องเรียนทั้งหมด</p>
           <h4 id="kpiTotalTopics" class="text-2xl font-bold text-blue-700">-</h4>
         </div>
         
-        <div class="bg-white p-4 rounded-2xl shadow-sm flex flex-col justify-center border border-slate-100 border-t-4 border-t-blue-500 hover:shadow-md transition-shadow">
-          <p class="text-xs text-slate-600 font-medium mb-1">ด้านร้องเรียนทั้งหมด</p>
+        <div class="bg-white dark:bg-slate-800 p-4 rounded-2xl shadow-sm flex flex-col justify-center border border-slate-100 border-t-4 border-t-blue-500 hover:shadow-md transition-shadow">
+          <p class="text-xs text-slate-600 dark:text-slate-400 font-medium mb-1">ด้านร้องเรียนทั้งหมด</p>
           <h4 id="kpiTotalCategories" class="text-2xl font-bold text-blue-700">-</h4>
         </div>
         
-        <div class="bg-white p-4 rounded-2xl shadow-sm flex flex-col justify-center border border-slate-100 border-t-4 border-t-rose-500 hover:shadow-md transition-shadow">
-          <p class="text-xs text-slate-600 font-medium mb-1">เคสร้องเรียนทั้งหมด</p>
+        <div class="bg-white dark:bg-slate-800 p-4 rounded-2xl shadow-sm flex flex-col justify-center border border-slate-100 border-t-4 border-t-rose-500 hover:shadow-md transition-shadow">
+          <p class="text-xs text-slate-600 dark:text-slate-400 font-medium mb-1">เคสร้องเรียนทั้งหมด</p>
           <h4 id="kpiTotalCases" class="text-2xl font-bold text-rose-600">-</h4>
         </div>
         
-        <div class="bg-white p-4 rounded-2xl shadow-sm flex flex-col justify-center border border-slate-100 border-t-4 border-t-emerald-500 hover:shadow-md transition-shadow">
-          <p class="text-xs text-slate-600 font-medium mb-1">ปิดเคสแล้ว</p>
+        <div class="bg-white dark:bg-slate-800 p-4 rounded-2xl shadow-sm flex flex-col justify-center border border-slate-100 border-t-4 border-t-emerald-500 hover:shadow-md transition-shadow">
+          <p class="text-xs text-slate-600 dark:text-slate-400 font-medium mb-1">ปิดเคสแล้ว</p>
           <div class="flex items-baseline gap-2">
             <h4 id="kpiClosed" class="text-2xl font-bold text-emerald-600">-</h4>
             <span id="kpiRate" class="text-xs font-semibold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">-</span>
           </div>
         </div>
         
-        <div class="bg-white p-4 rounded-2xl shadow-sm flex flex-col justify-center border border-slate-100 border-t-4 border-t-amber-500 hover:shadow-md transition-shadow">
-          <p class="text-xs text-slate-600 font-medium mb-1">ไม่ปิดเคส</p>
+        <div class="bg-white dark:bg-slate-800 p-4 rounded-2xl shadow-sm flex flex-col justify-center border border-slate-100 border-t-4 border-t-amber-500 hover:shadow-md transition-shadow">
+          <p class="text-xs text-slate-600 dark:text-slate-400 font-medium mb-1">ไม่ปิดเคส</p>
           <h4 id="kpiPending" class="text-2xl font-bold text-amber-500">-</h4>
         </div>
         
-        <div class="bg-white p-4 rounded-2xl shadow-sm flex flex-col justify-center border border-slate-100 border-t-4 border-t-red-500 hover:shadow-md transition-shadow">
-          <p class="text-[11px] text-slate-600 font-medium mb-1">แบรนด์ที่ถูกร้องเรียนสูงสุด</p>
+        <div class="bg-white dark:bg-slate-800 p-4 rounded-2xl shadow-sm flex flex-col justify-center border border-slate-100 border-t-4 border-t-red-500 hover:shadow-md transition-shadow">
+          <p class="text-[11px] text-slate-600 dark:text-slate-400 font-medium mb-1">แบรนด์ที่ถูกร้องเรียนสูงสุด</p>
           <h4 id="kpiTopBrand" class="text-[13px] lg:text-sm font-bold text-red-600 truncate">-</h4>
         </div>
       </section>
 
       <section class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div class="bg-white p-4 rounded-2xl shadow-sm flex flex-col justify-center border border-slate-100 border-t-4 border-t-cyan-500 hover:shadow-md transition-shadow">
-          <p class="text-xs text-slate-600 font-medium mb-2">เวลาเฉลี่ยแจ้งเคส (Agency)</p>
+        <div class="bg-white dark:bg-slate-800 p-4 rounded-2xl shadow-sm flex flex-col justify-center border border-slate-100 border-t-4 border-t-cyan-500 hover:shadow-md transition-shadow">
+          <p class="text-xs text-slate-600 dark:text-slate-400 font-medium mb-2">เวลาเฉลี่ยแจ้งเคส (Agency)</p>
           <div class="flex items-baseline gap-1">
             <h4 id="kpiAgencySLA" class="text-xl lg:text-2xl font-bold text-cyan-600 tracking-tight whitespace-nowrap">-</h4>
           </div>
         </div>
         
-        <div class="bg-white p-4 rounded-2xl shadow-sm flex flex-col justify-center border border-slate-100 border-t-4 border-t-indigo-500 hover:shadow-md transition-shadow">
-          <p class="text-xs text-slate-600 font-medium mb-2">เวลาเฉลี่ยปิดเคส</p>
+        <div class="bg-white dark:bg-slate-800 p-4 rounded-2xl shadow-sm flex flex-col justify-center border border-slate-100 border-t-4 border-t-indigo-500 hover:shadow-md transition-shadow">
+          <p class="text-xs text-slate-600 dark:text-slate-400 font-medium mb-2">เวลาเฉลี่ยปิดเคส</p>
           <div class="flex items-baseline gap-1">
             <h4 id="kpiSLA" class="text-xl lg:text-2xl font-bold text-indigo-700 tracking-tight whitespace-nowrap">-</h4>
           </div>
@@ -305,7 +305,7 @@
           </h3>
           
           <!-- ลิสต์ประโยคสรุปข้อมูล -->
-          <ul id="ai-insights-list" class="space-y-2 text-[13px] text-slate-700 mb-4 pl-1 relative z-10">
+          <ul id="ai-insights-list" class="space-y-2 text-[13px] text-slate-700 dark:text-slate-200 mb-4 pl-1 relative z-10">
             <!-- JavaScript จะเป็นคนคำนวณและพ่น <li> ใส่ตรงนี้ -->
           </ul>
           
@@ -316,15 +316,15 @@
           </div>
         </section>
         
-        <section class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm">
-          <h3 class="text-sm font-semibold text-slate-700 mb-4 flex items-center gap-1.5">แนวโน้มการร้องเรียนแยกตามเดือน (Trend Analysis)</h3>
+        <section class="bg-white dark:bg-slate-800 p-5 rounded-2xl border border-slate-200 dark:border-slate-700/80 shadow-sm">
+          <h3 class="text-sm font-semibold text-slate-700 dark:text-slate-200 mb-4 flex items-center gap-1.5">แนวโน้มการร้องเรียนแยกตามเดือน (Trend Analysis)</h3>
           <div class="w-full h-[300px]">
              <div id="trendChart" class="w-full h-full"></div>
           </div>
         </section>
 
-        <section class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm">
-          <h3 class="text-sm font-semibold text-slate-700 mb-4 flex items-center gap-1.5">จำนวนเคสร้องเรียนแยกตามแบรนด์</h3>
+        <section class="bg-white dark:bg-slate-800 p-5 rounded-2xl border border-slate-200 dark:border-slate-700/80 shadow-sm">
+          <h3 class="text-sm font-semibold text-slate-700 dark:text-slate-200 mb-4 flex items-center gap-1.5">จำนวนเคสร้องเรียนแยกตามแบรนด์</h3>
           <div class="w-full overflow-x-auto custom-scrollbar pb-2">
              <div class="min-w-[600px] h-[350px]">
                <div id="brandBarChart" class="w-full h-full"></div>
@@ -332,8 +332,8 @@
           </div>
         </section>
 
-        <section class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm">
-          <h3 class="text-sm font-semibold text-slate-700 mb-4 flex items-center gap-1.5">จำนวนเรื่องร้องเรียนแยกตามแบรนด์</h3>
+        <section class="bg-white dark:bg-slate-800 p-5 rounded-2xl border border-slate-200 dark:border-slate-700/80 shadow-sm">
+          <h3 class="text-sm font-semibold text-slate-700 dark:text-slate-200 mb-4 flex items-center gap-1.5">จำนวนเรื่องร้องเรียนแยกตามแบรนด์</h3>
           <div class="w-full overflow-x-auto custom-scrollbar pb-2">
              <div class="min-w-[600px] h-[350px]">
                <div id="brandTopicBarChart" class="w-full h-full"></div>
@@ -341,23 +341,23 @@
           </div>
         </section>
 
-        <section class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm">
-          <h3 class="text-sm font-semibold text-slate-700 mb-4 flex items-center gap-1.5">เทียบสัดส่วน Top 3 ด้านที่ถูกร้องเรียน และหัวข้อย่อย</h3>
+        <section class="bg-white dark:bg-slate-800 p-5 rounded-2xl border border-slate-200 dark:border-slate-700/80 shadow-sm">
+          <h3 class="text-sm font-semibold text-slate-700 dark:text-slate-200 mb-4 flex items-center gap-1.5">เทียบสัดส่วน Top 3 ด้านที่ถูกร้องเรียน และหัวข้อย่อย</h3>
           <div class="w-full h-[220px]">
              <div id="top3CategoryChart" class="w-full h-full"></div>
           </div>
-          <div id="top3TopicsContainer" class="mt-2 grid grid-cols-1 md:grid-cols-3 border border-slate-200 rounded-lg overflow-hidden bg-slate-50/50 shadow-inner"></div>
+          <div id="top3TopicsContainer" class="mt-2 grid grid-cols-1 md:grid-cols-3 border border-slate-200 dark:border-slate-700 rounded-lg overflow-hidden bg-slate-50 dark:bg-slate-950 dark:bg-slate-950/50 shadow-inner"></div>
         </section>
 
         <section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col">
-            <h3 class="text-sm font-semibold text-slate-700 mb-4 flex items-center gap-1.5">สัดส่วนจำนวนคอมเพลนแยกตามแบรนด์</h3>
+          <div class="bg-white dark:bg-slate-800 p-5 rounded-2xl border border-slate-200 dark:border-slate-700/80 shadow-sm flex flex-col">
+            <h3 class="text-sm font-semibold text-slate-700 dark:text-slate-200 mb-4 flex items-center gap-1.5">สัดส่วนจำนวนคอมเพลนแยกตามแบรนด์</h3>
             <div class="flex-1 w-full min-h-[300px]">
               <div id="brandChart" class="w-full h-full"></div>
             </div>
           </div>
-          <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col">
-            <h3 class="text-sm font-semibold text-slate-700 mb-4 flex items-center gap-1.5">สัดส่วนจำนวนคอมเพลนแยกตามช่องทาง</h3>
+          <div class="bg-white dark:bg-slate-800 p-5 rounded-2xl border border-slate-200 dark:border-slate-700/80 shadow-sm flex flex-col">
+            <h3 class="text-sm font-semibold text-slate-700 dark:text-slate-200 mb-4 flex items-center gap-1.5">สัดส่วนจำนวนคอมเพลนแยกตามช่องทาง</h3>
             <div class="flex-1 w-full min-h-[300px]">
               <div id="channelPieChart" class="w-full h-full"></div>
             </div>
@@ -365,31 +365,31 @@
         </section>
 
         <section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col">
-            <h3 class="text-sm font-semibold text-slate-700 mb-4 flex items-center gap-1.5">Top 10 ประเภทร้องเรียน</h3>
+          <div class="bg-white dark:bg-slate-800 p-5 rounded-2xl border border-slate-200 dark:border-slate-700/80 shadow-sm flex flex-col">
+            <h3 class="text-sm font-semibold text-slate-700 dark:text-slate-200 mb-4 flex items-center gap-1.5">Top 10 ประเภทร้องเรียน</h3>
             <div class="flex-1 w-full"><div id="categoryChart" class="w-full h-[300px]"></div></div>
           </div>
-          <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col">
-            <h3 class="text-sm font-semibold text-slate-700 mb-4 flex items-center gap-1.5">Top 10 หัวข้อร้องเรียน</h3>
+          <div class="bg-white dark:bg-slate-800 p-5 rounded-2xl border border-slate-200 dark:border-slate-700/80 shadow-sm flex flex-col">
+            <h3 class="text-sm font-semibold text-slate-700 dark:text-slate-200 mb-4 flex items-center gap-1.5">Top 10 หัวข้อร้องเรียน</h3>
             <div class="flex-1 w-full"><div id="topicChart" class="w-full h-[300px]"></div></div>
           </div>
         </section>
 
         <section class="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
-          <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col">
-            <h3 class="text-sm font-semibold text-slate-700 mb-4 flex items-center gap-1.5">Top 10 สาขา ที่ถูกร้องเรียน</h3>
+          <div class="bg-white dark:bg-slate-800 p-5 rounded-2xl border border-slate-200 dark:border-slate-700/80 shadow-sm flex flex-col">
+            <h3 class="text-sm font-semibold text-slate-700 dark:text-slate-200 mb-4 flex items-center gap-1.5">Top 10 สาขา ที่ถูกร้องเรียน</h3>
             <div class="flex-1 w-full"><div id="branchChart" class="w-full h-[300px]"></div></div>
           </div>
         </section>
 
-      <section class="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden flex flex-col">
+      <section class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700/80 shadow-sm overflow-hidden flex flex-col">
         <div class="p-5 border-b border-slate-100 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-      <h3 class="text-sm font-semibold text-slate-700 flex items-center gap-1.5">ตารางข้อมูลสรุปรายละเอียด</h3>
+      <h3 class="text-sm font-semibold text-slate-700 dark:text-slate-200 flex items-center gap-1.5">ตารางข้อมูลสรุปรายละเอียด</h3>
       
       <!-- 🌟 กลุ่มปุ่ม Export 2 แบบ (สลับตำแหน่งแล้ว) -->
       <div class="flex items-center gap-2">
         <!-- ปุ่ม 1: โหลดข้อมูลดิบทั้งหมด (Excel ต้นฉบับ) อยู่ซ้าย -->
-        <a href="https://docs.google.com/spreadsheets/d/1PivhE4CZ74X1rPSifghGKavYyOXgtdAlG0UG_G0nY6k/export?format=xlsx" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white hover:bg-slate-50 text-slate-700 text-xs font-medium rounded-lg border border-slate-300 transition-colors shadow-sm cursor-pointer">
+        <a href="https://docs.google.com/spreadsheets/d/1PivhE4CZ74X1rPSifghGKavYyOXgtdAlG0UG_G0nY6k/export?format=xlsx" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white hover:bg-slate-50 dark:bg-slate-950 dark:bg-slate-950 text-slate-700 dark:text-slate-200 text-xs font-medium rounded-lg border border-slate-300 transition-colors shadow-sm cursor-pointer">
           <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
           Export Raw Data
         </a>
@@ -404,7 +404,7 @@
         <div class="overflow-x-auto custom-scrollbar max-h-[450px]">
           <table class="w-full text-left border-collapse">
             <thead>
-              <tr class="bg-slate-50 border-b border-slate-200 sticky top-0 z-10 text-xs font-semibold text-slate-600 uppercase tracking-wider">
+              <tr class="bg-slate-50 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-700 sticky top-0 z-10 text-xs font-semibold text-slate-600 dark:text-slate-300 uppercase tracking-wider">
                 <th id="th-no" class="px-4 py-3.5 w-16 sortable" onclick="sortTable('no')">No.</th>
                 <th id="th-date" class="px-4 py-3.5 w-28 sortable" onclick="sortTable('date')">วันที่แจ้ง</th>
                 <th id="th-brand" class="px-4 py-3.5 w-24 sortable" onclick="sortTable('brand')">แบรนด์</th>
@@ -415,9 +415,9 @@
                 <th class="px-4 py-3.5 w-44 whitespace-nowrap text-center">สถานะเคส/คนปิดเคส</th>
               </tr>
             </thead>
-            <tbody id="tableBody" class="divide-y divide-slate-100 text-sm text-slate-600"></tbody>
+            <tbody id="tableBody" class="divide-y divide-slate-100 text-sm text-slate-600 dark:text-slate-400"></tbody>
           </table>
-        </div> <div class="p-4 border-t border-slate-200 flex flex-col sm:flex-row justify-between items-center gap-4 bg-slate-50 z-20">
+        </div> <div class="p-4 border-t border-slate-200 dark:border-slate-700 flex flex-col sm:flex-row justify-between items-center gap-4 bg-slate-50 dark:bg-slate-950 dark:bg-slate-950 z-20">
           <p id="paginationInfo" class="text-xs text-slate-500 font-medium"></p>
           <div id="paginationControls" class="flex items-center gap-1"></div>
         </div>
@@ -425,7 +425,7 @@
     </div>
 
     <!-- 👇 🌟 เพิ่มโค้ด Footer ตรงนี้ 👇 -->
-    <footer class="mt-4 pt-6 border-t border-slate-200 text-center flex flex-col sm:flex-row justify-between items-center gap-4 pb-2">
+    <footer class="mt-4 pt-6 border-t border-slate-200 dark:border-slate-700 text-center flex flex-col sm:flex-row justify-between items-center gap-4 pb-2">
       <p class="text-[11px] text-slate-400 font-light tracking-wide">Copyright ©2026 ZEN Corporation Group Co., Ltd. All rights reserved.</p>
       <a href="#" class="text-[11px] text-slate-400 hover:text-indigo-500 transition-colors font-medium">Privacy Policy ZEN Group</a>
     </footer>
@@ -447,7 +447,7 @@
     <div class="relative bg-white rounded-2xl shadow-2xl p-6 w-full max-w-sm mx-4 transform scale-95 transition-transform duration-300" id="logout-modal-box">
       <div class="flex flex-col items-center text-center">
         <!-- ไอคอนประตูทางออก -->
-        <div class="w-14 h-14 bg-slate-100 text-slate-600 rounded-full flex items-center justify-center mb-4">
+        <div class="w-14 h-14 bg-slate-100 text-slate-600 dark:text-slate-400 rounded-full flex items-center justify-center mb-4">
           <svg class="w-7 h-7 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
         </div>
         
@@ -506,7 +506,7 @@
       let isSkeletonActive = false;
       const skeletonTimer = setTimeout(() => {
         document.getElementById('loading').classList.add('hidden'); // ซ่อนหน้าหมุน
-        document.body.className = "bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-200 min-h-screen block transition-colors duration-300";
+        document.body.className = "bg-slate-50 dark:bg-slate-950 dark:bg-slate-950 dark:bg-slate-900 text-slate-800 dark:text-slate-200 min-h-screen block transition-colors duration-300";
         
         dashContainer.classList.add('skeleton-mode'); // เปิดโหมด Skeleton
         dashContainer.classList.remove('hidden');
@@ -544,7 +544,7 @@
               // ถ้าข้อมูลมาไวกว่า 1.5 วินาที ให้เคลียร์เวลาทิ้ง แล้วกระโดดไปหน้าสมบูรณ์เลย
               clearTimeout(skeletonTimer);
               document.getElementById('loading').classList.add('hidden');
-              document.body.className = "bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-200 min-h-screen block transition-colors duration-300";
+              document.body.className = "bg-slate-50 dark:bg-slate-950 dark:bg-slate-950 dark:bg-slate-900 text-slate-800 dark:text-slate-200 min-h-screen block transition-colors duration-300";
               
               dashContainer.classList.remove('skeleton-mode', 'hidden');
               setTimeout(() => { dashContainer.classList.add('opacity-100'); }, 50);
@@ -730,7 +730,7 @@
       searchBox.innerHTML = `
         <div class="relative">
           <svg class="w-3.5 h-3.5 absolute left-2.5 top-2 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-          <input type="text" placeholder="พิมพ์ค้นหา..." class="w-full text-xs border border-slate-300 rounded-md pl-8 pr-2.5 py-1.5 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-slate-600 transition-colors" onkeyup="filterDropdownOptions('${containerId}', this.value)">
+          <input type="text" placeholder="พิมพ์ค้นหา..." class="w-full text-xs border border-slate-300 rounded-md pl-8 pr-2.5 py-1.5 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-slate-600 dark:text-slate-400 transition-colors" onkeyup="filterDropdownOptions('${containerId}', this.value)">
         </div>
       `;
       container.appendChild(searchBox);
@@ -747,7 +747,7 @@
       // ปุ่มเลือกทั้งหมด
       if (uniqueValues.length > 0) {
         const selectAllLabel = document.createElement('label');
-        selectAllLabel.className = 'flex items-center space-x-2 px-2 py-2 hover:bg-slate-100 cursor-pointer text-sm font-semibold text-slate-800 rounded transition-colors border-b border-slate-200 mb-1';
+        selectAllLabel.className = 'flex items-center space-x-2 px-2 py-2 hover:bg-slate-100 cursor-pointer text-sm font-semibold text-slate-800 rounded transition-colors border-b border-slate-200 dark:border-slate-700 mb-1';
         selectAllLabel.innerHTML = `<input type="checkbox" class="rounded border-slate-300 text-indigo-600 focus:ring-indigo-500 w-4 h-4 select-all-cb" onchange="toggleSelectAll('${containerId}', this, '${btnId}', '${defaultText}')"><span class="truncate">เลือกทั้งหมด</span>`;
         container.appendChild(selectAllLabel);
       }
@@ -756,7 +756,7 @@
       uniqueValues.forEach(val => {
         const label = document.createElement('label');
         // 🌟 2. เพิ่มคลาส filter-item และ filter-text เพื่อให้ระบบค้นหาจับจุดได้
-        label.className = 'flex items-center space-x-2 px-2 py-1.5 hover:bg-indigo-50 cursor-pointer text-sm text-slate-700 rounded transition-colors filter-item';
+        label.className = 'flex items-center space-x-2 px-2 py-1.5 hover:bg-indigo-50 cursor-pointer text-sm text-slate-700 dark:text-slate-200 rounded transition-colors filter-item';
         label.innerHTML = `<input type="checkbox" value="${val}" class="rounded border-slate-300 text-indigo-600 focus:ring-indigo-500 w-4 h-4 item-cb" onchange="handleFilterChange('${containerId}', '${btnId}', '${defaultText}')"><span class="truncate filter-text">${val}</span>`;
         container.appendChild(label);
       });
@@ -788,14 +788,14 @@
       const uniqueMonths = [...new Set(allData.map(item => item.monthNum))].filter(val => val > 0).sort((a, b) => a - b);
       if (uniqueMonths.length > 0) {
         const selectAllLabel = document.createElement('label');
-        selectAllLabel.className = 'flex items-center space-x-2 px-2 py-2 hover:bg-slate-100 cursor-pointer text-sm font-semibold text-slate-800 rounded transition-colors border-b border-slate-200 mb-1';
+        selectAllLabel.className = 'flex items-center space-x-2 px-2 py-2 hover:bg-slate-100 cursor-pointer text-sm font-semibold text-slate-800 rounded transition-colors border-b border-slate-200 dark:border-slate-700 mb-1';
         selectAllLabel.innerHTML = `<input type="checkbox" class="rounded border-slate-300 text-indigo-600 focus:ring-indigo-500 w-4 h-4 select-all-cb" onchange="toggleSelectAll('${containerId}', this, '${btnId}', '${defaultText}')"><span class="truncate">เลือกทั้งหมด</span>`;
         container.appendChild(selectAllLabel);
       }
 
       uniqueMonths.forEach(m => {
         const label = document.createElement('label');
-        label.className = 'flex items-center space-x-2 px-2 py-1.5 hover:bg-indigo-50 cursor-pointer text-sm text-slate-700 rounded transition-colors';
+        label.className = 'flex items-center space-x-2 px-2 py-1.5 hover:bg-indigo-50 cursor-pointer text-sm text-slate-700 dark:text-slate-200 rounded transition-colors';
         label.innerHTML = `<input type="checkbox" value="${m}" class="rounded border-slate-300 text-indigo-600 focus:ring-indigo-500 w-4 h-4 item-cb" onchange="handleFilterChange('${containerId}', '${btnId}', '${defaultText}')"><span class="truncate">${thaiMonths[m]}</span>`;
         container.appendChild(label);
       });
@@ -1150,9 +1150,9 @@
         const topicCounts = {};
         casesInCat.forEach(item => { let t = item.topics; if (!t) t = ['ไม่ระบุ']; if (!Array.isArray(t)) t = [t]; t.forEach(val => { const finalVal = val || 'ไม่ระบุ'; topicCounts[finalVal] = (topicCounts[finalVal] || 0) + 1; }); });
         const t3Topics = Object.entries(topicCounts).sort((a,b) => b[1] - a[1]).slice(0, 3);
-        let html = `<div class="p-4 bg-white dark:bg-slate-800 border-b md:border-b-0 md:border-r border-slate-200 dark:border-slate-700 last:border-0 h-full flex flex-col"><h4 class="text-[13px] md:text-sm font-bold text-slate-800 dark:text-slate-200 mb-3 border-b border-slate-200 dark:border-slate-700 pb-2">${index + 1}. ${catName} Top 3</h4><ul class="space-y-2 flex-1">`;
+        let html = `<div class="p-4 bg-white dark:bg-slate-800 border-b md:border-b-0 md:border-r border-slate-200 dark:border-slate-700 dark:border-slate-700 last:border-0 h-full flex flex-col"><h4 class="text-[13px] md:text-sm font-bold text-slate-800 dark:text-slate-200 mb-3 border-b border-slate-200 dark:border-slate-700 dark:border-slate-700 pb-2">${index + 1}. ${catName} Top 3</h4><ul class="space-y-2 flex-1">`;
         if (t3Topics.length === 0) html += `<li class="text-xs text-slate-400">- ไม่มีข้อมูล -</li>`;
-        else t3Topics.forEach((tInfo, tIndex) => { html += `<li class="text-xs md:text-[13px] text-slate-600 dark:text-slate-400 flex items-start gap-2"><span class="text-slate-800 dark:text-slate-300 font-medium">${tIndex + 1}.</span> <span class="flex-1 leading-snug">${tInfo[0]} <span class="text-indigo-500 dark:text-indigo-400 font-medium ml-1">(${tInfo[1]})</span></span></li>`; });
+        else t3Topics.forEach((tInfo, tIndex) => { html += `<li class="text-xs md:text-[13px] text-slate-600 dark:text-slate-400 dark:text-slate-400 flex items-start gap-2"><span class="text-slate-800 dark:text-slate-300 font-medium">${tIndex + 1}.</span> <span class="flex-1 leading-snug">${tInfo[0]} <span class="text-indigo-500 dark:text-indigo-400 font-medium ml-1">(${tInfo[1]})</span></span></li>`; });
         html += `</ul></div>`;
         top3Container.innerHTML += html;
       });
@@ -1216,15 +1216,15 @@
         const catText = item.categories.join(', ');
         
         const tr = document.createElement('tr');
-        tr.className = 'hover:bg-slate-50 transition-colors border-b border-slate-100';
+        tr.className = 'hover:bg-slate-50 dark:bg-slate-950 dark:bg-slate-950 transition-colors border-b border-slate-100';
         tr.innerHTML = `
           <td class="px-4 py-3 text-center text-xs font-mono font-bold text-slate-400">${item.no}</td>
           <td class="px-4 py-3 text-xs text-slate-500 whitespace-nowrap">${item.date}</td>
-          <td class="px-4 py-3 font-semibold text-slate-700 text-xs">${item.brand}</td>
-          <td class="px-4 py-3 text-xs text-slate-600 truncate max-w-[140px]" title="${item.branch}">${item.branch}</td>
+          <td class="px-4 py-3 font-semibold text-slate-700 dark:text-slate-200 text-xs">${item.brand}</td>
+          <td class="px-4 py-3 text-xs text-slate-600 dark:text-slate-400 truncate max-w-[140px]" title="${item.branch}">${item.branch}</td>
           <td class="px-4 py-3 text-xs text-slate-500 truncate max-w-[160px]" title="${catText}">${catText}</td>
-          <td class="px-4 py-3 text-xs text-slate-600 whitespace-nowrap">${item.channel}</td>
-          <td class="px-4 py-3 text-xs text-slate-600 max-w-sm truncate" title="${item.complaint}">${item.complaint}</td>
+          <td class="px-4 py-3 text-xs text-slate-600 dark:text-slate-400 whitespace-nowrap">${item.channel}</td>
+          <td class="px-4 py-3 text-xs text-slate-600 dark:text-slate-400 max-w-sm truncate" title="${item.complaint}">${item.complaint}</td>
           <td class="px-4 py-3 text-center">
             <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${badgeClass}">${item.status}</span>
           </td>
@@ -1245,13 +1245,13 @@
       info.textContent = `แสดงผล ${startIndex + 1} ถึง ${endDisplay} จากทั้งหมด ${totalRows.toLocaleString()} เคส`;
       
       let html = '';
-      html += `<button onclick="changePage(${currentPage - 1})" class="px-2.5 py-1.5 text-xs font-medium rounded-md ${currentPage === 1 ? 'text-slate-400 bg-slate-100 cursor-not-allowed' : 'text-slate-600 bg-white border border-slate-200 hover:bg-slate-50 shadow-sm'}" ${currentPage === 1 ? 'disabled' : ''}>ก่อนหน้า</button>`;
+      html += `<button onclick="changePage(${currentPage - 1})" class="px-2.5 py-1.5 text-xs font-medium rounded-md ${currentPage === 1 ? 'text-slate-400 bg-slate-100 cursor-not-allowed' : 'text-slate-600 dark:text-slate-400 bg-white border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:bg-slate-950 dark:bg-slate-950 shadow-sm'}" ${currentPage === 1 ? 'disabled' : ''}>ก่อนหน้า</button>`;
       
       let startPage = Math.max(1, currentPage - 2);
       let endPage = Math.min(totalPages, currentPage + 2);
       
       if (startPage > 1) {
-        html += `<button onclick="changePage(1)" class="px-3 py-1.5 text-xs font-medium rounded-md bg-white border border-slate-200 hover:bg-slate-50 shadow-sm">1</button>`;
+        html += `<button onclick="changePage(1)" class="px-3 py-1.5 text-xs font-medium rounded-md bg-white border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:bg-slate-950 dark:bg-slate-950 shadow-sm">1</button>`;
         if (startPage > 2) html += `<span class="px-1 text-slate-400">...</span>`;
       }
       
@@ -1259,16 +1259,16 @@
         if (i === currentPage) {
           html += `<button class="px-3 py-1.5 text-xs font-bold rounded-md bg-indigo-50 text-indigo-600 border border-indigo-200 shadow-sm">${i}</button>`;
         } else {
-          html += `<button onclick="changePage(${i})" class="px-3 py-1.5 text-xs font-medium rounded-md bg-white border border-slate-200 hover:bg-slate-50 shadow-sm text-slate-600">${i}</button>`;
+          html += `<button onclick="changePage(${i})" class="px-3 py-1.5 text-xs font-medium rounded-md bg-white border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:bg-slate-950 dark:bg-slate-950 shadow-sm text-slate-600 dark:text-slate-400">${i}</button>`;
         }
       }
       
       if (endPage < totalPages) {
         if (endPage < totalPages - 1) html += `<span class="px-1 text-slate-400">...</span>`;
-        html += `<button onclick="changePage(${totalPages})" class="px-3 py-1.5 text-xs font-medium rounded-md bg-white border border-slate-200 hover:bg-slate-50 shadow-sm">${totalPages}</button>`;
+        html += `<button onclick="changePage(${totalPages})" class="px-3 py-1.5 text-xs font-medium rounded-md bg-white border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:bg-slate-950 dark:bg-slate-950 shadow-sm">${totalPages}</button>`;
       }
 
-      html += `<button onclick="changePage(${currentPage + 1})" class="px-2.5 py-1.5 text-xs font-medium rounded-md ${currentPage === totalPages ? 'text-slate-400 bg-slate-100 cursor-not-allowed' : 'text-slate-600 bg-white border border-slate-200 hover:bg-slate-50 shadow-sm'}" ${currentPage === totalPages ? 'disabled' : ''}>ถัดไป</button>`;
+      html += `<button onclick="changePage(${currentPage + 1})" class="px-2.5 py-1.5 text-xs font-medium rounded-md ${currentPage === totalPages ? 'text-slate-400 bg-slate-100 cursor-not-allowed' : 'text-slate-600 dark:text-slate-400 bg-white border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:bg-slate-950 dark:bg-slate-950 shadow-sm'}" ${currentPage === totalPages ? 'disabled' : ''}>ถัดไป</button>`;
       
       controls.innerHTML = html;
     }
@@ -1318,12 +1318,12 @@
 
       if (type === 'success') {
         // โหมดสำเร็จ (ขอบสีเขียว ไอคอนเครื่องหมายถูก)
-        toast.className = "fixed top-6 left-1/2 -translate-x-1/2 z-[10001] transform transition-all duration-500 flex items-center w-max max-w-[90vw] p-4 space-x-3 text-slate-600 bg-white rounded-xl shadow-2xl border-b-4 border-emerald-500 translate-y-0 opacity-100";
+        toast.className = "fixed top-6 left-1/2 -translate-x-1/2 z-[10001] transform transition-all duration-500 flex items-center w-max max-w-[90vw] p-4 space-x-3 text-slate-600 dark:text-slate-400 bg-white rounded-xl shadow-2xl border-b-4 border-emerald-500 translate-y-0 opacity-100";
         iconContainer.className = "inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-emerald-500 bg-emerald-50 rounded-lg";
         iconSvg.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>`;
       } else {
         // โหมดล้มเหลว (ขอบสีแดง ไอคอนตกใจ)
-        toast.className = "fixed top-6 left-1/2 -translate-x-1/2 z-[10001] transform transition-all duration-500 flex items-center w-max max-w-[90vw] p-4 space-x-3 text-slate-600 bg-white rounded-xl shadow-2xl border-b-4 border-rose-500 translate-y-0 opacity-100";
+        toast.className = "fixed top-6 left-1/2 -translate-x-1/2 z-[10001] transform transition-all duration-500 flex items-center w-max max-w-[90vw] p-4 space-x-3 text-slate-600 dark:text-slate-400 bg-white rounded-xl shadow-2xl border-b-4 border-rose-500 translate-y-0 opacity-100";
         iconContainer.className = "inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-rose-500 bg-rose-50 rounded-lg";
         iconSvg.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>`;
       }
