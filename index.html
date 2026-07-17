@@ -12,15 +12,16 @@
   <style>
     body { font-family: 'Prompt', sans-serif; }
     
-    /* 🌟 เอฟเฟกต์เฟด 1 วินาทีตอนสลับ Dark Mode (กล่อง พื้นหลัง เส้นขอบ) */
-    body, header, section, .bg-white, .bg-slate-50, .bg-slate-900, .bg-slate-950, tr, th, td {
-      transition-property: background-color, border-color, color;
-      transition-duration: 1s;
-      transition-timing-function: ease-in-out;
+    /* 🌟 เอฟเฟกต์เฟด 1 วินาทีตอนสลับ Dark Mode (เพิ่มกล่อง Dropdown และกล่องวันที่) */
+    body, header, section, .bg-white, .bg-slate-50, .bg-slate-900, .bg-slate-950, tr, th, td, 
+    .dropdown-container > button, input[type="date"] {
+      transition-property: background-color, border-color, color !important;
+      transition-duration: 1s !important;
+      transition-timing-function: ease-in-out !important;
     }
     
-    /* 🌟 ป้องกันไม่ให้ปุ่มต่างๆ หนืดตาม (ให้ปุ่มตอบสนอง Hover ไวเหมือนเดิม) */
-    button, a, input, .item-cb, .select-all-cb {
+    /* 🌟 ป้องกันไม่ให้ปุ่มอื่นๆ หนืดตาม (ยกเว้นกล่อง Dropdown) */
+    button:not(.dropdown-container > button), a, input:not([type="date"]), .item-cb, .select-all-cb {
       transition-duration: 0.2s !important;
     }
     .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
