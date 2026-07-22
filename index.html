@@ -1597,6 +1597,7 @@
 
       // 1. นับสถิติต่างๆ แบบรวดเร็ว
       let closedCount = 0;
+      let totalTopics = 0; // 🌟 เพิ่มตัวแปรสำหรับนับจำนวนเรื่องตรงนี้
       let brandCounts = {};
       let topicCounts = {};
       let branchCounts = {};
@@ -1609,12 +1610,13 @@
           brandCounts[item.brand] = (brandCounts[item.brand] || 0) + 1;
         }
         if (item.topics && item.topics[0] !== 'ไม่ระบุหัวข้อ') {
+          totalTopics += item.topics.length; // 🌟 สั่งให้นับจำนวนเรื่องจากคอลัมน์ T-AC
           item.topics.forEach(t => topicCounts[t] = (topicCounts[t] || 0) + 1);
         }
         if (item.branch && item.branch !== 'ไม่ระบุสาขา') {
           branchCounts[item.branch] = (branchCounts[item.branch] || 0) + 1;
         }
-        if (item.channel && item.channel !== 'ไม่ระบุช่องทาง') { // 🌟 นำข้อมูลช่องทางมาจัดกลุ่ม
+        if (item.channel && item.channel !== 'ไม่ระบุช่องทาง') { 
           channelCounts[item.channel] = (channelCounts[item.channel] || 0) + 1;
         }
       });
@@ -1631,22 +1633,12 @@
       let topBranch = '-'; let topBranchCount = 0;
       for (const [br, c] of Object.entries(branchCounts)) { if (c > topBranchCount) { topBranchCount = c; topBranch = br; } }
 
-      let topChannel = '-'; let topChannelCount = 0; // 🌟 หาช่องทางที่มีจำนวนเยอะที่สุด
+      let topChannel = '-'; let topChannelCount = 0; 
       for (const [ch, c] of Object.entries(channelCounts)) { if (c > topChannelCount) { topChannelCount = c; topChannel = ch; } }
 
-      // 3. ประกอบร่างประโยค (Bullet Points)
+      // 3. ประกอบร่างประโยค (Bullet Points) 🌟 แสดงจำนวนเรื่องร้องเรียนด้วย
       let listHtml = '';
-      listHtml += `<li class="flex items-start gap-2.5"><span class="text-slate-400 mt-0.5">•</span><span>พบการร้องเรียนตามตัวกรองปัจจุบันรวม <strong class="text-indigo-600 text-sm">${total}</strong> เคส (อัตราการปิดเคสสำเร็จ <strong class="text-emerald-600 text-sm">${closeRate}%</strong>)</span></li>`;
-      
-      if (topBrandCount > 0) {
-        listHtml += `<li class="flex items-start gap-2.5"><span class="text-slate-400 mt-0.5">•</span><span>แบรนด์ที่ควรเฝ้าระวังสูงสุดคือ <strong class="text-rose-600 text-sm">${topBrand}</strong> (มีจำนวนถึง ${topBrandCount} เคส)</span></li>`;
-      }
-      if (topTopicCount > 0) {
-        listHtml += `<li class="flex items-start gap-2.5"><span class="text-slate-400 mt-0.5">•</span><span>หัวข้อเคสที่ลูกค้าร้องเรียนเข้ามามากที่สุดคือ <strong class="text-amber-600 text-sm">${topTopic}</strong></span></li>`;
-      }
-      if (topChannelCount > 0) { // 🌟 เพิ่ม Bullet สำหรับช่องทาง
-        const channelPercent = ((topChannelCount / total) * 100).toFixed(0);
-        listHtml += `<li class="flex items-start gap-2.5"><span class="text-slate-400 mt-0.5">•</span><span>ช่องทางที่ลูกค้าร้องเรียนเข้ามามากที่สุดคือ <strong class="text-cyan-600 text-sm">${topChannel}</strong> (คิดเป็น ${channelPercent}%)</span></li>`;
+      listHtml += `<li class="flex items-start gap-2.5"><span class="text-slate-400 mt-0.5">•</span><span>พบการร้องเรียนตามตัวกรองปัจจุบันรวม <strong class="text-rose-600 text-sm">${total.toLocaleString()}</strong> เคส หรือ <strong class="text-blue-600 text-sm">${totalTopics.toLocaleString()}</strong> เรื่อง (อัตราการปิดเคสสำเร็จ <strong class="text-emerald-600 text-sm">${closeRate}%</strong>)</span></li>`;
       }
       listDom.innerHTML = listHtml;
 
