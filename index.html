@@ -1080,8 +1080,19 @@
       });
 
       const channelMap = {};
-      filteredData.forEach(item => { channelMap[item.channel] = (channelMap[item.channel] || 0) + 1; });
-      const channelData = Object.keys(channelMap).map(key => ({ name: key, value: channelMap[key] }));
+      filteredData.forEach(item => { 
+        // เช็คจำนวนเรื่องร้องเรียนจากคอลัมน์ T-AC
+        let topicCount = 0;
+        if (item.topics && item.topics[0] !== 'ไม่ระบุหัวข้อ') {
+          topicCount = item.topics.length;
+        }
+        // เอาจำนวนเรื่องไปบวกเพิ่มให้ช่องทางนั้นๆ
+        channelMap[item.channel] = (channelMap[item.channel] || 0) + topicCount; 
+      });
+      // สร้าง Data และกรองเอาเฉพาะช่องทางที่มีค่ามากกว่า 0
+      const channelData = Object.keys(channelMap)
+        .filter(key => channelMap[key] > 0)
+        .map(key => ({ name: key, value: channelMap[key] }));
       
       const channelContainer = document.getElementById('channelPieChart');
       if (!channelPieChartInstance) channelPieChartInstance = echarts.init(channelContainer); // 🌟 จุดแก้ที่ 3
