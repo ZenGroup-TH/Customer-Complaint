@@ -1669,10 +1669,28 @@
       let topChannel = '-'; let topChannelCount = 0; 
       for (const [ch, c] of Object.entries(channelCounts)) { if (c > topChannelCount) { topChannelCount = c; topChannel = ch; } }
 
-      // 3. ประกอบร่างประโยค (Bullet Points) 🌟 แสดงจำนวนเรื่องร้องเรียนด้วย
+      // 3. ประกอบร่างประโยค (Bullet Points)
       let listHtml = '';
+      
+      // 🟢 Bullet 1: ยอดรวม (เคส + เรื่อง)
       listHtml += `<li class="flex items-start gap-2.5"><span class="text-slate-400 mt-0.5">•</span><span>พบการร้องเรียนตามตัวกรองปัจจุบันรวม <strong class="text-rose-600 text-sm">${total.toLocaleString()}</strong> เคส หรือ <strong class="text-blue-600 text-sm">${totalTopics.toLocaleString()}</strong> เรื่อง (อัตราการปิดเคสสำเร็จ <strong class="text-emerald-600 text-sm">${closeRate}%</strong>)</span></li>`;
       
+      // 🟢 Bullet 2: แบรนด์ที่ถูกร้องเรียนสูงสุด
+      if (topBrand !== '-') {
+        listHtml += `<li class="flex items-start gap-2.5"><span class="text-slate-400 mt-0.5">•</span><span>แบรนด์ที่ควรเฝ้าระวังสูงสุดคือ <strong class="text-rose-600 text-sm">${topBrand}</strong> <span class="text-slate-500">(มีจำนวนถึง ${topBrandCount.toLocaleString()} เคส)</span></span></li>`;
+      }
+      
+      // 🟢 Bullet 3: หัวข้อที่ถูกร้องเรียนสูงสุด
+      if (topTopic !== '-') {
+        listHtml += `<li class="flex items-start gap-2.5"><span class="text-slate-400 mt-0.5">•</span><span>หัวข้อเคสที่ลูกค้าร้องเรียนเข้ามามากที่สุดคือ <strong class="text-amber-600 text-sm">${topTopic}</strong></span></li>`;
+      }
+      
+      // 🟢 Bullet 4: ช่องทางสูงสุด
+      if (topChannel !== '-') {
+        const channelPct = ((topChannelCount / total) * 100).toFixed(0);
+        listHtml += `<li class="flex items-start gap-2.5"><span class="text-slate-400 mt-0.5">•</span><span>ช่องทางที่ลูกค้าร้องเรียนเข้ามามากที่สุดคือ <strong class="text-cyan-600 text-sm">${topChannel}</strong> <span class="text-slate-500">(คิดเป็น ${channelPct}%)</span></span></li>`;
+      }
+
       listDom.innerHTML = listHtml;
 
       // 4. ประกอบร่างคำแนะนำ (Actionable Recommendation)
