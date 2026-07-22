@@ -1050,8 +1050,19 @@
       });
 
       const brandMap = {};
-      filteredData.forEach(item => { brandMap[item.brand] = (brandMap[item.brand] || 0) + 1; });
-      const brandData = Object.keys(brandMap).map(key => ({ name: key, value: brandMap[key] }));
+      filteredData.forEach(item => { 
+        // เช็คจำนวนเรื่องร้องเรียนจากคอลัมน์ T-AC
+        let topicCount = 0;
+        if (item.topics && item.topics[0] !== 'ไม่ระบุหัวข้อ') {
+          topicCount = item.topics.length;
+        }
+        // เอาจำนวนเรื่องไปบวกเพิ่มให้แบรนด์นั้นๆ
+        brandMap[item.brand] = (brandMap[item.brand] || 0) + topicCount; 
+      });
+      // สร้าง Data และกรองเอาเฉพาะแบรนด์ที่มีค่ามากกว่า 0 เพื่อไม่ให้กราฟรวน
+      const brandData = Object.keys(brandMap)
+        .filter(key => brandMap[key] > 0)
+        .map(key => ({ name: key, value: brandMap[key] }));
       
       const brandContainer = document.getElementById('brandChart');
       if (!brandChartInstance) brandChartInstance = echarts.init(brandContainer); // 🌟 จุดแก้ที่ 2
