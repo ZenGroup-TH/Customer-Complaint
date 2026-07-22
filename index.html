@@ -1204,35 +1204,85 @@
         series: [{ type: 'bar', data: sortedBrandTopicData.map(d => d.value), itemStyle: { color: '#8b5cf6', borderRadius: [4, 4, 0, 0] }, barMaxWidth: 45, label: { show: true, position: 'top', fontFamily: 'Prompt', fontWeight: 'bold', color: textColor, fontSize: 13 } }]
       });
 
+      // 🌟 ใช้หลักเกณฑ์ Mapping เดียวกันเพื่อดึง Top 3 ด้านมาแสดง
       const top3Cats = topCategories.slice(0, 3);
       const top3CatDom = document.getElementById('top3CategoryChart');
-      if (!top3CategoryChartInst) top3CategoryChartInst = echarts.init(top3CatDom); // 🌟 จุดแก้ที่ 7
+      if (!top3CategoryChartInst) top3CategoryChartInst = echarts.init(top3CatDom);
+      
       const t3CatNames = top3Cats.map(item => item[0]).reverse();
       const t3CatValues = top3Cats.map(item => item[1]).reverse();
+      
       top3CategoryChartInst.setOption({
         tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, ...tooltipStyle },
         grid: { left: '1%', right: '15%', bottom: '0%', top: '5%', containLabel: true },
         xAxis: { type: 'value', show: false },
-        yAxis: { type: 'category', data: t3CatNames, axisLine: { show: false }, axisTick: { show: false }, axisLabel: { fontFamily: 'Prompt', fontSize: isMobile ? 10 : 12, color: textColor, fontWeight: '500', width: isMobile ? 110 : 160, overflow: 'break', align: 'right' } },
-        series: [{ type: 'bar', data: t3CatValues, itemStyle: { color: '#fbbf24', borderRadius: [0, 4, 4, 0] }, barWidth: 20, label: { show: true, position: 'right', fontFamily: 'Prompt', color: textColor, fontSize: isMobile ? 10 : 12, formatter: (params) => { if (totalCases === 0) return `${params.value} เรื่อง`; return `${params.value} เรื่อง (${((params.value / totalCases) * 100).toFixed(0)}%)`; } } }]
+        yAxis: { 
+          type: 'category', 
+          data: t3CatNames, 
+          axisLine: { show: false }, 
+          axisTick: { show: false }, 
+          axisLabel: { 
+            fontFamily: 'Prompt', 
+            fontSize: isMobile ? 10 : 12, 
+            color: textColor, 
+            fontWeight: '500', 
+            width: isMobile ? 110 : 160, 
+            overflow: 'break', 
+            align: 'right' 
+          } 
+        },
+        series: [{ 
+          type: 'bar', 
+          data: t3CatValues, 
+          itemStyle: { color: '#fbbf24', borderRadius: [0, 4, 4, 0] }, 
+          barWidth: 20, 
+          label: { 
+            show: true, 
+            position: 'right', 
+            fontFamily: 'Prompt', 
+            color: textColor, 
+            fontSize: isMobile ? 10 : 12, 
+            formatter: (params) => { 
+              if (totalCases === 0) return `${params.value} เรื่อง`; 
+              return `${params.value} เรื่อง (${((params.value / totalCases) * 100).toFixed(0)}%)`; 
+            } 
+          } 
+        }]
       });
 
-      // 🌟 ถ้าแค่กดเปลี่ยนธีม (isThemeToggle) จะไม่ลบและสร้าง HTML ใหม่ เพื่อให้มันเฟดสีนุ่มๆ ได้
+      // 🌟 ถ้าแค่กดสลับ Dark Mode (isThemeToggle) จะไม่ลบสร้าง HTML ใหม่ เพื่อให้เฟดสี 1 วิได้นุ่มนวล
       if (!isThemeToggle) {
         const top3Container = document.getElementById('top3TopicsContainer');
         top3Container.innerHTML = '';
+        
         top3Cats.forEach((catInfo, index) => {
           const catName = catInfo[0];
-          const casesInCat = filteredData.filter(item => { let c = item.categories; if (!c) c = ['ไม่ระบุ']; if (!Array.isArray(c)) c = [c]; return c.includes(catName); });
-          const topicCounts = {};
-          casesInCat.forEach(item => { let t = item.topics; if (!t) t = ['ไม่ระบุ']; if (!Array.isArray(t)) t = [t]; t.forEach(val => { const finalVal = val || 'ไม่ระบุ'; topicCounts[finalVal] = (topicCounts[finalVal] || 0) + 1; }); });
-          const t3Topics = Object.entries(topicCounts).sort((a,b) => b[1] - a[1]).slice(0, 3);
           
-          // แอบฝังคลาส transition-colors duration-1000 เพื่อให้มันเฟดสวยงาม
+          // ดึงหัวข้อทั้งหมดในคอลัมน์ T-AC ที่ถูกแมปตรงกับ 'ด้าน' นี้
+          const topicCounts = {};
+          filteredData.forEach(item => {
+            if (item.topics && item.topics[0] !== 'ไม่ระบุหัวข้อ') {
+              item.topics.forEach(topic => {
+                const mappedCat = topicToCatMap[topic] || 'หมวดหมู่อื่นๆ/ไม่ระบุ';
+                if (mappedCat === catName) {
+                  topicCounts[topic] = (topicCounts[topic] || 0) + 1;
+                }
+              });
+            }
+          });
+
+          // ดึง Top 3 หัวข้อย่อยของด้านนั้นๆ
+          const t3Topics = Object.entries(topicCounts).sort((a, b) => b[1] - a[1]).slice(0, 3);
+          
           let html = `<div class="p-4 bg-white dark:bg-slate-800 border-b md:border-b-0 md:border-r border-slate-200 dark:border-slate-700 last:border-0 h-full flex flex-col transition-colors duration-1000"><h4 class="text-[13px] md:text-sm font-bold text-slate-800 dark:text-slate-200 mb-3 border-b border-slate-200 dark:border-slate-700 pb-2 transition-colors duration-1000">${index + 1}. ${catName} Top 3</h4><ul class="space-y-2 flex-1">`;
           
-          if (t3Topics.length === 0) html += `<li class="text-xs text-slate-400">- ไม่มีข้อมูล -</li>`;
-          else t3Topics.forEach((tInfo, tIndex) => { html += `<li class="text-xs md:text-[13px] text-slate-600 dark:text-slate-400 flex items-start gap-2 transition-colors duration-1000"><span class="text-slate-800 dark:text-slate-300 font-medium transition-colors duration-1000">${tIndex + 1}.</span> <span class="flex-1 leading-snug">${tInfo[0]} <span class="text-indigo-500 dark:text-indigo-400 font-medium ml-1">(${tInfo[1]})</span></span></li>`; });
+          if (t3Topics.length === 0) {
+            html += `<li class="text-xs text-slate-400">- ไม่มีข้อมูล -</li>`;
+          } else {
+            t3Topics.forEach((tInfo, tIndex) => { 
+              html += `<li class="text-xs md:text-[13px] text-slate-600 dark:text-slate-400 flex items-start gap-2 transition-colors duration-1000"><span class="text-slate-800 dark:text-slate-300 font-medium transition-colors duration-1000">${tIndex + 1}.</span> <span class="flex-1 leading-snug">${tInfo[0]} <span class="text-indigo-500 dark:text-indigo-400 font-medium ml-1">(${tInfo[1]})</span></span></li>`; 
+            });
+          }
           
           html += `</ul></div>`;
           top3Container.innerHTML += html;
