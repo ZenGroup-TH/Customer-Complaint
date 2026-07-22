@@ -610,6 +610,32 @@
       document.getElementById('statusBtnText').textContent = 'ทั้งหมด ทุกสถานะ';
       applyFilters();
     }
+  // 🌟 ฟังก์ชัน Shortcut สำหรับติ๊กเลือกทุกอย่างยกเว้น "ชื่นชม"
+    function excludeCompliments() {
+      const containerId = 'topicOptions';
+      const allBoxes = document.querySelectorAll(`#${containerId} .item-cb`);
+      const selectAllBox = document.querySelector(`#${containerId} .select-all-cb`);
+      
+      let checkedCount = 0;
+      
+      // ลูปหา checkbox ทุกตัวในกล่อง หัวข้อเคส
+      allBoxes.forEach(cb => {
+        if (cb.value === 'ชื่นชม') {
+          cb.checked = false; // เอาติ๊กออกถ้าเป็นคำว่า ชื่นชม
+        } else {
+          cb.checked = true;  // ติ๊กถูกหัวข้ออื่นๆ ทั้งหมด
+          checkedCount++;
+        }
+      });
+      
+      // อัปเดตสถานะปุ่ม "เลือกทั้งหมด" (เอาติ๊กออกเพราะเราไม่ได้เลือกทั้งหมด)
+      if (selectAllBox) {
+        selectAllBox.checked = (checkedCount === allBoxes.length && allBoxes.length > 0);
+      }
+      
+      // สั่งให้ระบบทำงาน กรองข้อมูล และสร้าง Tag ขึ้นมา
+      handleFilterChange(containerId, 'topicBtnText', 'ทุกหัวข้อ');
+    }
     // 🌟 ฟังก์ชันวาดป้าย Tag ตัวกรอง (วางต่อจาก resetFilters ได้เลย)
     function renderActiveFilterTags() {
       const container = document.getElementById('activeFilterTags');
