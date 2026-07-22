@@ -1010,7 +1010,16 @@
 
       filteredData.forEach(item => {
         if (item.monthNum >= 1 && item.monthNum <= 12) {
-          monthCounts[item.monthNum - 1]++;
+          
+          // นับจำนวนหัวข้อร้องเรียนที่พบในคอลัมน์ T-AC
+          let topicCount = 0;
+          if (item.topics && item.topics[0] !== 'ไม่ระบุหัวข้อ') {
+            topicCount = item.topics.length;
+          }
+          
+          // นำจำนวนเรื่องไปบวกเพิ่มในเดือนนั้นๆ
+          monthCounts[item.monthNum - 1] += topicCount;
+          
           if (item.monthNum > maxMonthWithData) maxMonthWithData = item.monthNum; 
         }
       });
