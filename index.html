@@ -1639,7 +1639,7 @@
       // 3. ประกอบร่างประโยค (Bullet Points) 🌟 แสดงจำนวนเรื่องร้องเรียนด้วย
       let listHtml = '';
       listHtml += `<li class="flex items-start gap-2.5"><span class="text-slate-400 mt-0.5">•</span><span>พบการร้องเรียนตามตัวกรองปัจจุบันรวม <strong class="text-rose-600 text-sm">${total.toLocaleString()}</strong> เคส หรือ <strong class="text-blue-600 text-sm">${totalTopics.toLocaleString()}</strong> เรื่อง (อัตราการปิดเคสสำเร็จ <strong class="text-emerald-600 text-sm">${closeRate}%</strong>)</span></li>`;
-      }
+      
       listDom.innerHTML = listHtml;
 
       // 4. ประกอบร่างคำแนะนำ (Actionable Recommendation)
