@@ -780,6 +780,7 @@
         
         if (item.topics && item.topics[0] !== 'ไม่ระบุหัวข้อ') {
           item.topics.forEach(topic => {
+            const cleanTopic = topic.trim(); // 🌟 สั่งตัดช่องว่างล่องหนทิ้งก่อน
             // ถ้านำหัวข้อไปหาในพจนานุกรมแล้ว "ไม่เจอ" (เช่น ชื่นชม) ให้ปัดไปเข้ากลุ่ม 'หมวดหมู่อื่นๆ/ไม่ระบุ' ทันที
             const mappedCat = topicToCatMap[topic] || 'หมวดหมู่อื่นๆ/ไม่ระบุ';
             mappedCategories.add(mappedCat);
@@ -1234,6 +1235,7 @@
       filteredData.forEach(item => {
         if (item.topics && item.topics[0] !== 'ไม่ระบุหัวข้อ') {
           item.topics.forEach(topic => {
+            const cleanTopic = topic.trim(); // 🌟 ตัดช่องว่าง
             // เอาเรื่องที่เจอมาเทียบพจนานุกรมว่าอยู่ด้านไหน ถ้าไม่เจอให้ตกไปที่ 'หมวดหมู่อื่นๆ/ไม่ระบุ'
             const mappedCategory = topicToCatMap[topic] || 'หมวดหมู่อื่นๆ/ไม่ระบุ'; 
             categoryScores[mappedCategory] = (categoryScores[mappedCategory] || 0) + 1;
@@ -1340,6 +1342,7 @@
           filteredData.forEach(item => {
             if (item.topics && item.topics[0] !== 'ไม่ระบุหัวข้อ') {
               item.topics.forEach(topic => {
+                const cleanTopic = topic.trim(); // 🌟 ตัดช่องว่าง
                 const mappedCat = topicToCatMap[topic] || 'หมวดหมู่อื่นๆ/ไม่ระบุ';
                 if (mappedCat === catName) {
                   topicCounts[topic] = (topicCounts[topic] || 0) + 1;
