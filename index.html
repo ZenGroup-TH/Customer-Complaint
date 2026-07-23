@@ -927,7 +927,6 @@
       const resps = getSelectedValues('responsibleOptions');
       const statuses = getSelectedValues('statusOptions');
       
-      // ดึงค่าวันที่เริ่มต้น-สิ้นสุด
       const startDateVal = document.getElementById('startDate').value;
       const endDateVal = document.getElementById('endDate').value;
       let startInt = 0;
@@ -935,21 +934,78 @@
       if (startDateVal) startInt = parseInt(startDateVal.replace(/-/g, ''));
       if (endDateVal) endInt = parseInt(endDateVal.replace(/-/g, ''));
 
-      filteredData = allData.filter(item => {
-        const matchBrand = brands.length === 0 || brands.includes(item.brand);
-        const matchBranch = branches.length === 0 || branches.includes(item.branch); 
-        const matchChannel = channels.length === 0 || channels.includes(item.channel);
-        const matchResp = resps.length === 0 || resps.includes(item.responsible);
-        const matchStatus = statuses.length === 0 || statuses.includes(item.status);
-        const matchCat = selectedCats.length === 0 || item.categories.some(c => selectedCats.includes(c));
-        const matchTopic = selectedTopics.length === 0 || item.topics.some(t => selectedTopics.includes(t));       
+      // 🌟 ยกพจนานุกรมมาไว้ที่นี่ด้วย เพื่อใช้คัดกรองลึกระดับหัวข้อย่อย
+      const categoryMapping = {
+        "ด้านคุณภาพ": ["ความคงที่ของรสชาติ", "คุณภาพอาหาร", "หน้าตาอาหาร", "ความสด", "สิ่งแปลกปลอม", "เนื้อสัมผัส (เหนียว เปื่อย)", "ปริมาณอาหาร", "การแพคอาหาร", "ท้องเสีย/แพ้อาหาร", "คุณภาพไม่ดี แต่ไม่ระบุรายละเอียด"],
+        "ด้านบริการ": ["ความถูกต้องของการเสิร์ฟ", "ความถูกต้องของการเสิร์ฟ (ไม่ครบ ผิด)", "การเสิร์ฟอาหารช้า", "บริการล่าช้า", "มารยาท", "การดูแลเอาใจใส่", "ความชัดเจนในการแจ้งข้อมูล", "การจัดการคิว", "บริการไม่ดี แต่ไม่ระบุรายละเอียด"],
+        "ด้านความสะอาด และด้านสุขอนามัย": ["พบเจอสัตว์พาหะ หรือแมลงบิน", "ความสะอาดภายในร้าน", "สุขลักษณะส่วนบุคคลของพนักงาน"],
+        "ด้านอุปกรณ์": ["เตา (ไฟไม่แรง)", "ภายในร้าน (ร้อน แอร์เสีย)"],
+        "ด้านงานระบบไอที": ["ระบบขัดข้อง"],
+        "ด้านภาชนะ": ["ภาชนะ อุปกรณ์ แตกบิ่น"],
+        "ด้านความคุ้มค่า": ["ความคุ้มค่าของอาหาร และเครื่องดื่ม"],
+        "ด้านการตลาด และโปรโมชั่น": ["โปรโมชั่นของบริษัท", "โปรโมชั่นร่วมกับคู่ค้า", "สื่อประชาสัมพันธ์ โปรโมชั่น (ไม่อัปเดต / ผิด)", "สื่อประชาสัมพันธ์ โปรโมชั่น (ไม่อัปเดต ผิด)"],
+        "ด้านระบบสมาชิก": ["ระบบสมาชิก (CRM)"],
+        "ด้านอุบัติเหตุในร้าน": ["ไฟดูด", "น้ำร้อนลวก / น้ำมันกระเด็น / ของมีคมบาด", "สิ่งของหล่นใส่", "ความเสียหายต่อทรัพย์สินของลูกค้า"],
+        "ด้านเหตุการณ์สภาวะวิกฤต": ["อัคคีภัย", "ภัยธรรมชาติ", "ชุมนุมประท้วง / จลาจล", "โรคระบาดต่อเนื่อง", "การก่อการร้าย", "อุบัติเหตุ เช่น ตึกถล่ม", "ระบบเทคโนโลยี และสารสนเทศขัดข้อง", "ภัยคุกคามทางไซเบอร์", "ภัยจากผลกระทบของภาวะสงคราม"],
+        "ด้านอื่นๆ": ["การชำระเงิน", "วัตถุดิบหมด", "คุณภาพ และบริการไม่ดี แต่ไม่ระบุรายละเอียด", "ที่ไม่เกี่ยวข้องกับระบบพนักงาน"],
+        "ด้านชื่นชม": ["ชื่นชม"]
+      };
 
-        // เช็คช่วงวันที่ให้ตรงกับที่เลือก
-        const itemDateInt = parseDateForSort(item.date);
+      const topicToCatMap = {};
+      for (const [cat, topics] of Object.entries(categoryMapping)) {
+        topics.forEach(t => topicToCatMap[t] = cat);
+      }
+
+      filteredData = [];
+
+      allData.forEach(originalItem => {
+        // เช็คตัวกรองพื้นฐาน (แบรนด์, สาขา, วันที่ ฯลฯ)
+        const matchBrand = brands.length === 0 || brands.includes(originalItem.brand);
+        const matchBranch = branches.length === 0 || branches.includes(originalItem.branch); 
+        const matchChannel = channels.length === 0 || channels.includes(originalItem.channel);
+        const matchResp = resps.length === 0 || resps.includes(originalItem.responsible);
+        const matchStatus = statuses.length === 0 || statuses.includes(originalItem.status);
+        
+        const itemDateInt = parseDateForSort(originalItem.date);
         const matchDate = (itemDateInt >= startInt && itemDateInt <= endInt);
 
-        return matchBrand && matchCat && matchTopic && matchBranch && matchChannel && matchResp && matchStatus && matchDate;
+        // ถ้าผ่านตัวกรองพื้นฐานมาได้
+        if (matchBrand && matchBranch && matchChannel && matchResp && matchStatus && matchDate) {
+          
+          // 🌟 สร้างร่างโคลนของเคสนี้ขึ้นมา เพื่อหั่นหัวข้อที่ไม่เกี่ยวทิ้ง
+          let item = { ...originalItem, topics: [], categories: [] };
+          let validCategories = new Set();
+          
+          if (originalItem.topics && originalItem.topics[0] !== 'ไม่ระบุหัวข้อ') {
+            originalItem.topics.forEach(topic => {
+              const cleanTopic = topic.trim();
+              const mappedCat = topicToCatMap[cleanTopic] || 'หมวดหมู่อื่นๆ/ไม่ระบุ';
+              
+              const matchCat = selectedCats.length === 0 || selectedCats.includes(mappedCat);
+              const matchTop = selectedTopics.length === 0 || selectedTopics.includes(cleanTopic);
+              
+              // 💡 เก็บไว้เฉพาะหัวข้อที่ตรงกับตัวกรองที่ผู้ใช้เลือกเท่านั้น
+              if (matchCat && matchTop) {
+                item.topics.push(cleanTopic);
+                validCategories.add(mappedCat);
+              }
+            });
+          }
+
+          item.categories = Array.from(validCategories);
+
+          // ถ้าเคสนี้ยังมีหัวข้อเหลืออยู่ (ตรงสเปกตัวกรอง) ให้ดึงไปแสดงผล
+          if (item.topics.length > 0) {
+            filteredData.push(item);
+          } else if (selectedCats.length === 0 && selectedTopics.length === 0) {
+            // กรณีไม่ได้เลือกฟิลเตอร์ด้าน/หัวข้อเลย ให้ปล่อยผ่านแสดงผลตามปกติ
+            item.topics = originalItem.topics;
+            item.categories = originalItem.categories;
+            filteredData.push(item);
+          }
+        }
       });
+
       renderActiveFilterTags(); 
       renderDashboard();
     }
