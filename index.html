@@ -1230,25 +1230,38 @@
         topics.forEach(t => topicToCatMap[t] = cat);
       }
 
-      // 🌟 3. เริ่มนับคะแนนหมวดหมู่จาก "หัวเรื่อง (คอลัมน์ T-AC)" จริงๆ 
+      // 🌟 ดึงค่าตัวกรองปัจจุบันมาเช็คก่อน
+      const selectedCats = getSelectedValues('categoryOptions');
+
+      // 🌟 3. เริ่มนับคะแนนใหม่ (นับเฉพาะด้านที่ผู้ใช้เลือกเท่านั้น)
       const categoryScores = {};
+      const topicScores = {}; // สร้างตัวแปรมานับหัวข้อย่อยโดยเฉพาะ
+
       filteredData.forEach(item => {
         if (item.topics && item.topics[0] !== 'ไม่ระบุหัวข้อ') {
           item.topics.forEach(topic => {
-            const cleanTopic = topic.trim(); // 🌟 ตัดช่องว่าง
-            // เอาเรื่องที่เจอมาเทียบพจนานุกรมว่าอยู่ด้านไหน ถ้าไม่เจอให้ตกไปที่ 'หมวดหมู่อื่นๆ/ไม่ระบุ'
-            const mappedCategory = topicToCatMap[topic] || 'หมวดหมู่อื่นๆ/ไม่ระบุ'; 
-            categoryScores[mappedCategory] = (categoryScores[mappedCategory] || 0) + 1;
+            const cleanTopic = topic.trim();
+            const mappedCategory = topicToCatMap[cleanTopic] || 'หมวดหมู่อื่นๆ/ไม่ระบุ'; 
+            
+            // 💡 พระเอกอยู่ตรงนี้: ถ้ายไม่ได้กรองด้านเลย (ว่างเปล่า) หรือ ด้านของเรื่องนี้ตรงกับที่เลือกไว้ ค่อยบวกคะแนน!
+            if (selectedCats.length === 0 || selectedCats.includes(mappedCategory)) {
+              categoryScores[mappedCategory] = (categoryScores[mappedCategory] || 0) + 1;
+              topicScores[cleanTopic] = (topicScores[cleanTopic] || 0) + 1;
+            }
           });
         }
       });
 
-      // 🌟 4. เรียงลำดับจากมากไปน้อย แล้วตัดเอาเฉพาะ Top 10 ไปวาดกราฟ
+      // 🌟 4. วาดกราฟ Top 10 ด้าน
       const topCategories = Object.entries(categoryScores)
         .sort((a, b) => b[1] - a[1])
         .slice(0, 10);
       categoryChartInstance = createBarChart('categoryChart', topCategories, '#0EA5E9');
-      const topTopics = getTop10Data(filteredData, 'topics');
+      
+      // 🌟 5. วาดกราฟ Top 10 หัวข้อ (ใช้ข้อมูลที่กรองแล้วมาวาด แทนของเดิม)
+      const topTopics = Object.entries(topicScores)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 10);
       topicChartInstance = createBarChart('topicChart', topTopics, '#f59e0b');
       const topBranches = getTop10Data(filteredData, 'branch');
       branchChartInstance = createBarChart('branchChart', topBranches, '#EC4899');
