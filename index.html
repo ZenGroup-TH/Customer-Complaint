@@ -1184,13 +1184,10 @@
 
       const brandMap = {};
       filteredData.forEach(item => { 
-        // เช็คจำนวนเรื่องร้องเรียนจากคอลัมน์ T-AC
-        let topicCount = 0;
-        if (item.topics && item.topics[0] !== 'ไม่ระบุหัวข้อ') {
-          topicCount = item.topics.length;
+        // 🌟 นับ 1 บรรทัด = 1 เคส ตามแบรนด์ในคอลัมน์ I
+        if (item.brand && item.brand !== 'ไม่ระบุแบรนด์') {
+          brandMap[item.brand] = (brandMap[item.brand] || 0) + 1; 
         }
-        // เอาจำนวนเรื่องไปบวกเพิ่มให้แบรนด์นั้นๆ
-        brandMap[item.brand] = (brandMap[item.brand] || 0) + topicCount; 
       });
       // สร้าง Data และกรองเอาเฉพาะแบรนด์ที่มีค่ามากกว่า 0 เพื่อไม่ให้กราฟรวน
       const brandData = Object.keys(brandMap)
