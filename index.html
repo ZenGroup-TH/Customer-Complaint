@@ -1189,13 +1189,26 @@
           brandMap[item.brand] = (brandMap[item.brand] || 0) + 1; 
         }
       });
-      // สร้าง Data และกรองเอาเฉพาะแบรนด์ที่มีค่ามากกว่า 0 เพื่อไม่ให้กราฟรวน
-      const brandData = Object.keys(brandMap)
-        .filter(key => brandMap[key] > 0)
-        .map(key => ({ name: key, value: brandMap[key] }));
+      // 🌟 1. สร้างตัวนับคะแนนเฉพาะสำหรับกราฟโดนัท (นับแบรนด์ + หัวข้อเรื่อง)
+      const donutBrandMap = {};
+      filteredData.forEach(item => {
+        if (item.brand && item.brand !== 'ไม่ระบุแบรนด์') {
+          let topicCount = 0;
+          if (item.topics && item.topics[0] !== 'ไม่ระบุหัวข้อ') {
+            topicCount = item.topics.length; // นับจำนวนเรื่องจากคอลัมน์ T-AC
+          }
+          // เอาจำนวนเรื่องไปบวกใส่แบรนด์
+          donutBrandMap[item.brand] = (donutBrandMap[item.brand] || 0) + topicCount;
+        }
+      });
       
+      const donutBrandData = Object.keys(donutBrandMap)
+        .filter(key => donutBrandMap[key] > 0)
+        .map(key => ({ name: key, value: donutBrandMap[key] }));
+
+      // 🌟 2. สั่งวาดกราฟโดนัทด้วยข้อมูลชุดใหม่
       const brandContainer = document.getElementById('brandChart');
-      if (!brandChartInstance) brandChartInstance = echarts.init(brandContainer); // 🌟 จุดแก้ที่ 2
+      if (!brandChartInstance) brandChartInstance = echarts.init(brandContainer);
       brandChartInstance.setOption({
         color: ['#4f46e5', '#f59e0b', '#10b981', '#ec4899', '#0ea5e9', '#8b5cf6', '#ef4444', '#14b8a6', '#f97316', '#06b6d4', '#84cc16', '#d946ef', '#64748b', '#f43f5e', '#3b82f6', '#22c55e', '#a855f7', '#eab308', '#6366f1', '#fb923c'],
         tooltip: { trigger: 'item', ...tooltipStyle },
@@ -1205,7 +1218,7 @@
           itemStyle: { borderColor: isDark ? '#1e293b' : '#fff', borderWidth: 2 },
           label: { show: true, position: 'outside', formatter: '{b}\n{c} ({d}%)', fontFamily: 'Prompt', fontWeight: 'bold', fontSize: 11, color: textColor },
           labelLine: { show: true, length: 15, length2: 20, smooth: true },
-          data: brandData
+          data: donutBrandData // 🌟 ใส่ตัวแปรใหม่เข้าไปตรงนี้
         }]
       });
 
